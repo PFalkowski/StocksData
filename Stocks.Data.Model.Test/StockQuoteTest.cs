@@ -12,16 +12,17 @@ namespace Stocks.Data.Model.Test
             var tested = new StockQuote();
             tested.Ticker = "IDK";
         }
-        //[Theory]
-        //[TheoryData(typeof(ValidQuotesProvider))]
-        //public void IsValidIsFalseForInvalid(StockQuote inputQuote)
-        //{
-
-        //}
-        [Fact]
-        public void IsValidIsTrueForValid()
+        [Theory]
+        [ClassData(typeof(ValidQuotesProvider))]
+        public void IsValidIsTrueForValid(StockQuote inputQuote)
         {
-
+            Assert.True(inputQuote.IsValid());
+        }
+        [Theory]
+        [ClassData(typeof(InvalidQuotesProvider))]
+        public void IsValidIsFalseForInvalid(StockQuote inputQuote)
+        {
+            Assert.False(inputQuote.IsValid());
         }
     }
 }
