@@ -5,9 +5,9 @@ using Xunit;
 
 namespace Stocks.Data.Model.Test.Mocks
 {
-    public class UnqualQuotePairsProvider : TheoryData<StockQuote, StockQuote>
+    public class UnequalQuotePairsProvider : TheoryData<StockQuote, StockQuote>
     {
-        public UnqualQuotePairsProvider()
+        public UnequalQuotePairsProvider()
         {
             Add(new StockQuote { Ticker = "IDK", Date = 19900101 }, new StockQuote { Ticker = "IDK", Date = 19900102 });
             Add(new StockQuote { Ticker = "IDK", Date = 19900101 }, new StockQuote { Ticker = "IDL", Date = 19900101 });

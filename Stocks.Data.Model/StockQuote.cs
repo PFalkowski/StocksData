@@ -45,18 +45,18 @@ namespace Stocks.Data.Model
                    Close <= High;
         }
 
-        public virtual bool Equals(object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is StockQuote cast)) return false;
             return this.ValueEquals(cast);
         }
 
-        public virtual int GetHashCode()
+        public override int GetHashCode()
         {
-            unchecked { return Date + Ticker.Select(x => int.Parse(x.ToString())).Sum(); }
+            unchecked { return Date + Ticker.Select(x => int.Parse(((int)x).ToString())).Sum(); }
         }
 
-        public virtual string ToString()
+        public override string ToString()
         {
             return $"{Ticker} {Date}";
         }
