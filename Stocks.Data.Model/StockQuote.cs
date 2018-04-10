@@ -53,7 +53,7 @@ namespace Stocks.Data.Model
 
         public virtual int GetHashCode()
         {
-            return Date + Ticker.Select(x => int.Parse(x.ToString())).Sum();
+            unchecked { return Date + Ticker.Select(x => int.Parse(x.ToString())).Sum(); }
         }
 
         public virtual string ToString()

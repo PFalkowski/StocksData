@@ -24,5 +24,27 @@ namespace Stocks.Data.Model.Test
         {
             Assert.False(inputQuote.IsValid());
         }
+        [Fact]
+        public void ToStringReturnsTickerAndDate()
+        {
+            const string ticker = "IDK";
+            const int date = 19900101;
+            var tested = new StockQuote { Ticker = ticker, Date = date };
+            Assert.Equal($"{ticker} {date}", tested.ToString());
+        }
+        [Theory]
+        [ClassData(typeof(EqualQuotePairsProvider))]
+        public void EqualsReturnsTrueForEqualStocks(StockQuote quote1, StockQuote quote2)
+        {
+            Assert.True(quote1.Equals(quote2));
+            Assert.True(quote2.Equals(quote1));
+        }
+        [Theory]
+        [ClassData(typeof(UnqualQuotePairsProvider))]
+        public void EqualsReturnsFalseForUnequalStocks(StockQuote quote1, StockQuote quote2)
+        {
+            Assert.False(quote1.Equals(quote2));
+            Assert.False(quote2.Equals(quote1));
+        }
     }
 }

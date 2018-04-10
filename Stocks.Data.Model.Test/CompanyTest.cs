@@ -14,6 +14,13 @@ namespace Stocks.Data.Model.Test
             var tested = new Company();
             tested.Ticker = "IDK";
         }
+        [Fact]
+        public void ToStringReturnsTicker()
+        {
+            const string ticker = "IDK";
+            var tested = new Company {Ticker = ticker};
+            Assert.Equal(ticker, tested.ToString());
+        }
         [Theory]
         [ClassData(typeof(ValidCompanyProvider))]
         public void IsValidIsTrueForValid(Company inputCompany)
