@@ -9,12 +9,14 @@ namespace Stocks.Data.Model
 {
     public class StockQuote : IValidatable
     {
-        [Key]
-        [Column(Order = 1)]
+        public Company Company { get; set; }
+
+        //[Column(Order = 0), Key]
+        //[Key]
         public virtual string Ticker { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        //[Column(Order = 1), Key]
+        //[Key]
         public virtual int Date { get; set; }
 
         public virtual double Open { get; set; }

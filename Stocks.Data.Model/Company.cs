@@ -9,9 +9,9 @@ namespace Stocks.Data.Model
     public class Company : IValidatable
     {
         [Key]
-        [ForeignKey(nameof(Quotes))]
+        //[ForeignKey(nameof(Quotes))]
         public virtual string Ticker { get; set; }
-        public virtual ICollection<StockQuote> Quotes { get; set; }
+        public virtual List<StockQuote> Quotes { get; set; }
 
         [NotMapped]
         public virtual StockQuote FirstQuote => Quotes?.First();
@@ -20,10 +20,10 @@ namespace Stocks.Data.Model
 
         public virtual bool IsValid()
         {
-            return (!string.IsNullOrWhiteSpace(Ticker)) && Quotes == null ? false : Quotes.All(q => q.IsValid());
+            return ((string.IsNullOrWhiteSpace(Ticker)) || Quotes != null) && Quotes.All(q => q.IsValid());
         }
 
-        public virtual string ToString()
+        public override string ToString()
         {
             return Ticker;
         }
