@@ -16,11 +16,11 @@ namespace Stocks.Data.Ef
         {
             modelBuilder.Entity<StockQuote>()
                 .HasKey(q => new { q.Ticker, q.Date });
-            modelBuilder.Entity<StockQuote>()
-                .HasOne(q => q.Company)
-                .WithMany(q => q.Quotes)
-                .HasForeignKey(q =>  q.Ticker )
-                .HasPrincipalKey(q =>  q.Ticker );
+            modelBuilder.Entity<Company>()
+                .HasMany(c => c.Quotes)
+                .WithOne(c => c.Company)
+                .HasForeignKey(q => q.Ticker)
+                .HasPrincipalKey(q => q.Ticker);
         }
         public virtual DbSet<Company> Companies { get; set; }
     }

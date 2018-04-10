@@ -7,7 +7,7 @@ using Extensions.Standard;
 
 namespace Stocks.Data.Model
 {
-    public class StockQuote : IValidatable
+    public class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
         public Company Company { get; set; }
 
