@@ -9,6 +9,8 @@ namespace Stocks.Data.Ef.Test
 {
     public static class Config
     {
-        public static IFactory<DbContextOptions<StockContext>> ChoosenDbProviderFactory { get; } = new InMemoryOptionsFactory();
+        public static IFactory<DbContextOptions<DbContext>> ChoosenDbProviderFactory { get; }
+            = new InMemoryOptionsFactory();
+            //= new LocalDbOptionsFactory();
     }
 }

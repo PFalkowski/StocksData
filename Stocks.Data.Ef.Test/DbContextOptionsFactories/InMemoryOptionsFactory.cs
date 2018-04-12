@@ -7,12 +7,12 @@ using StandardInterfaces;
 
 namespace Stocks.Data.Ef.Test.DbContextOptionsFactories
 {
-    public class InMemoryOptionsFactory : IFactory<DbContextOptions<StockContext>>
+    public class InMemoryOptionsFactory : IFactory<DbContextOptions<DbContext>>
     {
-        public DbContextOptions<StockContext> GetInstance()
+        public DbContextOptions<DbContext> GetInstance()
         {
-            return new DbContextOptionsBuilder<StockContext>()
-                .UseInMemoryDatabase(Path.GetRandomFileName())
+            return new DbContextOptionsBuilder<DbContext>()
+                .UseInMemoryDatabase(Path.GetFileNameWithoutExtension(Path.GetRandomFileName()))
                 .Options;
         }
     }

@@ -9,7 +9,7 @@ namespace Stocks.Data.Ef
 {
     public class StockContext : DbContext
     {
-        public StockContext(DbContextOptions<StockContext> options) : base(options)
+        public StockContext(DbContextOptions<DbContext> options) : base(options)
         {
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

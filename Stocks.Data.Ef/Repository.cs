@@ -57,12 +57,6 @@ namespace Stocks.Data.Ef
 
         public void Remove(TEntity entity)
         {
-            //or: var attached = Context.ChangeTracker.Entries<TEntity>().Any(e => e.Entity.Equals(entity));
-            var attached = EntitiesDbSet.Local.Any(e => e.Equals(entity));
-            if (!attached)
-            {
-                EntitiesDbSet.Attach(entity);
-            }
             EntitiesDbSet.Remove(entity);
         }
 

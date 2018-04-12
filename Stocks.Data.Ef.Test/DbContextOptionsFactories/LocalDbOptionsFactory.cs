@@ -7,12 +7,12 @@ using StandardInterfaces;
 
 namespace Stocks.Data.Ef.Test.DbContextOptionsFactories
 {
-    public class LocalDbOptionsFactory : IFactory<DbContextOptions<StockContext>>
+    public class LocalDbOptionsFactory : IFactory<DbContextOptions<DbContext>>
     {
-        public DbContextOptions<StockContext> GetInstance()
+        public DbContextOptions<DbContext> GetInstance()
         {
-            string connectionStr = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={Path.GetRandomFileName()};Integrated Security=True;";
-            return new DbContextOptionsBuilder<StockContext>()
+            string connectionStr = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={Path.GetFileNameWithoutExtension(Path.GetRandomFileName())};Integrated Security=True;";
+            return new DbContextOptionsBuilder<DbContext>()
                 .UseSqlServer(connectionStr)
                 .Options;
         }

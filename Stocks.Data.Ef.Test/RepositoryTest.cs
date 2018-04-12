@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef.Test.Mocks;
 using Stocks.Data.Model;
-using Stocks.Data.Model.Test.Mocks;
 using Xunit;
 
 namespace Stocks.Data.Ef.Test
@@ -10,26 +11,23 @@ namespace Stocks.Data.Ef.Test
     public class RepositoryTest
     {
         [Theory]
-        [ClassData(typeof(_11BitMock))]
-        //[ClassData(typeof(CdProjectMock))]
-        //[ClassData(typeof(MbankMock))]
-        public void AddStockInMemory(Company company)
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void AddRangeAddsRange(IEnumerable<MockPoco> input)
         {
             var options = Config.ChoosenDbProviderFactory.GetInstance();
 
-            StockContext testContext = null;
-            Repository<Company> tested = null;
+            DbContext testContext = null;
+            Repository<MockPoco> tested = null;
             try
             {
-                testContext = new StockContext(options);
-                tested = new Repository<Company>(testContext);
-                tested.Add(company);
-                var changesCount = testContext.SaveChanges();
+                testContext = new MockPocoContext(options);
+                tested = new Repository<MockPoco>(testContext);
+                testContext.Database.EnsureCreated();
 
-                var actual = tested.Entities.Count();
-                var expected = 1;
+                tested.AddRange(input);
+                testContext.SaveChanges();
 
-                Assert.Equal(expected, actual);
+                Assert.Equal(input.Count(), tested.Entities.Count());
             }
             finally
             {
@@ -38,35 +36,35 @@ namespace Stocks.Data.Ef.Test
                 testContext?.Dispose();
             }
         }
-
         [Theory]
-        [ClassData(typeof(MbankMock))]
-        public void RemoveSpecificStock(Company company)
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void RemoveRangeRemovesRange(IEnumerable<MockPoco> input)
         {
+            var options = Config.ChoosenDbProviderFactory.GetInstance();
 
-            //string connectionStr = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={nameof(RemoveSpecificStock)};Integrated Security=True;";
+            DbContext testContext = null;
+            Repository<MockPoco> tested = null;
+            try
+            {
+                testContext = new MockPocoContext(options);
+                tested = new Repository<MockPoco>(testContext);
+                testContext.Database.EnsureCreated();
 
-            //using (var unitOfWork = new StockEfUnitOfWork(new StockEfTestContext(connectionStr)))
-            //{
-            //    Assert.Equal(0, unitOfWork.Stocks.Repository.Count());
+                tested.AddRange(input);
+                testContext.SaveChanges();
 
-            //    new CompanyBulkInserter(connectionStr).BulkInsert(company);
+                Assert.Equal(input.Count(), tested.Entities.Count());
 
-            //    Assert.Equal(1, unitOfWork.Stocks.Repository.Count());
-
-            //    unitOfWork.Stocks.Repository.Remove(company);
-            //    unitOfWork.Complete();
-
-            //    Assert.Equal(0, unitOfWork.Stocks.Repository.Count());
-            //}
-
-            //using (var connection = new SqlConnection(connectionStr))
-            //using (var command = new SqlCommand("Select count(*) from [Companies]", connection))
-            //{
-            //    connection.Open();
-            //    var result = (int)command.ExecuteScalar();
-            //    Assert.Equal(0, result);
-            //}
+                tested.RemoveRange(input);
+                testContext.SaveChanges();
+                Assert.Empty(tested.Entities);
+            }
+            finally
+            {
+                testContext?.Database.EnsureDeleted();
+                tested?.Dispose();
+                testContext?.Dispose();
+            }
         }
     }
 }

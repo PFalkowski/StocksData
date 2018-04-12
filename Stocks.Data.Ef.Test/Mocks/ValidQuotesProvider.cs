@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.Model.Test.Mocks
+namespace Stocks.Data.Ef.Test.Mocks
 {
     public class ValidQuotesProvider : TheoryData<StockQuote>
     {
