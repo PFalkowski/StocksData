@@ -5,10 +5,10 @@ namespace Stocks.Data.Infrastructure
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
-        IEnumerable<TEntity> Entities { get; }
         //TEntity Get(Expression<Func<TEntity, bool>> predicate);
         //IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
         //void RemoveAll(Expression<Func<TEntity, bool>> predicate);
+        //int Count(Expression<Func<TEntity, bool>> predicate)
         IList<TEntity> GetAll();
         void Add(TEntity entity);
         void AddOrUpdate(TEntity entity);
