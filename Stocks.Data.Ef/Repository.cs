@@ -34,7 +34,7 @@ namespace Stocks.Data.Ef
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate) 
             => Entities.Where(predicate);
 
-        public IList<TEntity> GetAll() 
+        public List<TEntity> GetAll() 
             => Entities.ToList();
 
         public void Add(TEntity entity) 
@@ -45,6 +45,9 @@ namespace Stocks.Data.Ef
 
         public void Remove(TEntity entity)
             => Entities.Remove(entity);
+
+        public void RemoveAll() 
+            => RemoveAll(x => true);
 
         public void RemoveAll(Expression<Func<TEntity, bool>> predicate)
         {

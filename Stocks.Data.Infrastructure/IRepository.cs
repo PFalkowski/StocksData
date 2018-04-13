@@ -9,12 +9,13 @@ namespace Stocks.Data.Infrastructure
         //IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
         //void RemoveAll(Expression<Func<TEntity, bool>> predicate);
         //int Count(Expression<Func<TEntity, bool>> predicate)
-        IList<TEntity> GetAll();
+        List<TEntity> GetAll();
         void Add(TEntity entity);
         void AddOrUpdate(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+        void RemoveAll();
         int Count();
     }
 }

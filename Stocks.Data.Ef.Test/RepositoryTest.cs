@@ -291,6 +291,40 @@ namespace Stocks.Data.Ef.Test
             }
         }
         [Theory]
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void RemoveAllRemovesAll(List<MockPoco> input)
+        {
+            // Arrange
+
+            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var inputList = input.ToList();
+            DbContext testContext = null;
+            Repository<MockPoco> tested = null;
+            try
+            {
+                testContext = new MockPocoContext(options);
+                tested = new Repository<MockPoco>(testContext);
+                testContext.Database.EnsureCreated();
+                testContext.AddRange(inputList);
+                testContext.SaveChanges();
+
+                // Act
+
+                tested.RemoveAll();
+                testContext.SaveChanges();
+
+                // Assert
+
+                Assert.Equal(0, testContext.Set<MockPoco>().Count());
+            }
+            finally
+            {
+                testContext?.Database.EnsureDeleted();
+                tested?.Dispose();
+                testContext?.Dispose();
+            }
+        }
+        [Theory]
         [ClassData(typeof(MockPocoProvider))]
         public void AddOrUpdateAdds(MockPoco input)
         {
