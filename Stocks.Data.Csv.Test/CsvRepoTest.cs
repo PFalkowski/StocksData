@@ -397,5 +397,109 @@ namespace Stocks.Data.Csv.Test
                 outputFile.Delete();
             }
         }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void UpdateUpdates(MockPoco input)
+        {
+            string oldValue = input.Value;
+            const string newValue = "newValue5";
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act
+                repository.Add(input);
+                input.Value = newValue;
+                csvContext.SaveChanges();
+
+                var received = File.ReadAllText(outputFile.FullName);
+
+                // Assert
+
+                Assert.Contains(newValue, received);
+                Assert.DoesNotContain(oldValue, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void UpdateUpdatesAfterChangesCommited(MockPoco input)
+        {
+            string oldValue = input.Value;
+            const string newValue = "newValue5";
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act
+                repository.Add(input);
+                csvContext.SaveChanges();
+                input.Value = newValue;
+                csvContext.SaveChanges();
+
+                var received = File.ReadAllText(outputFile.FullName);
+
+                // Assert
+
+                Assert.Contains(newValue, received);
+                Assert.DoesNotContain(oldValue, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void GetGets(MockPoco input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+                csvContext.Entities.Add(input);
+                csvContext.SaveChanges();
+
+                // Act
+                var received = repository.Get(input);
+
+                // Assert
+
+                Assert.Equal(input, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
     }
 }

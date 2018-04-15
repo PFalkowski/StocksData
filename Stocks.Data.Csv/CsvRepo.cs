@@ -39,9 +39,20 @@ namespace Stocks.Data.Csv
             return Entities.First(x => x.Equals(id));
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return Entities.Where(predicate.Compile()).ToList();
+            return Entities.First(predicate.Compile());
+        }
+
+        public int Count(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Entities.Count(predicate.Compile());
+        }
+
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Entities.Where(predicate.Compile());
         }
 
         public List<TEntity> GetAll()

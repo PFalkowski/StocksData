@@ -373,9 +373,42 @@ namespace Stocks.Data.Ef.Test
                 testContext.SaveChanges();
 
                 // Act
+                var differentObj = input;
+                differentObj.Value = expected;
+                tested.AddOrUpdate(differentObj);
+                testContext.SaveChanges();
+
+                // Assert
+
+                Assert.Equal(input.Value, testContext.Set<MockPoco>().First().Value);
+            }
+            finally
+            {
+                testContext?.Database.EnsureDeleted();
+                tested?.Dispose();
+                testContext?.Dispose();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void UpdateUpdates(MockPoco input)
+        {
+            // Arrange
+            const string expected = "newValue1";
+            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            DbContext testContext = null;
+            Repository<MockPoco> tested = null;
+            try
+            {
+                testContext = new MockPocoContext(options);
+                tested = new Repository<MockPoco>(testContext);
+                testContext.Database.EnsureCreated();
+                testContext.Add(input);
+                testContext.SaveChanges();
+
+                // Act
 
                 input.Value = expected;
-                tested.AddOrUpdate(input);
                 testContext.SaveChanges();
 
                 // Assert
