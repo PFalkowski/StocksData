@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Csv
@@ -49,7 +50,8 @@ namespace Stocks.Data.Csv
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            foreach (var entity in entities)
+            var list = entities.ToList(); // prevent 'Collection was modified' error, when enumerating and deleting from same collection
+            foreach (var entity in list)
             {
                 Remove(entity);
             }

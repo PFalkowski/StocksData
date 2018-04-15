@@ -1,9 +1,11 @@
+using System;
 using Stocks.Data.Csv.Test.Mocks;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using CsvHelper;
 using Xunit;
 
 namespace Stocks.Data.Csv.Test
@@ -118,7 +120,6 @@ namespace Stocks.Data.Csv.Test
         [ClassData(typeof(MockPocoProvider))]
         public void CsvRepTracksChangesOnItemsInContext(MockPoco input)
         {
-            const string newValue = "newTest123";
             // Arrange
 
             var fileName = Path.GetRandomFileName();
@@ -138,7 +139,7 @@ namespace Stocks.Data.Csv.Test
 
                 // Act
 
-                csvContext.Entities.First().Value = newValue;
+                repository.GetAll().First().Value = input.Value;
                 csvContext.SaveChanges();
 
                 var received = File.ReadAllText(outputFile.FullName);
@@ -146,7 +147,211 @@ namespace Stocks.Data.Csv.Test
                 // Assert
 
                 Assert.DoesNotContain("test5", received);
+                Assert.Contains(input.Value, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void CsvRepRemoveRemoves(MockPoco input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                csvContext.Entities.Add(input);
+                csvContext.SaveChanges();
+
+                // Act
+
+                repository.Remove(input);
+                csvContext.SaveChanges();
+                var received = File.ReadAllText(outputFile.FullName);
+
+                // Assert
+
+                Assert.DoesNotContain(input.Value, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void AddRangeAddsRange(List<MockPoco> input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act
+
+                repository.AddRange(input);
+                csvContext.SaveChanges();
+
+                // Assert
+
+                var rawAllText = File.ReadAllText(outputFile.FullName);
+                List<MockPoco> fromFileParsed = null;
+                using (var csv = new CsvReader(new StringReader(rawAllText)))
+                {
+                    fromFileParsed = csv.GetRecords<MockPoco>().ToList();
+                }
+
+                var expected = input.GroupBy(x => x.Value).OrderBy(x => x.Key).Select(g => new { g.Key, Count = g.Count() });
+                var actual = fromFileParsed.GroupBy(x => x.Value).OrderBy(x => x.Key).Select(g => new { g.Key, Count = g.Count() });
+
+                Assert.Equal(expected, actual);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void RemoveRangeRemovesRange(List<MockPoco> input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+                csvContext.Entities.AddRange(input);
+
+                // Act
+
+                repository.RemoveRange(input);
+                csvContext.SaveChanges();
+
+
+                // Assert
+
+                var rawAllText = File.ReadAllText(outputFile.FullName);
+                List<MockPoco> fromFileParsed = null;
+                using (var csv = new CsvReader(new StringReader(rawAllText)))
+                {
+                    fromFileParsed = csv.GetRecords<MockPoco>().ToList();
+                }
+
+                var actual = fromFileParsed.GroupBy(x => x.Value).OrderBy(x => x.Key).Select(g => new { g.Key, Count = g.Count() }).ToList();
+
+                Assert.Empty(actual);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoRangeProvider))]
+        public void RemoveRangeRemovesRangeWhenTheSameCollection(List<MockPoco> input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act
+
+                repository.AddRange(input);
+                var unfortunateReference = repository.GetAll();
+                repository.RemoveRange(unfortunateReference);
+                csvContext.SaveChanges();
+
+
+                // Assert
+
+                var rawAllText = File.ReadAllText(outputFile.FullName);
+                List<MockPoco> fromFileParsed = null;
+                using (var csv = new CsvReader(new StringReader(rawAllText)))
+                {
+                    fromFileParsed = csv.GetRecords<MockPoco>().ToList();
+                }
+
+                var actual = fromFileParsed.GroupBy(x => x.Value).OrderBy(x => x.Key).Select(g => new { g.Key, Count = g.Count() }).ToList();
+
+                Assert.Empty(actual);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+
+        //[Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void AddOrUpdateUpdates(MockPoco input)
+        {
+            string oldValue = input.Value;
+            const string newValue = "newValue5";
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+
+            using (var streamWriter = outputFile.CreateText())
+            {
+                streamWriter.Write($"Id,Value\r\n{input.Id},{input.Value}\r\n");
+            }
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+                csvContext.SaveChanges();
+
+                // Act
+                input.Value = newValue;
+                repository.AddOrUpdate(input);
+                csvContext.SaveChanges();
+
+                var received = File.ReadAllText(outputFile.FullName);
+
+                // Assert
+
                 Assert.Contains(newValue, received);
+                Assert.DoesNotContain(oldValue, received);
             }
             finally
             {
