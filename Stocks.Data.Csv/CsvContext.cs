@@ -10,72 +10,39 @@ namespace Stocks.Data.Csv
 {
     public class CsvContext<TEntity> where TEntity : class
     {
-        private ReaderWriterLockSlim LockSlim { get; } = new ReaderWriterLockSlim();
+        protected ReaderWriterLockSlim LockSlim { get; } = new ReaderWriterLockSlim();
         public FileInfo File { get; set; }
         public CultureInfo Culture { get; set; }
 
-        private List<TEntity> Entities { get;  set; } = new List<TEntity>();
+        private List<TEntity> Entities { get; set; } = new List<TEntity>();
 
         public List<TEntity> Set(List<TEntity> entities)
         {
-            LockSlim.EnterWriteLock();
+            LockSlim.EnterReadLock();
             try
             {
-                //if (File.Exists)
-                //{
-                //    using (var csv = new CsvReader(File.OpenText(), false))
-                //    {
-                //        Entities = csv.GetRecords<TEntity>().ToList();
-                //    }
-                //}
+                if (File.Exists)
+                {
+                    using (var csv = new CsvReader(File.OpenText(), false))
+                    {
+                        Entities = csv.GetRecords<TEntity>().ToList();
+                    }
+                }
                 Entities.AddRange(entities);
                 return Entities;
             }
             finally
             {
-                LockSlim.ExitWriteLock();
+                LockSlim.ExitReadLock();
             }
         }
 
         public CsvContext(FileInfo file)
         {
             File = file;
-            LockSlim.EnterWriteLock();
-            try
-            {
-                if (file.Exists)
-                {
-                    using (var csv = new CsvReader(file.OpenText(), false))
-                    {
-                        Entities = csv.GetRecords<TEntity>().ToList();
-                    }
-                }
-                else
-                {
-                    Entities = new List<TEntity>();
-                }
-            }
-            finally
-            {
-                LockSlim.ExitWriteLock();
-            }
         }
-        //public CsvContext(string filePath)
-        //{
-        //    File = new FileInfo(filePath);
-        //    if (File.Exists)
-        //    {
-        //        using (var csv = new CsvReader(File.OpenText(), false))
-        //        {
-        //            Entities = csv.GetRecords<TEntity>().ToList();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        File.Create();
-        //        Entities = new List<TEntity>();
-        //    }
-        //}
+
+        public CsvContext(string filePath) : this(new FileInfo(filePath)) { }
 
         public virtual void SaveChanges()
         {

@@ -12,7 +12,7 @@ namespace Stocks.Data.Csv.Test
     {
         [Theory]
         [ClassData(typeof(MockPocoProvider))]
-        public void AddToCsvRepoWorks(MockPoco input)
+        public void AddToCsvRepoWorksWhenFileDoesNotExist(MockPoco input)
         {
             // Arrange
 
@@ -22,10 +22,40 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                //outputFile.Create();
-
                 csvContext = new CsvContext<MockPoco>(outputFile);
-                //Thread.Sleep(3000);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act
+
+                repository.Add(input);
+                csvContext.SaveChanges();
+
+                var received = File.ReadAllText(outputFile.FullName);
+
+                // Assert
+
+                Assert.Contains(input.Value, received);
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
+        [Theory]
+        [ClassData(typeof(MockPocoProvider))]
+        public void AddToCsvRepoWorksWhenEmptyFileExists(MockPoco input)
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+            outputFile.Create().Dispose();
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
