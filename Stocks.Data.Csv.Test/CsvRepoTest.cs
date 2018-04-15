@@ -1,10 +1,9 @@
 using System;
 using Stocks.Data.Csv.Test.Mocks;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using CsvHelper;
 using Xunit;
 
@@ -24,7 +23,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -57,7 +56,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -95,7 +94,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -134,7 +133,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -168,7 +167,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 csvContext.Entities.Add(input);
@@ -212,7 +211,7 @@ namespace Stocks.Data.Csv.Test
 
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act & Assert
@@ -238,7 +237,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -279,7 +278,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
                 foreach (var entity in input)
                 {
@@ -324,7 +323,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -375,7 +374,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
                 csvContext.SaveChanges();
 
@@ -412,7 +411,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -448,7 +447,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -483,7 +482,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile);
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
                 csvContext.Entities.Add(input);
                 csvContext.SaveChanges();

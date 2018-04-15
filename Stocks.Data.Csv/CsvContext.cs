@@ -23,9 +23,10 @@ namespace Stocks.Data.Csv
             {
                 if (File.Exists)
                 {
-                    using (var csv = new CsvReader(File.OpenText(), false))
+                    using (var reader = new CsvReader(File.OpenText(), false))
                     {
-                        Entities = new HashSet<TEntity>(csv.GetRecords<TEntity>());
+                        reader.Configuration.CultureInfo = Culture ?? CultureInfo.CurrentCulture;
+                        Entities = new HashSet<TEntity>(reader.GetRecords<TEntity>());
                     }
                 }
                 foreach (var entity in entities)
