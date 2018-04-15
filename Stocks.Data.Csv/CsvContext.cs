@@ -14,9 +14,9 @@ namespace Stocks.Data.Csv
         public FileInfo File { get; set; }
         public CultureInfo Culture { get; set; }
 
-        public List<TEntity> Entities { get; protected set; } = new List<TEntity>();
+        public HashSet<TEntity> Entities { get; protected set; } = new HashSet<TEntity>();
 
-        public List<TEntity> Set(List<TEntity> entities)
+        public HashSet<TEntity> Set(HashSet<TEntity> entities)
         {
             LockSlim.EnterReadLock();
             try
@@ -25,10 +25,14 @@ namespace Stocks.Data.Csv
                 {
                     using (var csv = new CsvReader(File.OpenText(), false))
                     {
-                        Entities = csv.GetRecords<TEntity>().ToList();
+                        Entities = new HashSet<TEntity>(csv.GetRecords<TEntity>());
                     }
                 }
-                Entities.AddRange(entities);
+                foreach (var entity in entities)
+                {
+                    var result = Entities.Add(entity);
+                    if (!result) throw new ArgumentException($"{entity} already in context");
+                }
                 return Entities;
             }
             finally

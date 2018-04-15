@@ -190,6 +190,41 @@ namespace Stocks.Data.Csv.Test
                 outputFile.Delete();
             }
         }
+        [Fact]
+        public void AddThrowsWhenAttemptedToAddExisitngId()
+        {
+            // Arrange
+
+            var fileName = Path.GetRandomFileName();
+            var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
+
+            CsvContext<MockPoco> csvContext = null;
+            CsvRepo<MockPoco> repository = null;
+            //
+            var set = new HashSet<int>();
+            set.Add(1);
+            set.Add(1);
+            //
+            using (var streamWriter = outputFile.CreateText())
+            {
+                streamWriter.Write("Id,Value\r\n5,test5\r\n");
+            }
+
+            try
+            {
+                csvContext = new CsvContext<MockPoco>(outputFile);
+                repository = new CsvRepo<MockPoco>(csvContext);
+
+                // Act & Assert
+
+                Assert.Throws<ArgumentException>(() => repository.Add(new MockPoco { Id = 5 }));
+            }
+            finally
+            {
+                repository?.Dispose();
+                outputFile.Delete();
+            }
+        }
         [Theory]
         [ClassData(typeof(MockPocoRangeProvider))]
         public void AddRangeAddsRange(List<MockPoco> input)
@@ -246,7 +281,10 @@ namespace Stocks.Data.Csv.Test
             {
                 csvContext = new CsvContext<MockPoco>(outputFile);
                 repository = new CsvRepo<MockPoco>(csvContext);
-                csvContext.Entities.AddRange(input);
+                foreach (var entity in input)
+                {
+                    csvContext.Entities.Add(entity);
+                }
 
                 // Act
 
@@ -317,7 +355,7 @@ namespace Stocks.Data.Csv.Test
             }
         }
 
-        //[Theory]
+        [Theory]
         [ClassData(typeof(MockPocoProvider))]
         public void AddOrUpdateUpdates(MockPoco input)
         {
