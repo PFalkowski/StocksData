@@ -14,7 +14,7 @@ namespace Stocks.Data.Csv
         public FileInfo File { get; set; }
         public CultureInfo Culture { get; set; }
 
-        private List<TEntity> Entities { get; set; } = new List<TEntity>();
+        public List<TEntity> Entities { get; protected set; } = new List<TEntity>();
 
         public List<TEntity> Set(List<TEntity> entities)
         {
