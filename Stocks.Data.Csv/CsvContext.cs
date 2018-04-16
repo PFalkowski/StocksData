@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace Stocks.Data.Csv
 {
@@ -13,6 +14,7 @@ namespace Stocks.Data.Csv
         protected ReaderWriterLockSlim LockSlim { get; } = new ReaderWriterLockSlim();
         public FileInfo File { get; set; }
         public CultureInfo Culture { get; set; }
+        public ClassMap<TEntity> CustomMapping { get; set; }
 
         public HashSet<TEntity> Entities { get; protected set; } = new HashSet<TEntity>();
 
@@ -26,6 +28,10 @@ namespace Stocks.Data.Csv
                     using (var reader = new CsvReader(File.OpenText(), false))
                     {
                         reader.Configuration.CultureInfo = Culture ?? CultureInfo.CurrentCulture;
+                        if (CustomMapping != null)
+                        {
+                            reader.Configuration.RegisterClassMap(CustomMapping);
+                        }
                         Entities = new HashSet<TEntity>(reader.GetRecords<TEntity>());
                     }
                 }
@@ -58,6 +64,10 @@ namespace Stocks.Data.Csv
                 {
                     writer.Configuration.SanitizeForInjection = true;
                     writer.Configuration.CultureInfo = Culture ?? CultureInfo.CurrentCulture;
+                    if (CustomMapping != null)
+                    {
+                        writer.Configuration.RegisterClassMap(CustomMapping);
+                    }
                     writer.WriteRecords(Entities);
                     writer.Flush();
                 }

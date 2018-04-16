@@ -18,23 +18,24 @@ namespace Stocks.Data.Csv.Test.Mocks
 
             var fileName = Path.GetRandomFileName();
             var outputFile = new FileInfo(Path.ChangeExtension(fileName, "csv"));
-            CsvContext<Company> csvContext = null;
-            CsvRepo<Company> repository = null;
+            CsvContext<StockQuote> csvContext = null;
+            CsvRepo<StockQuote> repository = null;
             try
             {
-                csvContext = new CsvContext<Company>(outputFile) { Culture = CultureInfo.InvariantCulture };
-                repository = new CsvRepo<Company>(csvContext);
+                csvContext = new StockCsvContext(outputFile) { Culture = CultureInfo.InvariantCulture };
+                repository = new CsvRepo<StockQuote>(csvContext);
 
                 // Act
 
-                repository.Add(company);
+                repository.AddRange(company.Quotes);
                 csvContext.SaveChanges();
 
                 var received = File.ReadAllText(outputFile.FullName);
-
                 // Assert
 
-                //Assert.Contains(input.Value, received);
+                var actual = received.Split(Environment.NewLine).Length;
+                var expected = company.Quotes.Count + 2;
+                Assert.Equal(expected, actual);
             }
             finally
             {
