@@ -9,7 +9,7 @@ namespace Stocks.Data.Model
 {
     public class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
         //[Column(Order = 0), Key]
         //[Key]

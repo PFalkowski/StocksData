@@ -11,7 +11,7 @@ namespace Stocks.Data.Model
         [Key]
         //[ForeignKey(nameof(Quotes))]
         public virtual string Ticker { get; set; }
-        public virtual List<StockQuote> Quotes { get; set; }
+        public virtual ICollection<StockQuote> Quotes { get; set; }
 
         [NotMapped]
         public virtual StockQuote FirstQuote => Quotes?.First();

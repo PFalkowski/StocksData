@@ -200,9 +200,7 @@ namespace Stocks.Data.Csv.Test
             CsvContext<MockPoco> csvContext = null;
             CsvRepo<MockPoco> repository = null;
             //
-            var set = new HashSet<int>();
-            set.Add(1);
-            set.Add(1);
+            var set = new HashSet<int> {1, 1};
             //
             using (var streamWriter = outputFile.CreateText())
             {
