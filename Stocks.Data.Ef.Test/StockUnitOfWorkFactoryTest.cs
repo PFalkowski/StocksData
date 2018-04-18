@@ -11,6 +11,31 @@ namespace Stocks.Data.Ef.Test
     public class StockUnitOfWorkFactoryTest
     {
         [Fact]
+        public void FactoryProvidesNewInstanceEverytimeItsCalled()
+        {
+            // Arrange
+            DbContextOptions<DbContext> options = Config.ChoosenDbProviderFactory.GetInstance(); ;
+            StockContext testContext = null;
+            StockUnitOfWorkFactory ufo = null;
+            StockUnitOfWork uow = null;
+            StockUnitOfWork uow2 = null;
+            try
+            {
+                testContext = new StockContext(options);
+                ufo = new StockUnitOfWorkFactory(testContext);
+                uow = ufo.GetInstance();
+                uow2 = ufo.GetInstance();
+
+                Assert.NotEqual(uow, uow2);
+            }
+            finally
+            {
+                testContext?.Dispose();
+                ufo?.Dispose();
+                uow?.Dispose();
+            }
+        }
+        [Fact]
         public void FactoryDisposes()
         {
             // Arrange
