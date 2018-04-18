@@ -7,34 +7,34 @@ using Extensions.Standard;
 
 namespace Stocks.Data.Model
 {
-    public class StockQuote : IValidatable, IValueEquatable<StockQuote>
+    public sealed class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
         public Company Company { get; set; }
 
         //[Column(Order = 0), Key]
         //[Key]
-        public virtual string Ticker { get; set; }
+        public string Ticker { get; set; }
 
         //[Column(Order = 1), Key]
         //[Key]
-        public virtual int Date { get; set; }
+        public int Date { get; set; }
 
-        public virtual double Open { get; set; }
-        public virtual double High { get; set; }
-        public virtual double Low { get; set; }
-        public virtual double Close { get; set; }
-        public virtual double Volume { get; set; }
+        public double Open { get; set; }
+        public double High { get; set; }
+        public double Low { get; set; }
+        public double Close { get; set; }
+        public double Volume { get; set; }
 
         [NotMapped]
-        public virtual DateTime DateParsed => DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+        public DateTime DateParsed => DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
 
-        public virtual bool ValueEquals(StockQuote other)
+        public bool ValueEquals(StockQuote other)
         {
             return other.Ticker == Ticker &&
                    other.Date == Date;
         }
 
-        public virtual bool IsValid()
+        public bool IsValid()
         {
             return Open > 0 &&
                    High > 0 &&

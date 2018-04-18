@@ -6,19 +6,19 @@ using Extensions.Standard;
 
 namespace Stocks.Data.Model
 {
-    public class Company : IValidatable
+    public sealed class Company : IValidatable
     {
         [Key]
         //[ForeignKey(nameof(Quotes))]
-        public virtual string Ticker { get; set; }
-        public virtual List<StockQuote> Quotes { get; set; }
+        public string Ticker { get; set; }
+        public List<StockQuote> Quotes { get; set; }
 
         [NotMapped]
-        public virtual StockQuote FirstQuote => Quotes?.First();
+        public StockQuote FirstQuote => Quotes?.First();
         [NotMapped]
-        public virtual StockQuote LastQuote => Quotes?.Last();
+        public StockQuote LastQuote => Quotes?.Last();
 
-        public virtual bool IsValid()
+        public bool IsValid()
         {
             return ((string.IsNullOrWhiteSpace(Ticker)) || Quotes != null) && Quotes.All(q => q.IsValid());
         }
