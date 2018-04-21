@@ -23,8 +23,13 @@ namespace Stocks.Data.Ef.Test
             {
                 testContext = new StockContext(options);
                 ufo = new StockUnitOfWorkFactory(testContext);
+
+                // Act
+
                 uow = ufo.GetInstance();
                 uow2 = ufo.GetInstance();
+
+                // Assert
 
                 Assert.NotEqual(uow, uow2);
             }
@@ -47,6 +52,9 @@ namespace Stocks.Data.Ef.Test
             var uow = ufo.GetInstance();
 
             ufo.Dispose();
+
+            // Act & Assert
+
             Assert.Throws<ObjectDisposedException>(() => ufo.GetInstance());
             Assert.Throws<ObjectDisposedException>(() => uow.Complete());
             Assert.Throws<ObjectDisposedException>(() => testContext.Companies.Find(1));

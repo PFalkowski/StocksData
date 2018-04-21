@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Extensions.Standard" Version="2.1.0" />
+    <PackageReference Include="Extensions.Standard" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

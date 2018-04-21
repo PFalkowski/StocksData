@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
 using Extensions.Standard;
-
+using StandardInterfaces;
+ 
 namespace Stocks.Data.Model
 {
     public sealed class StockQuote : IValidatable, IValueEquatable<StockQuote>
