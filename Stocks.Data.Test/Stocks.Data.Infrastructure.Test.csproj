@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>Stocks.Data.Infrastructure.Test</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
-    <ProjectReference Include="..\Stocks.Data\Stocks.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,10 @@
-﻿using Stocks.Data.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using StandardInterfaces;
+using Stocks.Data.Model;
 
-namespace Stocks.Data
+namespace Stocks.Data.Infrastructure.Converters
 {
-    public class StockQuotesToMatrixConverter
+    public class StockQuotesToMatrix : IConverter<List<StockQuote>, double[][]>
     {
         /// <summary>
         /// <para>[0][0] = Open1,  [0][1] = Open2,  [0][2] = Open3...</para>

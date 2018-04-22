@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration;
+using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
-using StocksData.Mappings;
 
 namespace Stocks.Data.Csv
 {

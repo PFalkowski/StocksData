@@ -14,6 +14,7 @@ namespace Stocks.Data.Ef.Test
         public void FactoryProvidesNewInstanceEverytimeItsCalled()
         {
             // Arrange
+
             DbContextOptions<DbContext> options = Config.ChoosenDbProviderFactory.GetInstance(); ;
             StockContext testContext = null;
             StockUnitOfWorkFactory ufo = null;

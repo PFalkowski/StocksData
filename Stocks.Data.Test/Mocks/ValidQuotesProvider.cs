@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.Test.Mocks
+namespace Stocks.Data.Infrastructure.Test.Mocks
 {
     public class ValidQuotesWithExpected : TheoryData<Tuple<List<StockQuote>, double[][]>>
     {
