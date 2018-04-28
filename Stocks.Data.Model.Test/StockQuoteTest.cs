@@ -33,15 +33,6 @@ namespace Stocks.Data.Model.Test
             Assert.Equal($"{ticker} {date}", tested.ToString());
         }
         [Theory]
-        [ClassData(typeof(EqualQuotePairsProvider))]
-        public void EqualsReturnsTrueForEqualStocks(StockQuote quote1, StockQuote quote2)
-        {
-            Assert.False(quote1 == quote2);
-            Assert.True(object.Equals(quote1, quote2));
-            Assert.True(quote1.Equals(quote2));
-            Assert.True(quote2.Equals(quote1));
-        }
-        [Theory]
         [ClassData(typeof(UnequalQuotePairsProvider))]
         public void EqualsReturnsFalseForUnequalStocks(StockQuote quote1, StockQuote quote2)
         {
@@ -49,12 +40,6 @@ namespace Stocks.Data.Model.Test
             Assert.False(object.Equals(quote1, quote2));
             Assert.False(quote1.Equals(quote2));
             Assert.False(quote2.Equals(quote1));
-        }
-        [Theory]
-        [ClassData(typeof(EqualQuotePairsProvider))]
-        public void GetHashCodeReturnsSameForEqualStocks(StockQuote quote1, StockQuote quote2)
-        {
-            Assert.Equal(quote1.GetHashCode(), quote2.GetHashCode());
         }
         [Theory]
         [ClassData(typeof(UnequalQuotePairsProvider))]

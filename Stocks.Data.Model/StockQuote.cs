@@ -48,17 +48,6 @@ namespace Stocks.Data.Model
                    Close <= High;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is StockQuote cast)) return false;
-            return this.ValueEquals(cast);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked { return Date + Ticker.Select(x => int.Parse(((int)x).ToString())).Sum(); }
-        }
-
         public override string ToString()
         {
             return $"{Ticker} {Date}";

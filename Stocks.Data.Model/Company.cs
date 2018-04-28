@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Extensions.Standard;
 using StandardInterfaces;
 
 namespace Stocks.Data.Model
@@ -21,7 +20,7 @@ namespace Stocks.Data.Model
 
         public bool IsValid()
         {
-            return ((string.IsNullOrWhiteSpace(Ticker)) || Quotes != null) && Quotes.All(q => q.IsValid());
+            return (string.IsNullOrWhiteSpace(Ticker) || Quotes != null) && Quotes.All(q => q.IsValid());
         }
 
         public override string ToString()
