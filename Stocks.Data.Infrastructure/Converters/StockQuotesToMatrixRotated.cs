@@ -4,7 +4,7 @@ using Stocks.Data.Model;
 
 namespace Stocks.Data.Infrastructure.Converters
 {
-    public class StockQuotesToMatrix : IConverter<List<StockQuote>, double[][]>
+    public class StockQuotesToMatrixRotated : IConverter<List<StockQuote>, double[][]>
     {
         /// <summary>
         /// <para>[0][0] = Open1,  [0][1] = Open2,  [0][2] = Open3...</para>
