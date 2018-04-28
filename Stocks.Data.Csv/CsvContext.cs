@@ -11,7 +11,7 @@ namespace Stocks.Data.Csv
 {
     public class CsvContext<TEntity> where TEntity : class
     {
-        protected ReaderWriterLockSlim LockSlim { get; } = new ReaderWriterLockSlim();
+        protected readonly object SyncRoot = new object();
         public FileInfo File { get; set; }
         public CultureInfo Culture { get; set; }
         public ClassMap<TEntity> CustomMapping { get; set; }
@@ -20,8 +20,7 @@ namespace Stocks.Data.Csv
 
         public HashSet<TEntity> Set(HashSet<TEntity> entities)
         {
-            LockSlim.EnterReadLock();
-            try
+            lock (SyncRoot)
             {
                 if (File.Exists)
                 {
@@ -41,10 +40,7 @@ namespace Stocks.Data.Csv
                     if (!result) throw new ArgumentException($"{entity} already in context");
                 }
                 return Entities;
-            }
-            finally
-            {
-                LockSlim.ExitReadLock();
+
             }
         }
 
@@ -57,8 +53,7 @@ namespace Stocks.Data.Csv
 
         public virtual void SaveChanges()
         {
-            LockSlim.EnterWriteLock();
-            try
+            lock (SyncRoot)
             {
                 using (var writer = new CsvWriter(File.CreateText(), false))
                 {
@@ -68,13 +63,10 @@ namespace Stocks.Data.Csv
                     {
                         writer.Configuration.RegisterClassMap(CustomMapping);
                     }
+
                     writer.WriteRecords(Entities);
                     writer.Flush();
                 }
-            }
-            finally
-            {
-                LockSlim.ExitWriteLock();
             }
         }
     }

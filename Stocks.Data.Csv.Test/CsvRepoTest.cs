@@ -40,7 +40,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -73,7 +74,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -112,7 +114,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -151,7 +154,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -186,7 +190,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Fact]
@@ -221,7 +226,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -262,7 +268,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -307,7 +314,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -350,7 +358,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
 
@@ -393,7 +402,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -429,7 +439,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -466,7 +477,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
         [Theory]
@@ -497,7 +509,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                outputFile.Delete();
+                if (Config.CleanUpFiles)
+                    outputFile.Delete();
             }
         }
     }

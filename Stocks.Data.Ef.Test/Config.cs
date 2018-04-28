@@ -7,7 +7,7 @@ using Stocks.Data.Ef.Test.DbContextOptionsFactories;
 
 namespace Stocks.Data.Ef.Test
 {
-    public static class Config
+    internal static class Config
     {
         public static IFactory<DbContextOptions<DbContext>> ChoosenDbProviderFactory { get; }
             = new InMemoryOptionsFactory();
