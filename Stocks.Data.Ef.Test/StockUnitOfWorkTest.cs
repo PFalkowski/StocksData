@@ -67,7 +67,7 @@ namespace Stocks.Data.Ef.Test
                 tested.StockRepository.Add(input);
 
                 var expected = 0;
-                var actual = tested.StockRepository.GetAll().Count;
+                var actual = tested.StockRepository.GetAll().ToList().Count;
 
                 // Assert 
 

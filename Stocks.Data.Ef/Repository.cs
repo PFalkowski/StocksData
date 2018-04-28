@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using StandardInterfaces;
 using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Ef
@@ -34,8 +35,8 @@ namespace Stocks.Data.Ef
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate) 
             => Entities.Where(predicate);
 
-        public List<TEntity> GetAll() 
-            => Entities.ToList();
+        public IEnumerable<TEntity> GetAll() 
+            => Entities;
 
         public void Add(TEntity entity) 
             => Entities.Add(entity);

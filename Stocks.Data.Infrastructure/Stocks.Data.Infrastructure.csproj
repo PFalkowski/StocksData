@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Extensions.Standard" Version="3.0.0" />
-    <PackageReference Include="StandardInterfaces" Version="1.1.0" />
+    <PackageReference Include="Extensions.Standard" Version="3.0.1" />
+    <PackageReference Include="StandardInterfaces" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

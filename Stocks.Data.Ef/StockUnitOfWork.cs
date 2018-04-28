@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using StandardInterfaces;
 using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 

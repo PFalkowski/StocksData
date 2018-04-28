@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using StandardInterfaces;
 using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Csv
@@ -55,9 +56,9 @@ namespace Stocks.Data.Csv
             return Entities.Where(predicate.Compile());
         }
 
-        public List<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            return Entities.ToList();
+            return Entities;
         }
 
         public void Remove(TEntity entity)
