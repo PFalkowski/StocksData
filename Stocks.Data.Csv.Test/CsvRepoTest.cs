@@ -40,8 +40,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -74,8 +74,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -114,8 +114,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -136,7 +136,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -154,8 +154,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -171,7 +171,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 csvContext.Entities.Add(input);
@@ -190,8 +190,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Fact]
@@ -216,7 +216,7 @@ namespace Stocks.Data.Csv.Test
 
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act & Assert
@@ -226,8 +226,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -243,7 +243,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -268,8 +268,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -314,8 +314,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -331,7 +331,7 @@ namespace Stocks.Data.Csv.Test
             CsvRepo<MockPoco> repository = null;
             try
             {
-                csvContext = new CsvContext<MockPoco>(outputFile) {Culture = CultureInfo.InvariantCulture};
+                csvContext = new CsvContext<MockPoco>(outputFile) { Culture = CultureInfo.InvariantCulture };
                 repository = new CsvRepo<MockPoco>(csvContext);
 
                 // Act
@@ -358,8 +358,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
 
@@ -402,8 +402,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -439,8 +439,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -477,8 +477,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
         [Theory]
@@ -509,8 +509,8 @@ namespace Stocks.Data.Csv.Test
             finally
             {
                 repository?.Dispose();
-                if (Config.CleanUpFiles)
-                    outputFile.Delete();
+
+                outputFile.Delete();
             }
         }
     }
