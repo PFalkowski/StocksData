@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Stocks.Data.Infrastructure.Converters
 {
-    class StockQuotesToNormalizedMatrix
+    public class StockQuotesToNormalizedMatrix
     {
+        // TODO: implement
     }
 }
