@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Stocks.Data.Ef.Test.Mocks
+﻿namespace Stocks.Data.Ef.Test.Mocks
 {
     public class MockPoco
     {

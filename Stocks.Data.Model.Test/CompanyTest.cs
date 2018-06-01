@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Stocks.Data.Model.Test.Mocks;
+﻿using Stocks.Data.Model.Test.Mocks;
 using Xunit;
 
 namespace Stocks.Data.Model.Test

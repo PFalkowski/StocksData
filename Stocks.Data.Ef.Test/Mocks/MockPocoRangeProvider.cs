@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Stocks.Data.Model;
+﻿using System.Collections.Generic;
 using Xunit;
 
 namespace Stocks.Data.Ef.Test.Mocks

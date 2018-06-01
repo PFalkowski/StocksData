@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
-using Stocks.Data.Ef.Test.Mocks;
-using Stocks.Data.Model;
 using Xunit;
 
 namespace Stocks.Data.Ef.Test

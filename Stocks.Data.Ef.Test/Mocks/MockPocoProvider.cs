@@ -1,5 +1,4 @@
-﻿using Stocks.Data.Model;
-using Xunit;
+﻿using Xunit;
 
 namespace Stocks.Data.Ef.Test.Mocks
 {

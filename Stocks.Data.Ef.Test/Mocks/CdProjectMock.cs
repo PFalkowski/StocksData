@@ -3,13 +3,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Extensions.Serialization;
-using Stocks.Data.Csv;
+using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using Xunit;
 
 namespace Stocks.Data.Ef.Test.Mocks
 {
-   public class CdProjectMock : TheoryData<Company>
+    public class CdProjectMock : TheoryData<Company>
     {
         private static Lazy<Company> Mock => new Lazy<Company>(() => new Company
         {

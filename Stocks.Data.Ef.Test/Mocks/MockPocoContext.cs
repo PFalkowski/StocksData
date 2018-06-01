@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Stocks.Data.Model;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Stocks.Data.Ef.Test.Mocks
 {

@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stocks.Data.Csv\Stocks.Data.Csv.csproj" />
     <ProjectReference Include="..\Stocks.Data.Ef\Stocks.Data.Ef.csproj" />
     <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />

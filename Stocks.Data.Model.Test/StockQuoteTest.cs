@@ -1,4 +1,3 @@
-using System;
 using Stocks.Data.Model.Test.Mocks;
 using Xunit;
 

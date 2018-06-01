@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef.Test.Mocks;
-using Stocks.Data.Model;
 using Xunit;
 
 namespace Stocks.Data.Ef.Test

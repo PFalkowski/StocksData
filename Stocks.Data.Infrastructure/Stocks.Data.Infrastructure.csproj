@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.1.0" />
     <PackageReference Include="Extensions.Standard" Version="3.0.1" />
     <PackageReference Include="StandardInterfaces" Version="1.3.0" />
   </ItemGroup>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using StandardInterfaces;
-using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Ef
 {
