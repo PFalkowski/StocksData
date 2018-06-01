@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StandardInterfaces;
-using Stocks.Data.Ef.Test.DbContextOptionsFactories;
+using Stocks.Data.UnitTests.Ef.Test.DbContextOptionsFactories;
 
-namespace Stocks.Data.Ef.Test
+namespace Stocks.Data.UnitTests.Ef.Test
 {
     internal static class Config
     {

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
-using Stocks.Data.Ef.Test.Mocks;
+using Stocks.Data.UnitTests.Ef.Test.Mocks;
 using Stocks.Data.Model;
 using Xunit;
+using Stocks.Data.Ef;
 
-namespace Stocks.Data.Ef.Test
+namespace Stocks.Data.UnitTests.Ef.Test
 {
     public class StockContextTest
     {

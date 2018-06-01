@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Stocks.Data.Ef;
 using Xunit;
 
-namespace Stocks.Data.Ef.Test
+namespace Stocks.Data.UnitTests.Ef.Test
 {
     public class StockUnitOfWorkFactoryTest
     {

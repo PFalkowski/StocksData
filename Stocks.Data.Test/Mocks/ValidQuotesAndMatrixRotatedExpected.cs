@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.Infrastructure.Test.Mocks
+namespace Stocks.Data.UnitTests.Infrastructure.Mocks
 {
     public class ValidQuotesAndMatrixRotatedExpected : TheoryData<Tuple<List<StockQuote>, double[][]>>
     {

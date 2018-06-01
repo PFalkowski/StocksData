@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Stocks.Data.Model;
+using System.Collections.Generic;
 using Xunit;
 
-namespace Stocks.Data.Model.Test.Mocks
+namespace Stocks.Data.UnitTests.Model.Mocks
 {
     public class InvalidCompanyProvider : TheoryData<Company>
     {

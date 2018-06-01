@@ -1,7 +1,8 @@
-﻿using Stocks.Data.Model.Test.Mocks;
+﻿using Stocks.Data.Model;
+using Stocks.Data.UnitTests.Model.Mocks;
 using Xunit;
 
-namespace Stocks.Data.Model.Test
+namespace Stocks.Data.UnitTests.Model
 {
     public class CompanyTest
     {

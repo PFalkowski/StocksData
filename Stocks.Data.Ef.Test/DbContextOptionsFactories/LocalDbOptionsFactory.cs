@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StandardInterfaces;
 
-namespace Stocks.Data.Ef.Test.DbContextOptionsFactories
+namespace Stocks.Data.UnitTests.Ef.Test.DbContextOptionsFactories
 {
     public class LocalDbOptionsFactory : IFactory<DbContextOptions<DbContext>>
     {

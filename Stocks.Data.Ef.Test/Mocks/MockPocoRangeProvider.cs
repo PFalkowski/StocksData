@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 
-namespace Stocks.Data.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.Mocks
 {
     public class MockPocoRangeProvider : TheoryData<List<MockPoco>>
     {

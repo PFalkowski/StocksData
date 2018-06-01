@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Stocks.Data.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.Mocks
 {
     public class MockPocoProvider : TheoryData<MockPoco>
     {

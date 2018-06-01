@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>Stocks.Data.UnitTests.Ef.Test</AssemblyName>
+
+    <RootNamespace>Stocks.Data.UnitTests.Ef.Test</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

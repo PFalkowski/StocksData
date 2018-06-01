@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Stocks.Data.Infrastructure.Converters;
-using Stocks.Data.Infrastructure.Test.Mocks;
+using Stocks.Data.UnitTests.Infrastructure.Mocks;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.Infrastructure.Test
+namespace Stocks.Data.UnitTests.Infrastructure
 {
     public class StockQuotesToMatrixRotatedTest
     {

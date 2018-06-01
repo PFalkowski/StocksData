@@ -1,7 +1,7 @@
 ﻿using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.Mocks
 {
     public class ValidQuotesProvider : TheoryData<StockQuote>
     {
