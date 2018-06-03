@@ -10,6 +10,7 @@
     <PackageLicenseUrl>https://choosealicense.com/licenses/osl-3.0/</PackageLicenseUrl>
     <PackageTags>Stock, Data, Csv</PackageTags>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
