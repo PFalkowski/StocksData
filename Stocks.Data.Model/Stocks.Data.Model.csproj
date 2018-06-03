@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Model for persistance of stock quotes in daily format (open, high, low, close)</Description>
+    <Description>Model for persistance of stock quotes in daily format (open, high, low, close) .NET Standard 2.0</Description>
     <Copyright>Piotr Falkowski © 2018</Copyright>
     <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
@@ -11,6 +11,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Stocks, Data, Model, EntityFrameworkCore</PackageTags>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <Authors>Piotr Falkowski</Authors>
   </PropertyGroup>
 
   <ItemGroup>

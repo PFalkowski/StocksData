@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Infrastracture for persistance of stock quotes in daily format (open, high, low, close) and import from CSV files</Description>
+    <Description>Infrastracture for persistance of stock quotes in daily format (open, high, low, close) and import from CSV files. .NET Standard 2.0</Description>
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
     <Copyright>Piotr Falkowski © 2018</Copyright>
@@ -11,12 +11,14 @@
     <PackageTags>Stock, Data, Csv</PackageTags>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
+    <Authors>Piotr Falkowski</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="7.1.0" />
     <PackageReference Include="Extensions.Standard" Version="3.0.1" />
     <PackageReference Include="StandardInterfaces" Version="1.3.0" />
+    <PackageReference Include="Stocks.Data.Model" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
