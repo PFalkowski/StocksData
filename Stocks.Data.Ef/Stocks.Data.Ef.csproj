@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>Piotr Falkowski © 2018</Copyright>
-    <PackageLicenseUrl>https://choosealicense.com/licenses/osl-3.0/</PackageLicenseUrl>
+    <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
