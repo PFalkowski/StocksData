@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Stocks.Data.UnitTests.Infrastructure.Mocks
 {
-    public class ValidQuotesAndMatrixRotatedExpected : TheoryData<Tuple<List<StockQuote>, double[][]>>
+    public class NormalizedRotatedTestData : TheoryData<Tuple<List<StockQuote>, double[][]>>
     {
         public const string TestTicker = "TestCompany";
         public static List<StockQuote> ValidStockQuotes => new List<StockQuote>
@@ -98,7 +98,7 @@ namespace Stocks.Data.UnitTests.Infrastructure.Mocks
             new double[]{ValidStockQuotes[0].Volume, ValidStockQuotes[1].Volume, ValidStockQuotes[2].Volume, ValidStockQuotes[3].Volume, ValidStockQuotes[4].Volume, ValidStockQuotes[5].Volume, ValidStockQuotes[6].Volume },
         };
 
-        public ValidQuotesAndMatrixRotatedExpected()
+        public NormalizedRotatedTestData()
         {
             Add(new Tuple<List<StockQuote>, double[][]>(ValidStockQuotes, ExpectedResult));
         }

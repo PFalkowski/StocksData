@@ -11,7 +11,7 @@ namespace Stocks.Data.UnitTests.Infrastructure
     public class StockQuotesToMatrixRotatedTest
     {
         [Theory]
-        [ClassData(typeof(ValidQuotesAndMatrixRotatedExpected))]
+        [ClassData(typeof(RotatedTestData))]
         public void ConvertingWorks(Tuple<List<StockQuote>, double[][]> input)
         {
             var tested = new StockQuotesToMatrixRotated();

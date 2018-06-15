@@ -9,20 +9,18 @@
     <Copyright>Piotr Falkowski © 2018</Copyright>
     <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
     <PackageTags>Stock, Data, Csv</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>fix Nugets references problem, add converter</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <Authors>Piotr Falkowski</Authors>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="7.1.0" />
     <PackageReference Include="Extensions.Standard" Version="3.0.1" />
+    <PackageReference Include="OnTheFlyStats" Version="2.3.0" />
     <PackageReference Include="StandardInterfaces" Version="1.3.0" />
     <PackageReference Include="Stocks.Data.Model" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
   </ItemGroup>
 
 </Project>

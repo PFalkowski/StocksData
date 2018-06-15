@@ -4,7 +4,7 @@ using StandardInterfaces;
 
 namespace Stocks.Data.UnitTests.Ef.Test.DbContextOptionsFactories
 {
-    public class LocalDbOptionsFactory : IFactory<DbContextOptions<DbContext>>
+    public class LocalDbTestOptionsFactory : IFactory<DbContextOptions<DbContext>>
     {
         public DbContextOptions<DbContext> GetInstance()
         {
