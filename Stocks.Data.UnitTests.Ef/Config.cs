@@ -8,6 +8,6 @@ namespace Stocks.Data.UnitTests.Ef.Test
     {
         public static IFactory<DbContextOptions<DbContext>> ChoosenDbProviderFactory { get; }
             = new InMemoryTestOptionsFactory();
-            //= new LocalDbOptionsFactory();
+            //= new LocalDbTestOptionsFactory();
     }
 }
