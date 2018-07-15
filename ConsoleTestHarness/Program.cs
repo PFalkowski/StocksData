@@ -7,7 +7,7 @@ using Stocks.Data.Ef;
 using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 
-namespace ConsoleApp1
+namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
 {
     class Program
     {

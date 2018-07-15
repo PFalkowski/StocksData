@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,8 +10,14 @@
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Stocks, Data, Model, EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>Change namespaces</PackageReleaseNotes>
     <Authors>Piotr Falkowski</Authors>
+    <Configurations>Debug;Release;Pack</Configurations>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">
+    <Optimize>true</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

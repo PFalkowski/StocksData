@@ -8,6 +8,8 @@
     <AssemblyName>Stocks.Data.UnitTests.Model</AssemblyName>
 
     <RootNamespace>Stocks.Data.UnitTests.Model</RootNamespace>
+
+    <Configurations>Debug;Release;Pack</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
