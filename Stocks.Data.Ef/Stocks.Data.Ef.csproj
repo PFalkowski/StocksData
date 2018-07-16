@@ -10,9 +10,9 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>Stock, Data, EntityFrameworkCore, UnitOfWork, Repository</PackageTags>
     <Description>Persistance layer for stocks using Entity Framework Core. .NET Standard 2.0</Description>
-    <PackageReleaseNotes>fix Nugets references problem</PackageReleaseNotes>
+    <PackageReleaseNotes>Change namespaces</PackageReleaseNotes>
     <Authors>Piotr Falkowski</Authors>
-    <Version>1.0.1</Version>
+    <Version>2.0.0</Version>
     <Configurations>Debug;Release;Pack</Configurations>
   </PropertyGroup>
 

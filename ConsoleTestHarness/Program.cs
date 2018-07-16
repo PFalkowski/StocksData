@@ -31,9 +31,8 @@ namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
             return testStock;
         }
 
-        private static DbContextOptions<DbContext> GetOptions()
+        private static DbContextOptions<DbContext> GetOptions(string connectionStr)
         {
-            string connectionStr = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={Path.GetFileNameWithoutExtension(Path.GetRandomFileName())};Integrated Security=True;";
             var options = new DbContextOptionsBuilder<DbContext>()
                 .UseSqlServer(connectionStr)
                 .Options;
@@ -42,7 +41,9 @@ namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
 
         static void Main(string[] args)
         {
-            var options = GetOptions();
+            string cs = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={Path.GetFileNameWithoutExtension(Path.GetRandomFileName())};Integrated Security=True;";
+
+            var options = GetOptions(cs);
             var input = GetStub();
 
             DbContext context = null;
