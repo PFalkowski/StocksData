@@ -9,10 +9,10 @@
     <Copyright>Piotr Falkowski © 2018</Copyright>
     <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
     <PackageTags>Stock, Data, Csv</PackageTags>
-    <PackageReleaseNotes>Change namespaces</PackageReleaseNotes>
+    <PackageReleaseNotes>fix bugs</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <Authors>Piotr Falkowski</Authors>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <Configurations>Debug;Release;Pack</Configurations>
   </PropertyGroup>
 
