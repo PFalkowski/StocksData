@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Stocks.Data.UnitTests.Infrastructure.Mocks
 {
-    public class NormalizedRotatedTestData : TheoryData<Tuple<List<StockQuote>, double[][]>>
+    public class NormalizedRotatedTestData : TheoryData<(List<StockQuote> input, double[][] expectedOutput)>
     {
         public const string TestTicker = "TestCompany";
         public static List<StockQuote> ValidStockQuotes => new List<StockQuote>
@@ -81,26 +81,18 @@ namespace Stocks.Data.UnitTests.Infrastructure.Mocks
                 Date = 19900107
             }
         };
-        //public static double[][] ExpectedResult => new[]
-        //{
-        //    new double[]{ValidStockQuotes[0].Open, ValidStockQuotes[0].High, ValidStockQuotes[0].Low, ValidStockQuotes[0].Close, ValidStockQuotes[0].Volume, },
-        //    new double[]{ValidStockQuotes[1].Open, ValidStockQuotes[1].High, ValidStockQuotes[1].Low, ValidStockQuotes[1].Close, ValidStockQuotes[1].Volume, },
-        //    new double[]{ValidStockQuotes[2].Open, ValidStockQuotes[2].High, ValidStockQuotes[2].Low, ValidStockQuotes[2].Close, ValidStockQuotes[2].Volume, },
-        //    new double[]{ValidStockQuotes[3].Open, ValidStockQuotes[3].High, ValidStockQuotes[3].Low, ValidStockQuotes[3].Close, ValidStockQuotes[3].Volume, },
-        //    new double[]{ValidStockQuotes[4].Open, ValidStockQuotes[4].High, ValidStockQuotes[4].Low, ValidStockQuotes[4].Close, ValidStockQuotes[4].Volume, },
-        //};
         public static double[][] ExpectedResult => new[]
         {
-            new double[]{ValidStockQuotes[0].Open, ValidStockQuotes[1].Open, ValidStockQuotes[2].Open, ValidStockQuotes[3].Open, ValidStockQuotes[4].Open, ValidStockQuotes[5].Open, ValidStockQuotes[6].Open },
-            new double[]{ValidStockQuotes[0].High, ValidStockQuotes[1].High, ValidStockQuotes[2].High, ValidStockQuotes[3].High, ValidStockQuotes[4].High, ValidStockQuotes[5].High, ValidStockQuotes[6].High },
-            new double[]{ValidStockQuotes[0].Low, ValidStockQuotes[1].Low, ValidStockQuotes[2].Low, ValidStockQuotes[3].Low, ValidStockQuotes[4].Low, ValidStockQuotes[5].Low, ValidStockQuotes[6].Low },
-            new double[]{ValidStockQuotes[0].Close, ValidStockQuotes[1].Close, ValidStockQuotes[2].Close, ValidStockQuotes[3].Close, ValidStockQuotes[4].Close, ValidStockQuotes[5].Close, ValidStockQuotes[6].Close },
-            new double[]{ValidStockQuotes[0].Volume, ValidStockQuotes[1].Volume, ValidStockQuotes[2].Volume, ValidStockQuotes[3].Volume, ValidStockQuotes[4].Volume, ValidStockQuotes[5].Volume, ValidStockQuotes[6].Volume },
+            new double[]{0.1011378003,0.3122629583,0,0.2490518331,0.3881163085,0.4943109987,1},
+            new double[]{0.2747791953,0.3631010795,0,0.3719332679,0.4700686948,0.5093228656,1},
+            new double[]{0,0.2898550725,0.02898550725,0,0.4347826087,0.5652173913,1},
+            new double[]{0.1179941003,0.2949852507,0,0.4424778761,0.4424778761,0.5575221239,1},
+            new double[]{0.004522613065,0.004522613065,0,0.09949748744,1,0.1457286432,0.4935678392}
         };
 
         public NormalizedRotatedTestData()
         {
-            Add(new Tuple<List<StockQuote>, double[][]>(ValidStockQuotes, ExpectedResult));
+            Add((input: ValidStockQuotes, expectedOutput: ExpectedResult));
         }
     }
 }
