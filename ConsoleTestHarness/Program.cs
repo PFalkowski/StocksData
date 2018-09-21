@@ -27,6 +27,7 @@ namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
             var testStock = new Company
             {
                 Quotes = new List<StockQuote> { testQuote },
+                Ticker = ticker
             };
             return testStock;
         }
@@ -41,7 +42,8 @@ namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
 
         static void Main(string[] args)
         {
-            string cs = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={Path.GetFileNameWithoutExtension(Path.GetRandomFileName())};Integrated Security=True;";
+            var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+            string cs = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;";
 
             var options = GetOptions(cs);
             var input = GetStub();
@@ -52,6 +54,7 @@ namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
             {
                 context = new StockContext(options);
                 context.Database.EnsureCreated();
+                Console.WriteLine($"Created database {dbName}");
                 tested = new StockUnitOfWork(context);
 
                 tested.StockRepository.Add(input);
