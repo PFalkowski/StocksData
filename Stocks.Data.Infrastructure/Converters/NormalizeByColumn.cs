@@ -28,7 +28,7 @@ namespace Stocks.Data.Infrastructure.Converters
 
             for (int i = 0; i < xLength; ++i)
             {
-                result[i] = matrix[i].Scale(NormalizedMin, NormalizedMax).ToArray();
+                result[i] = matrix[i].Scale((Min: NormalizedMin, Max: NormalizedMax)).ToArray();
             }
 
             return result;

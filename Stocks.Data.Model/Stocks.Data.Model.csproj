@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Extensions.Standard" Version="3.1.0" />
+    <PackageReference Include="Extensions.Standard" Version="4.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
