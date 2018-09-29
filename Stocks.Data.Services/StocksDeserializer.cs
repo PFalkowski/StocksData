@@ -8,8 +8,8 @@ namespace Services
 {
     public class StocksDeserializer : IStocksDeserializer
     {
-        public readonly CultureInfo Culture;
-        public readonly ClassMap<StockQuote> Map;
+        public CultureInfo Culture { get; }
+        public ClassMap<StockQuote> Map { get; }
 
         public StocksDeserializer(ClassMap<StockQuote> map, CultureInfo culture = null)
         {

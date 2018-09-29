@@ -8,23 +8,29 @@ namespace Services
 {
     public class StocksFileProvider : IStocksFileProvider
     {
-        public IDirectoryService DirectorySvc { get; set; }
-        public IStocksBulkDeserializer DeserializationService { get; set; }
+        public IDirectoryService DirectorySvc { get; }
+        public IStocksBulkDeserializer DeserializationService { get; }
 
         public StocksFileProvider(IDirectoryService directorySvc, IStocksBulkDeserializer deserializationSvc)
         {
             DirectorySvc = directorySvc;
             DeserializationService = deserializationSvc;
+            ValidateState();
         }
 
         public List<Company> ReadStocksFrom(string directory, string pattern = "*.msc")
         {
-            var directorySvc = DirectorySvc ?? new DirectoryService(new FileService());
-            var deserializationSvc = DeserializationService ?? new StocksBulkDeserializer(new StocksDeserializer(new StockQuoteCsvClassMap()));
-            var stocksRaw = directorySvc.ReadTopDirectory(directory, pattern);
+            ValidateState();
+            var stocksRaw = DirectorySvc.ReadTopDirectory(directory, pattern);
 
-            var deserialized = deserializationSvc.Deserialize(stocksRaw);
+            var deserialized = DeserializationService.Deserialize(stocksRaw);
             return deserialized;
+        }
+
+        private void ValidateState()
+        {
+            if (DirectorySvc == null) throw new InvalidOperationException($"{nameof(DirectorySvc)} not initialized");
+            if (DeserializationService == null) throw new InvalidOperationException($"{nameof(DeserializationService)} not initialized");
         }
     }
 }
