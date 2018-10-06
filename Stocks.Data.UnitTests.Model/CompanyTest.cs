@@ -9,8 +9,10 @@ namespace Stocks.Data.UnitTests.Model
         [Fact]
         public void CanCreateInstance()
         {
-            var tested = new Company();
-            tested.Ticker = "IDK";
+            var tested = new Company
+            {
+                Ticker = "IDK"
+            };
         }
         [Fact]
         public void ToStringReturnsTicker()

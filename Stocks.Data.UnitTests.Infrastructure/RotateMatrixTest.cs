@@ -1,8 +1,5 @@
 ﻿using Stocks.Data.Infrastructure.Converters;
 using Stocks.Data.UnitTests.Infrastructure.TestData;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Infrastructure

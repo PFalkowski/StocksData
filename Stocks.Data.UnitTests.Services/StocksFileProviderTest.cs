@@ -4,6 +4,7 @@ using Services.IO;
 using Stocks.Data.Model;
 using System;
 using System.Collections.Generic;
+using Stocks.Data.Services;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Services

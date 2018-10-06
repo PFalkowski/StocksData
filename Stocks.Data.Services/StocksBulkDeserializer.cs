@@ -1,11 +1,11 @@
-﻿using Stocks.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using Stocks.Data.Model;
 
-namespace Services
+namespace Stocks.Data.Services
 {
     public class StocksBulkDeserializer : IStocksBulkDeserializer
     {

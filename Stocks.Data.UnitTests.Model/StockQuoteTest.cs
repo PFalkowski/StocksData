@@ -9,8 +9,7 @@ namespace Stocks.Data.UnitTests.Model
         [Fact]
         public void CanCreateInstance()
         {
-            var tested = new StockQuote();
-            tested.Ticker = "IDK";
+            var tested = new StockQuote {Ticker = "IDK"};
         }
         [Theory]
         [ClassData(typeof(ValidQuotesProvider))]

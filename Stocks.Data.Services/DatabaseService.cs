@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
-namespace Stocks.Data.Service
+namespace Stocks.Data.Services
 {
     public class DatabaseService : IDatabaseService
     {

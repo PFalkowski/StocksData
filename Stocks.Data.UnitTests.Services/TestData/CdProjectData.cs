@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
-using Extensions.Serialization;
 using Extensions.Serialization.Csv;
 using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;

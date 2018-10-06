@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Stocks.Data.Model;
 
-namespace Services
+namespace Stocks.Data.Services
 {
     public interface IStocksBulkDeserializer
     {

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 
-namespace Stocks.Data.Service
+namespace Stocks.Data.Services
 {
     public interface IDatabaseService
     {

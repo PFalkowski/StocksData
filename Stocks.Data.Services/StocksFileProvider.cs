@@ -1,10 +1,9 @@
-﻿using Services.IO;
-using Stocks.Data.Infrastructure;
-using Stocks.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Services.IO;
+using Stocks.Data.Model;
 
-namespace Services
+namespace Stocks.Data.Services
 {
     public class StocksFileProvider : IStocksFileProvider
     {

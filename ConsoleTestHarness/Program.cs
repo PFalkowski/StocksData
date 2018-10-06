@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Stocks.Data;
 using Stocks.Data.Ef;
-using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.IntegrationTests.ConsoleTestHarness
+namespace Stocks.Data.ConsoleTestHarness
 {
     class Program
     {

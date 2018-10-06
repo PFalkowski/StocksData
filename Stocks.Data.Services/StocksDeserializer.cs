@@ -1,10 +1,10 @@
-﻿using CsvHelper.Configuration;
+﻿using System.Globalization;
+using System.Linq;
+using CsvHelper.Configuration;
 using Extensions.Serialization.Csv;
 using Stocks.Data.Model;
-using System.Globalization;
-using System.Linq;
 
-namespace Services
+namespace Stocks.Data.Services
 {
     public class StocksDeserializer : IStocksDeserializer
     {

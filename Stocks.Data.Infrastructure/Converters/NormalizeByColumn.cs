@@ -1,7 +1,6 @@
 ﻿using Extensions.Standard;
 using StandardInterfaces;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Stocks.Data.Infrastructure.Converters
 {
