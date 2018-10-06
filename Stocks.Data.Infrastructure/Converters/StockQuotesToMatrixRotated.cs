@@ -33,7 +33,7 @@ namespace Stocks.Data.Infrastructure.Converters
                 vols[i] = input[i].Volume;
             }
 
-            return new double[][] { opens, highs, lows, closes, vols };
+            return new[] { opens, highs, lows, closes, vols };
         }
     }
 }

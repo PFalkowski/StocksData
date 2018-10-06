@@ -12,7 +12,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
 
-            DbContextOptions<DbContext> options = Config.ChoosenDbProviderFactory.GetInstance(); ;
+            DbContextOptions<DbContext> options = Config.ChoosenDbProviderFactory.GetInstance();
             StockContext testContext = null;
             StockUnitOfWorkFactory ufo = null;
             StockUnitOfWork uow = null;

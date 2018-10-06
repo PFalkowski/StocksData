@@ -38,7 +38,7 @@ namespace Stocks.Data.ConsoleTestHarness
             return options;
         }
 
-        static void Main(string[] args)
+        static void Main()
         {
             var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
             string cs = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;";

@@ -83,13 +83,13 @@ namespace Stocks.Data.UnitTests.Infrastructure.TestData
         };
         public static double[][] ExpectedResult => new[]
         {
-            new double[]{ValidStockQuotes[0].Open, ValidStockQuotes[0].High, ValidStockQuotes[0].Low, ValidStockQuotes[0].Close, ValidStockQuotes[0].Volume, },
-            new double[]{ValidStockQuotes[1].Open, ValidStockQuotes[1].High, ValidStockQuotes[1].Low, ValidStockQuotes[1].Close, ValidStockQuotes[1].Volume, },
-            new double[]{ValidStockQuotes[2].Open, ValidStockQuotes[2].High, ValidStockQuotes[2].Low, ValidStockQuotes[2].Close, ValidStockQuotes[2].Volume, },
-            new double[]{ValidStockQuotes[3].Open, ValidStockQuotes[3].High, ValidStockQuotes[3].Low, ValidStockQuotes[3].Close, ValidStockQuotes[3].Volume, },
-            new double[]{ValidStockQuotes[4].Open, ValidStockQuotes[4].High, ValidStockQuotes[4].Low, ValidStockQuotes[4].Close, ValidStockQuotes[4].Volume, },
-            new double[]{ValidStockQuotes[5].Open, ValidStockQuotes[5].High, ValidStockQuotes[5].Low, ValidStockQuotes[5].Close, ValidStockQuotes[5].Volume, },
-            new double[]{ValidStockQuotes[6].Open, ValidStockQuotes[6].High, ValidStockQuotes[6].Low, ValidStockQuotes[6].Close, ValidStockQuotes[6].Volume, },
+            new[]{ValidStockQuotes[0].Open, ValidStockQuotes[0].High, ValidStockQuotes[0].Low, ValidStockQuotes[0].Close, ValidStockQuotes[0].Volume, },
+            new[]{ValidStockQuotes[1].Open, ValidStockQuotes[1].High, ValidStockQuotes[1].Low, ValidStockQuotes[1].Close, ValidStockQuotes[1].Volume, },
+            new[]{ValidStockQuotes[2].Open, ValidStockQuotes[2].High, ValidStockQuotes[2].Low, ValidStockQuotes[2].Close, ValidStockQuotes[2].Volume, },
+            new[]{ValidStockQuotes[3].Open, ValidStockQuotes[3].High, ValidStockQuotes[3].Low, ValidStockQuotes[3].Close, ValidStockQuotes[3].Volume, },
+            new[]{ValidStockQuotes[4].Open, ValidStockQuotes[4].High, ValidStockQuotes[4].Low, ValidStockQuotes[4].Close, ValidStockQuotes[4].Volume, },
+            new[]{ValidStockQuotes[5].Open, ValidStockQuotes[5].High, ValidStockQuotes[5].Low, ValidStockQuotes[5].Close, ValidStockQuotes[5].Volume, },
+            new[]{ValidStockQuotes[6].Open, ValidStockQuotes[6].High, ValidStockQuotes[6].Low, ValidStockQuotes[6].Close, ValidStockQuotes[6].Volume, },
         };
 
         public MatrixConvertTestData()

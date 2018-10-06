@@ -36,7 +36,7 @@ namespace Stocks.Data.UnitTests.Model
         public void EqualsReturnsFalseForUnequalStocks(StockQuote quote1, StockQuote quote2)
         {
             Assert.False(quote1 == quote2);
-            Assert.False(object.Equals(quote1, quote2));
+            Assert.False(Equals(quote1, quote2));
             Assert.False(quote1.Equals(quote2));
             Assert.False(quote2.Equals(quote1));
         }

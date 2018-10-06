@@ -7,12 +7,14 @@ namespace Stocks.Data.UnitTests.Model
     public class CompanyTest
     {
         [Fact]
-        public void CanCreateInstance()
+        public void Company_AssignedTicer_Assignes()
         {
+            const string ticer = "IDK";
             var tested = new Company
             {
-                Ticker = "IDK"
+                Ticker = ticer
             };
+            Assert.Equal(ticer, tested.Ticker);
         }
         [Fact]
         public void ToStringReturnsTicker()
