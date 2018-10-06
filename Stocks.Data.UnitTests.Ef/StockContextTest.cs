@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Stocks.Data.UnitTests.Ef.Test.Mocks;
+using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Stocks.Data.Model;
 using Xunit;
 using Stocks.Data.Ef;

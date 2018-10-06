@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef;
-using Stocks.Data.UnitTests.Ef.Test.Mocks;
+using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Ef.Test

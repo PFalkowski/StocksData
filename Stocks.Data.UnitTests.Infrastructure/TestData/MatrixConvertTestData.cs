@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure.Mocks
+namespace Stocks.Data.UnitTests.Infrastructure.TestData
 {
     public class MatrixConvertTestData : TheoryData<Tuple<List<StockQuote>, double[][]>>
     {

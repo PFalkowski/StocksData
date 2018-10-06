@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Stocks.Data.UnitTests.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.TestData
 {
     public class MockPocoContext : DbContext
     {

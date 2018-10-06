@@ -7,7 +7,7 @@ using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.TestData
 {
     public  class _11BitMock : TheoryData<Company>
     {

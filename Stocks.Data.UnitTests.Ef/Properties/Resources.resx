@@ -119,12 +119,12 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="CDPROJEKT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Mocks\CDPROJEKT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\TestData\CDPROJEKT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="MBANK" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Mocks\MBANK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\TestData\MBANK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="_11BIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Mocks\11BIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\TestData\11BIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

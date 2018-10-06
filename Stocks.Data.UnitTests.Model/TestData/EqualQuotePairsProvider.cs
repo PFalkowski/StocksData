@@ -1,7 +1,7 @@
 ﻿using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Model.Mocks
+namespace Stocks.Data.UnitTests.Model.TestData
 {
     public class EqualQuotePairsProvider : TheoryData<StockQuote, StockQuote>
     {

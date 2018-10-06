@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Model.Mocks
+namespace Stocks.Data.UnitTests.Model.TestData
 {
     public class InvalidCompanyProvider : TheoryData<Company>
     {

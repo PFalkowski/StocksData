@@ -59,5 +59,15 @@ namespace Stocks.Data.UnitTests.Services.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] CDPROJEKT {
+            get {
+                object obj = ResourceManager.GetObject("CDPROJEKT", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

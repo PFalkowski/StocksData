@@ -1,5 +1,5 @@
 using Stocks.Data.Model;
-using Stocks.Data.UnitTests.Model.Mocks;
+using Stocks.Data.UnitTests.Model.TestData;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Model

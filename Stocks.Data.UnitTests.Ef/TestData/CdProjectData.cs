@@ -7,9 +7,9 @@ using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.TestData
 {
-    public class CdProjectMock : TheoryData<Company>
+    public class CdProjectData : TheoryData<Company>
     {
         private static Lazy<Company> Mock => new Lazy<Company>(() => new Company
         {
@@ -17,7 +17,7 @@ namespace Stocks.Data.UnitTests.Ef.Test.Mocks
             Quotes = Encoding.UTF8.GetString(Properties.Resources.CDPROJEKT).DeserializeFromCsv(new StockQuoteCsvClassMap(), CultureInfo.InvariantCulture).ToList()
         });
 
-        public CdProjectMock()
+        public CdProjectData()
         {
             Add(Mock.Value);
         }

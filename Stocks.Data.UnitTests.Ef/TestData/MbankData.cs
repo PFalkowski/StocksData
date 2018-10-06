@@ -7,9 +7,9 @@ using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Ef.Test.Mocks
+namespace Stocks.Data.UnitTests.Ef.Test.TestData
 {
-    class MbankMock : TheoryData<Company>
+    class MbankData : TheoryData<Company>
     {
         private static Lazy<Company> Mock => new Lazy<Company>(() => new Company
         {
@@ -17,7 +17,7 @@ namespace Stocks.Data.UnitTests.Ef.Test.Mocks
             Quotes = Encoding.UTF8.GetString(Properties.Resources.MBANK).DeserializeFromCsv(new StockQuoteCsvClassMap(), CultureInfo.InvariantCulture).ToList()
         });
 
-        public MbankMock()
+        public MbankData()
         {
             Add(Mock.Value);
         }

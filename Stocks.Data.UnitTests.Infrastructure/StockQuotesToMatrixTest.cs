@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Stocks.Data.Infrastructure.Converters;
-using Stocks.Data.UnitTests.Infrastructure.Mocks;
+using Stocks.Data.UnitTests.Infrastructure.TestData;
 using Stocks.Data.Model;
 using Xunit;
 
