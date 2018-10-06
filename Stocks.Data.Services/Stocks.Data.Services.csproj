@@ -13,8 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
-    <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
+    <PackageReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' == 'Pack'"/>
+    <PackageReference Remove="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' != 'Pack'"/>
+    <PackageReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' == 'Pack'"/>
+    <PackageReference Remove="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' != 'Pack'"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' != 'Pack'"/>
+    <ProjectReference Remove="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' == 'Pack'"/>
+    <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' != 'Pack'"/>
+    <ProjectReference Remove="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' == 'Pack'"/>
   </ItemGroup>
 
 </Project>
