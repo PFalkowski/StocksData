@@ -39,18 +39,43 @@ namespace Stocks.Data.Services.TestHarness
                 var watch = Stopwatch.StartNew();
                 var rawBytes = downloader.GetBytesAsync(new Uri(url));
                 ShowSpinnerUntilTaskIsRunning(rawBytes);
+                //await rawBytes;
                 logger.LogInfo($@"Downloaded {rawBytes.Result.Length} in {watch.ElapsedMilliseconds.AsTime()}");
+
+                logger.LogInfo("Would you like to save archive to disk? (y/n)");
+                var saveArchive = PromptUserForYesNo();
+                if (saveArchive)
+                {
+                    var fileName = Path.Combine(outputDirectory.FullName, "mstcgl.zip");
+                    var overwrite = false;
+                    var fileExists = File.Exists(fileName);
+                    if (fileExists)
+                    {
+                        logger.LogInfo($"File already exists. Would you like to overwrite?");
+                        overwrite = PromptUserForYesNo();
+                    }
+                    if (!fileExists || overwrite)
+                    {
+                        var writeToFile = File.WriteAllBytesAsync(fileName, rawBytes.Result);
+                        ShowSpinnerUntilTaskIsRunning(writeToFile);
+                        //await writeToFile;
+                        logger.LogInfo($"archive saved to {fileName}");
+                    }
+                }
+
+                Console.WriteLine();
+                var unzipper = new Unzipper();
             }
 
             Console.WriteLine("press any key to exit...");
             Console.ReadKey();
         }
 
-        public static void ShowSpinnerUntilTaskIsRunning<T>(Task<T> task)
+        public static void ShowSpinnerUntilConditionTrue(Func<bool> condition)
         {
             var i = 0;
             Console.CursorVisible = false;
-            while (!task.GetAwaiter().IsCompleted)
+            while (condition.Invoke())
             {
                 ClearCurrentConsoleLine();
                 switch (i % 4)
@@ -79,9 +104,18 @@ namespace Stocks.Data.Services.TestHarness
             Console.CursorVisible = true;
         }
 
+        public static void ShowSpinnerUntilTaskIsRunning(Task task)
+        {
+            ShowSpinnerUntilConditionTrue(() => !task.GetAwaiter().IsCompleted);
+        }
+        public static void ShowSpinnerUntilTaskIsRunning<T>(Task<T> task)
+        {
+            ShowSpinnerUntilConditionTrue(() => !task.GetAwaiter().IsCompleted);
+        }
+
         public static void ClearCurrentConsoleLine()
         {
-            int currentLineCursor = Console.CursorTop;
+            var currentLineCursor = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(new string(' ', Console.BufferWidth));
             Console.SetCursorPosition(0, currentLineCursor);
