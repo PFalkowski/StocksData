@@ -28,5 +28,19 @@ namespace Stocks.Data.Services
 
             return allStocks.ToList();
         }
+
+        public async Task<List<Company>> DeserializeAsync(IDictionary<string, string> files)
+        {
+            var allStocks = new List<Company>();
+
+            var tasks = new List<Task<Company>>(files.Count);
+            foreach (var file in files)
+            {
+                tasks.Add(Deserializer.DeserializeAsync(file.Value));
+            }
+
+            var companies = await Task.WhenAll(tasks);
+            return companies.ToList();
+        }
     }
 }
