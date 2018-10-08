@@ -11,7 +11,16 @@
     <PackageTags>Stocks,Data,Services,IO,Deserialize</PackageTags>
     <PackageReleaseNotes>initial release</PackageReleaseNotes>
     <Description>High level services that will help you manipulate stock data. StocksFileProvider, StocksDeserializer, StocksBulkDeserializer</Description>
+    <Configurations>Debug;Release;Pack</Configurations>
     <Version>1.0.0-beta</Version>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">
+    <Optimize>true</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
