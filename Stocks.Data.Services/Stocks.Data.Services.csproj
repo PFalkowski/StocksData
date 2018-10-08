@@ -2,6 +2,16 @@
   
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Copyright>Piotr Falkowski © 2018</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/PFalkowski/Stocks.Data.Services</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PFalkowski/Stocks.Data.Services</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Stocks,Data,Services,IO,Deserialize</PackageTags>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <Description>High level services that will help you manipulate stock data. StocksFileProvider, StocksDeserializer, StocksBulkDeserializer</Description>
+    <Version>1.0.0-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>

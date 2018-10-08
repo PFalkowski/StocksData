@@ -31,8 +31,6 @@ namespace Stocks.Data.Services
 
         public async Task<List<Company>> DeserializeAsync(IDictionary<string, string> files)
         {
-            var allStocks = new List<Company>();
-
             var tasks = new List<Task<Company>>(files.Count);
             foreach (var file in files)
             {
