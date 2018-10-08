@@ -70,7 +70,7 @@ namespace Stocks.Data.Services.TestHarness
                     if (!useExistingFile)
                     {
                         logger.LogInfo("Point to the archive:");
-                        var userInput = GetPathFromUser();
+                        var userInput = GetPathToExistingFileFromUser(".zip");
                         inputFile = new FileInfo(userInput);
                     }
 
@@ -122,19 +122,7 @@ namespace Stocks.Data.Services.TestHarness
             Console.WriteLine("press any key to exit...");
             Console.ReadKey();
         }
-
-        public static string GetNonEmptyStringFromUser()
-        {
-            string userInput = Console.ReadLine();
-            while (string.IsNullOrEmpty(userInput))
-            {
-                Console.WriteLine("Input cannot be empty. Please enter non-empty string:");
-                userInput = Console.ReadLine();
-            }
-
-            return userInput;
-        }
-
+        
         private static async Task SaveArchive(byte[] rawBytes, FileInfo outputFile, ILogger logger)
         {
             if (rawBytes == null) throw new ArgumentNullException(nameof(rawBytes));
