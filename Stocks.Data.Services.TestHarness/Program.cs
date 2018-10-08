@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Stocks.Data.Infrastructure;
+using Stocks.Data.Model;
+using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.Services.TestHarness
 {
@@ -21,6 +23,7 @@ namespace Stocks.Data.Services.TestHarness
             const string inputDirName = "Input";
             const string outputDirName = "Output";
             const string logFileName = "Stocks.Data.Services.TestHarness";
+            const string archiveFileName = "mstcgl.zip";
             var inputDirectory = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), projectName, inputDirName));
             var outputDirectory = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), projectName, outputDirName));
             const string url = "http://bossa.pl/pub/ciagle/mstock/mstcgl.zip";
@@ -44,26 +47,38 @@ namespace Stocks.Data.Services.TestHarness
                 var saveArchive = GetBinaryDecisionFromUser();
                 if (saveArchive)
                 {
-                    await SaveArchive(rawBytes, outputDirectory, logger);
+                    await SaveArchive(rawBytes, new FileInfo(Path.Combine(outputDirectory.FullName, archiveFileName)), logger);
                 }
             }
             else
             {
                 logger.LogInfo("Would you like to read archive from disk? (y/n)");
                 var readArchive = GetBinaryDecisionFromUser();
+                FileInfo inputFile = null;
+                bool useExistingFile = false;
                 if (readArchive)
                 {
-                    logger.LogInfo("Point to the archive: (e to exit)");
-                    var userInput = GetPathFromUser();
-
-                    if (!userInput.Equals("e", StringComparison.InvariantCultureIgnoreCase))
+                    if (File.Exists(Path.Combine(outputDirectory.FullName, archiveFileName)))
                     {
-                        var fileReader = new FileService();
-                        var taskToReadFile = fileReader.ReadAllBytesAsync(userInput);
-                        var elapsed = ShowSpinnerUntilTaskIsRunning(taskToReadFile);
-                        rawBytes = await taskToReadFile;
-                        logger.LogInfo($"Read {rawBytes.Length} bytes in {elapsed.AsTime()}");
+                        logger.LogInfo($"Would you like to use exisitng archive from {outputDirectory.FullName}? (y/n)");
+                        useExistingFile = GetBinaryDecisionFromUser();
+                        if (useExistingFile)
+                        {
+                            inputFile = new FileInfo(Path.Combine(outputDirectory.FullName, archiveFileName));
+                        }
                     }
+                    if (!useExistingFile)
+                    {
+                        logger.LogInfo("Point to the archive:");
+                        var userInput = GetPathFromUser();
+                        inputFile = new FileInfo(userInput);
+                    }
+
+                    var fileReader = new FileService();
+                    var taskToReadFile = fileReader.ReadAllBytesAsync(inputFile.FullName);
+                    var elapsed = ShowSpinnerUntilTaskIsRunning(taskToReadFile);
+                    rawBytes = await taskToReadFile;
+                    logger.LogInfo($"Read {rawBytes.Length} bytes in {elapsed.AsTime()}");
                 }
             }
 
@@ -87,46 +102,59 @@ namespace Stocks.Data.Services.TestHarness
                 var deserialized = await taskToDeserialize;
 
                 logger.LogInfo($"Deserialzed {unzippedStocks.Count} stocks in {elapsed.AsTime()}");
+
+                logger.LogInfo($"Would you like to print some stock quotes? (y/n)");
+                var decision = GetBinaryDecisionFromUser();
+                if (decision)
+                {
+                    logger.LogInfo("Please enter the TICKER for the stock of your choice:");
+                    string line = GetNonEmptyStringFromUser();
+                    Company found = null;
+                    while ((found = deserialized.FirstOrDefault(c => c.Ticker.Equals(line, StringComparison.InvariantCultureIgnoreCase))) == null)
+                    {
+                        logger.LogInfo($"{line} not found in the collection.");
+                        line = GetNonEmptyStringFromUser();
+                    }
+                    found.Quotes.ForEach(q => Console.Out.WriteLine($"{q} Open: {q.Open} High: {q.High} Low: {q.Low} Close: {q.Close}"));
+                }
             }
 
             Console.WriteLine("press any key to exit...");
             Console.ReadKey();
         }
 
-        private static string GetPathFromUser()
+        public static string GetNonEmptyStringFromUser()
         {
             string userInput = Console.ReadLine();
-            while (string.IsNullOrWhiteSpace(userInput) ||
-                   (!File.Exists(userInput) || !userInput.EndsWith(".zip", StringComparison.InvariantCultureIgnoreCase)) &&
-                   !userInput.Equals("e", StringComparison.InvariantCultureIgnoreCase))
+            while (string.IsNullOrEmpty(userInput))
             {
+                Console.WriteLine("Input cannot be empty. Please enter non-empty string:");
                 userInput = Console.ReadLine();
             }
 
             return userInput;
         }
 
-        private static async Task SaveArchive(byte[] rawBytes, DirectoryInfo outputDirectory, ILogger logger)
+        private static async Task SaveArchive(byte[] rawBytes, FileInfo outputFile, ILogger logger)
         {
             if (rawBytes == null) throw new ArgumentNullException(nameof(rawBytes));
-            if (outputDirectory == null) throw new ArgumentNullException(nameof(outputDirectory));
+            if (outputFile == null) throw new ArgumentNullException(nameof(outputFile));
             if (logger == null) throw new ArgumentNullException(nameof(logger));
 
-            var fileName = Path.Combine(outputDirectory.FullName, "mstcgl.zip");
             var overwrite = false;
-            var fileExists = File.Exists(fileName);
+            var fileExists = outputFile.Exists;
             if (fileExists)
             {
-                logger.LogInfo($"File {fileName} already exists. Would you like to overwrite?");
+                logger.LogInfo($"File {outputFile.FullName} already exists. Would you like to overwrite?");
                 overwrite = GetBinaryDecisionFromUser();
             }
 
             if (!fileExists || overwrite)
             {
-                var writeToFile = File.WriteAllBytesAsync(fileName, rawBytes);
+                var writeToFile = File.WriteAllBytesAsync(outputFile.FullName, rawBytes);
                 var elapsed = ShowSpinnerUntilTaskIsRunning(writeToFile);
                 await writeToFile;
-                logger.LogInfo($"archive saved to {fileName} in {elapsed.AsTime()}");
+                logger.LogInfo($"archive saved to {outputFile.FullName} in {elapsed.AsTime()}");
             }
         }
 
@@ -142,81 +170,6 @@ namespace Stocks.Data.Services.TestHarness
             var res = await rawBytes;
             logger.LogInfo($"Downloaded {res.Length} in {elapsed.AsTime()}");
             return res;
-        }
-
-        public static TimeSpan ShowSpinnerUntilConditionTrue(Func<bool> condition)
-        {
-            if (condition == null) throw new ArgumentNullException(nameof(condition));
-
-            var watch = Stopwatch.StartNew();
-            var i = 0;
-            Console.CursorVisible = false;
-            while (condition.Invoke())
-            {
-                ClearCurrentConsoleLine();
-                switch (i % 4)
-                {
-                    case 0:
-                        Console.Write("[\\]");
-                        break;
-                    case 1:
-                        Console.Write("[|]");
-                        break;
-                    case 2:
-                        Console.Write("[/]");
-                        break;
-                    case 3:
-                        Console.Write("[-]");
-                        break;
-                    default:
-                        break;
-                }
-
-                Thread.Sleep(200);
-                ++i;
-            }
-            watch.Stop();
-            ClearCurrentConsoleLine();
-            Console.CursorVisible = true;
-            return watch.Elapsed;
-        }
-
-        public static TimeSpan ShowSpinnerUntilTaskIsRunning(Task task)
-        {
-            return ShowSpinnerUntilConditionTrue(() => !task.GetAwaiter().IsCompleted);
-        }
-        public static TimeSpan ShowSpinnerUntilTaskIsRunning<T>(Task<T> task)
-        {
-            return ShowSpinnerUntilConditionTrue(() => !task.GetAwaiter().IsCompleted);
-        }
-
-        public static void ClearCurrentConsoleLine()
-        {
-            var currentLineCursor = Console.CursorTop;
-            Console.SetCursorPosition(0, Console.CursorTop);
-            Console.Write(new string(' ', Console.BufferWidth));
-            Console.SetCursorPosition(0, currentLineCursor);
-        }
-        public static bool GetBinaryDecisionFromUser()
-        {
-            bool? response = null;
-            while (response == null)
-            {
-                var key = Console.ReadKey();
-                switch (key.Key)
-                {
-                    case ConsoleKey.N:
-                        response = false;
-                        break;
-                    case ConsoleKey.Y:
-                        response = true;
-                        break;
-                    default:
-                        Console.WriteLine($"Only key 'Y' or 'N' are acceptable. Provided invalid key \"{key.Key}\"");
-                        break;
-                }
-            }
-            return response.Value;
         }
     }
 }

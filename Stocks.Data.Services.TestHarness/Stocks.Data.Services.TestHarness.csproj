@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ConsoleUserInteractionHelper" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Stocks.Data.Services\Stocks.Data.Services.csproj" />
   </ItemGroup>
 
