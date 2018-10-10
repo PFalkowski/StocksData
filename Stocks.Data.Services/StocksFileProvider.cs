@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Services.IO;
 using Stocks.Data.Model;
 
@@ -17,6 +18,10 @@ namespace Stocks.Data.Services
             ValidateState();
         }
 
+        public List<Company> ReadStocksFrom(DirectoryInfo directory, string pattern = "*.msc")
+        {
+            return ReadStocksFrom(directory.FullName, pattern);
+        }
         public List<Company> ReadStocksFrom(string directory, string pattern = "*.msc")
         {
             ValidateState();
