@@ -35,6 +35,7 @@ namespace Stocks.Data.UnitTests.Services
 
             var result = await tested.DeserializeAsync(cdProject);
             Assert.True(result.Quotes.TrueForAll(q => q.Ticker.Equals("CDPROJEKT", StringComparison.InvariantCultureIgnoreCase)));
+            Assert.Equal(5837, result.Quotes.Count);
         }
     }
 }

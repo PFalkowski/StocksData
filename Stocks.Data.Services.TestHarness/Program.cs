@@ -89,7 +89,7 @@ namespace Stocks.Data.Services.TestHarness
                         if (unzippedFilesDirectory.Exists)
                         {
                             var filesFound = Directory.GetFiles(unzippedFilesDirectory.FullName).Select(f => new FileInfo(f))
-                                .Count(f => quotesFileExtension.EndsWith(f.Extension));
+                                .Count(f => f.Extension.EndsWith(quotesFileExtension));
                             if (filesFound > 0)
                             {
                                 logger.LogInfo($"Would you like to use {filesFound} files from {workingDirectory.FullName}? (y/n)");
@@ -108,7 +108,7 @@ namespace Stocks.Data.Services.TestHarness
                         }
 
                         var directoryStocksReader = new DirectoryService(new FileService());
-                        var taskToRead = directoryStocksReader.ReadTopDirectoryAsync(unzippedFilesDirectory.FullName, quotesFileExtension);
+                        var taskToRead = directoryStocksReader.ReadTopDirectoryAsync(unzippedFilesDirectory.FullName, $"*.{quotesFileExtension}");
                         var elapsed = ShowSpinnerUntilTaskIsRunning(taskToRead);
                         unzippedStocks = await taskToRead;
                         logger.LogInfo($"Read {unzippedStocks.Count} stocks in {elapsed.AsTime()}");
