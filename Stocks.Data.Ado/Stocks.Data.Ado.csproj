@@ -2,15 +2,38 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Pack</Configurations>
+    <Authors>Piotr Falkowski</Authors>
+    <Company />
+    <Copyright>Piotr Falkowski © 2019</Copyright>
+    <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://github.com/PFalkowski/Stocks.Data.Ado</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PFalkowski/Stocks.Data.Ado</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>bulk-insert, stock-quote</PackageTags>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <Description>bulk insert using SqlBulkCopy for StockQuotes in daily format.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+    <PackageReference Include="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' == 'Pack'" />
+    <PackageReference Remove="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' != 'Pack'" />
+    <PackageReference Include="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' == 'Pack'" />
+    <PackageReference Remove="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' != 'Pack'" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
-    <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
+    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' != 'Pack'" />
+    <ProjectReference Remove="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' == 'Pack'" />
+    <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' != 'Pack'" />
+    <ProjectReference Remove="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' == 'Pack'" />
   </ItemGroup>
 
 </Project>

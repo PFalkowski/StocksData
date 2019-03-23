@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Copyright>Piotr Falkowski © 2018</Copyright>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <Copyright>Piotr Falkowski © 2019</Copyright>
+    <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/PFalkowski/Stocks.Data.Services</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/Stocks.Data.Services</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Stocks,Data,Services,IO,Deserialize</PackageTags>
-    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+    <PackageReleaseNotes>change licence</PackageReleaseNotes>
     <Authors>Piotr Falkowski</Authors>
     <Description>High level services that will help you manipulate stock data. StocksFileProvider, StocksDeserializer, StocksBulkDeserializer</Description>
     <Configurations>Debug;Release;Pack</Configurations>
-    <Version>1.0.0-beta</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">
@@ -23,13 +23,15 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="7.1.1" />
     <PackageReference Include="Extensions.Serialization.Csv" Version="1.0.0" />
-    <PackageReference Include="LoggerLite" Version="2.3.0" />
+    <PackageReference Include="LoggerLite" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.3" />
     <PackageReference Include="Services.IO" Version="1.0.0" />
     <PackageReference Include="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' != 'Pack'" />
     <PackageReference Include="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' != 'Pack'" />
+    <PackageReference Include="Stocks.Data.Ado" Version="1.0.0-beta" Condition="'$(Configuration)' == 'Pack'" />
+    <PackageReference Remove="Stocks.Data.Ado" Version="1.0.0-beta" Condition="'$(Configuration)' != 'Pack'" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +39,8 @@
     <ProjectReference Remove="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" Condition="'$(Configuration)' == 'Pack'" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' != 'Pack'" />
     <ProjectReference Remove="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' == 'Pack'" />
+    <ProjectReference Include="..\Stocks.Data.Ado\Stocks.Data.Ado.csproj" Condition="'$(Configuration)' != 'Pack'" />
+    <ProjectReference Remove="..\Stocks.Data.Ado\Stocks.Data.Ado.csproj" Condition="'$(Configuration)' == 'Pack'" />
   </ItemGroup>
 
 </Project>

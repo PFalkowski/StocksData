@@ -28,7 +28,10 @@ namespace Stocks.Data.Services.TestHarness
             //const string url = "http://example.com";
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             if (!workingDirectory.Exists) { workingDirectory.Create(); }
-            var logger = new AggregateLogger(new ConsoleLogger { InfoColor = ConsoleColor.Gray }, new FileLoggerBase(Path.Combine(workingDirectory.FullName, logFileName)));
+            var logger = new AggregateLogger(
+                new ConsoleLogger { InfoColor = ConsoleColor.Gray, Formatter = (level, message) => $"{message}{Environment.NewLine}" }, 
+                new FileLoggerBase(Path.Combine(workingDirectory.FullName, logFileName)));
+
             var unzippedFilesDirectory =
                 new DirectoryInfo(Path.Combine(workingDirectory.FullName, unzippedFilesDirectoryName));
 
