@@ -14,7 +14,7 @@ namespace Stocks.Data.Model
         public double PriceToEarningsRatio { get; set; }
 
         [NotMapped]
-        public double PriceToBookValueRatio => MarketCap / LastYearYield;
+        public double PriceToBookValueRatio => MarketCap / BookValue;
         [NotMapped]
         public double LastYearYield => MarketCap / PriceToEarningsRatio;
         [NotMapped]

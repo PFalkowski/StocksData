@@ -16,7 +16,7 @@ namespace Stocks.Data.UnitTests.Model
         [ClassData(typeof(ValidStockQuoteWithFundamentalsProvider))]
         public void PriceToBookValueRatio_Calculates_Correctly(StockQuoteWithFundamentals input)
         {
-            Assert.Equal(1.13, input.PriceToEarningsRatio);
+            Assert.Equal(1.13, input.PriceToBookValueRatio, 2);
         }
         [Theory]
         [ClassData(typeof(ValidStockQuoteWithFundamentalsProvider))]
