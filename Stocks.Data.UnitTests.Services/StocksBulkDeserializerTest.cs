@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using NSubstitute;
 using Stocks.Data.Model;
 using Stocks.Data.Services;
-using Stocks.Data.UnitTests.Services.Mocks;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Services

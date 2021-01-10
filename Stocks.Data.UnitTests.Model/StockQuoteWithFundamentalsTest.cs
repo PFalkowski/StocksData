@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Extensions.Standard;
+﻿using Extensions.Standard;
 using Stocks.Data.Model;
 using Stocks.Data.UnitTests.Model.TestData;
 using Xunit;
