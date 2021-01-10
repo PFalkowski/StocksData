@@ -9,12 +9,8 @@ namespace Stocks.Data.Model
     {
         public Company Company { get; set; }
 
-        //[Column(Order = 0), Key]
-        //[Key]
         public string Ticker { get; set; }
 
-        //[Column(Order = 1), Key]
-        //[Key]
         public int Date { get; set; }
 
         public double Open { get; set; }

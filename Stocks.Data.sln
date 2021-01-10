@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28809.33
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Model", "Stocks.Data.Model\Stocks.Data.Model.csproj", "{3F5129F2-DAF8-4631-9DB8-C5B47BC8CA15}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Services.TestHarness", "Stocks.Data.Services.TestHarness\Stocks.Data.Services.TestHarness.csproj", "{B7C27ECC-6CB5-4CE0-9A9B-396E64829C15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Ado", "Stocks.Data.Ado\Stocks.Data.Ado.csproj", "{9788F825-27FD-405F-BB3D-157A93FE9BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.Api", "Stocks.Data.Api\Stocks.Data.Api.csproj", "{1976A108-31B4-489E-ACA5-189FE2DD7F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,6 +104,12 @@ Global
 		{9788F825-27FD-405F-BB3D-157A93FE9BF5}.Pack|Any CPU.Build.0 = Pack|Any CPU
 		{9788F825-27FD-405F-BB3D-157A93FE9BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9788F825-27FD-405F-BB3D-157A93FE9BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Pack|Any CPU.ActiveCfg = Debug|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Pack|Any CPU.Build.0 = Debug|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1976A108-31B4-489E-ACA5-189FE2DD7F21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
