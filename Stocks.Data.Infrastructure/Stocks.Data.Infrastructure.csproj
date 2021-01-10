@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="18.0.0" />
+    <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Extensions.Standard" Version="4.0.0" />
     <PackageReference Include="OnTheFlyStats" Version="3.1.0" />
     <PackageReference Include="StandardInterfaces" Version="1.3.0" />

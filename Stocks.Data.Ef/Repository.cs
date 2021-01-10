@@ -23,16 +23,16 @@ namespace Stocks.Data.Ef
             => Entities.Count();
 
         public int Count(Expression<Func<TEntity, bool>> predicate) 
-            => Entities.Count(predicate);
+            => Entities.Count(predicate.Compile());
 
         public TEntity Get(object id) 
             => Entities.Find(id);
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate) 
-            => Entities.FirstOrDefault(predicate);
+            => Entities.FirstOrDefault(predicate.Compile());
 
         public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate) 
-            => Entities.Where(predicate);
+            => Entities.Where(predicate.Compile());
 
         public IEnumerable<TEntity> GetAll() 
             => Entities;
