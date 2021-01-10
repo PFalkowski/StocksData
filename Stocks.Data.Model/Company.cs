@@ -11,6 +11,8 @@ namespace Stocks.Data.Model
         [Key]
         //[ForeignKey(nameof(Quotes))]
         public string Ticker { get; set; }
+        public string ISIN { get; set; }
+        public string Sector { get; set; }
         public List<StockQuote> Quotes { get; set; }
 
         [NotMapped]

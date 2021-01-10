@@ -5,7 +5,7 @@ using StandardInterfaces;
 
 namespace Stocks.Data.Model
 {
-    public sealed class StockQuote : IValidatable, IValueEquatable<StockQuote>
+    public class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
         public Company Company { get; set; }
 
