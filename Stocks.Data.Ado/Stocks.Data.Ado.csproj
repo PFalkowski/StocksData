@@ -5,9 +5,9 @@
     <Configurations>Debug;Release;Pack</Configurations>
     <Authors>Piotr Falkowski</Authors>
     <Company />
-    <Copyright>Piotr Falkowski © 2019</Copyright>
+    <Copyright>Piotr Falkowski © 2020</Copyright>
     <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
-    <Version>1.0.0</Version>
+    <Version>2.0.0</Version>
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
