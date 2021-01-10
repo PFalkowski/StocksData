@@ -6,7 +6,7 @@
     <Authors>Piotr Falkowski</Authors>
     <Company />
     <Copyright>Piotr Falkowski © 2020</Copyright>
-    <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <Version>2.0.0</Version>
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
@@ -15,6 +15,7 @@
     <PackageReleaseNotes>initial release</PackageReleaseNotes>
     <Description>bulk insert using SqlBulkCopy for StockQuotes in daily format.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">

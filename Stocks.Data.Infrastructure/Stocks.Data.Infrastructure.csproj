@@ -7,13 +7,14 @@
     <PackageProjectUrl>https://github.com/PFalkowski/StocksData</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PFalkowski/StocksData</RepositoryUrl>
     <Copyright>Piotr Falkowski © 2020</Copyright>
-    <PackageLicenseUrl>https://choosealicense.com/licenses/agpl-3.0/</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageTags>Stock, Data, Csv</PackageTags>
     <PackageReleaseNotes>fix bugs</PackageReleaseNotes>
     <RepositoryType>git</RepositoryType>
     <Authors>Piotr Falkowski</Authors>
     <Version>3.0.0</Version>
     <Configurations>Debug;Release;Pack</Configurations>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Pack|AnyCPU'">
