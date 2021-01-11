@@ -16,8 +16,20 @@ namespace Stocks.Data.Api.Models
         public string QuotesDownloadUrl { get; set; } = "http://bossa.pl/pub/ciagle/mstock/mstcgl.zip";
         public string ConnectionString { get; set; } = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog=StockQuotes;Integrated Security=True;";
 
-        public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Name, OutputDirName));
+        public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
         public FileInfo ArchiveFile => new FileInfo(Path.Combine(WorkingDirectory.FullName, ArchiveFileName));
+
+        public void EnsureAllDirectoriesExist()
+        {
+            if (!WorkingDirectory.Exists)
+            {
+                WorkingDirectory.Create();
+            }
+            if (!UnzippedFilesDirectory.Exists)
+            {
+                UnzippedFilesDirectory.Create();
+            }
+        }
     }
 }

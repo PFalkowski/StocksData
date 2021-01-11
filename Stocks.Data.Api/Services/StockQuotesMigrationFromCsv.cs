@@ -21,14 +21,14 @@ namespace Stocks.Data.Api.Services
         private readonly IUnzipper _unzipper;
         private readonly IStocksBulkDeserializer _stocksBulkDeserializer;
         private readonly IDatabaseManagementService _databaseManagementService;
-        private readonly CompanyBulkInserter _companyBulkInserter;
+        private readonly BulkInserter<Company> _companyBulkInserter;
 
         public StockQuotesMigrationFromCsv(ILogger logger,
             IDirectoryService directoryStocksReader,
             IUnzipper unzipper,
             IStocksBulkDeserializer stocksBulkDeserializer,
             IDatabaseManagementService databaseManagementService,
-            CompanyBulkInserter companyBulkInserter)
+            BulkInserter<Company> companyBulkInserter)
         {
             _logger = logger;
             _directoryStocksReader = directoryStocksReader;
@@ -40,6 +40,7 @@ namespace Stocks.Data.Api.Services
 
         public async Task Migrate(Project project, TargetLocation location)
         {
+            project.EnsureAllDirectoriesExist();
             Dictionary<string, string> fromDisk;
             switch (location)
             {
