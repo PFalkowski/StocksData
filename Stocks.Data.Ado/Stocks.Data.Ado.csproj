@@ -23,6 +23,7 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="LoggerLite" Version="3.1.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Infrastructure" Version="2.0.1" Condition="'$(Configuration)' != 'Pack'" />

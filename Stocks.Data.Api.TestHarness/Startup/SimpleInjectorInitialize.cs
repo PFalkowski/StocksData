@@ -23,6 +23,7 @@ namespace Stocks.Data.Api.TestHarness.Startup
             container.Register<IStocksDeserializer, StocksDeserializer>();
             container.Register<IStocksBulkDeserializer, StocksBulkDeserializer>();
             container.Register<BulkInserter<Company>, CompanyBulkInserter>();
+            container.Register<BulkInserter<StockQuote>, StockQuotesBulkInserter>();
             container.Register<IDownloader, Downloader>();
             container.Register<IDatabaseManagementService, MsSqlDatabaseManagementService>();
             container.Register<IStockQuotesDownloadService, StockQuotesDownloadService>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using LoggerLite;
 using Stocks.Data.Model;
 using Stocks.Data.Infrastructure;
 
@@ -9,6 +10,12 @@ namespace Stocks.Data.Ado
 {
     public class StockQuotesBulkInserter : BulkInserter<StockQuote>
     {
+        private readonly ILogger _logger;
+
+        public StockQuotesBulkInserter(ILogger logger)
+        {
+            _logger = logger;
+        }
 
         public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<StockQuote> quotes)
         {
@@ -69,7 +76,7 @@ namespace Stocks.Data.Ado
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                _logger?.LogError(e);
                 throw;
             }
             finally

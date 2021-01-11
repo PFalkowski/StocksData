@@ -7,7 +7,12 @@ namespace Stocks.Data.Ado
 {
     public class CompanyBulkInserter : BulkInserter<Company>
     {
-        public BulkInserter<StockQuote> StockQuoteBulkInserter { get; set; }
+        private readonly BulkInserter<StockQuote> _stockQuoteBulkInserter;
+
+        public CompanyBulkInserter(BulkInserter<StockQuote> stockQuoteBulkInserter)
+        {
+            _stockQuoteBulkInserter = stockQuoteBulkInserter;
+        }
 
         public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<Company> companies)
         {
@@ -23,7 +28,7 @@ namespace Stocks.Data.Ado
                         command.Parameters["@value"].Value = company.Ticker;
                         command.ExecuteNonQuery();
                     }
-                    StockQuoteBulkInserter.BulkInsert(connectionString, destinationTableName, company.Quotes);
+                    _stockQuoteBulkInserter.BulkInsert(connectionString, destinationTableName, company.Quotes);
                 }
             }
         }
