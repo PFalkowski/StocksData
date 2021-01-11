@@ -5,13 +5,11 @@ namespace Stocks.Data.Ado
 {
     public abstract class BulkInserter<T> where T : class, new()
     {
-        public string ConnectionString { get; protected set; }
+        public abstract void BulkInsert(string connectionString, string destinationTableName, IEnumerable<T> payload);
 
-        public abstract void BulkInsert(string destinationTableName, IEnumerable<T> payload);
-
-        public void BulkInsert(string destinationTableName, params T[] payload)
+        public void BulkInsert(string connectionString, string destinationTableName, params T[] payload)
         {
-            BulkInsert(destinationTableName, payload.AsEnumerable());
+            BulkInsert(connectionString, destinationTableName, payload.AsEnumerable());
         }
     }
 }

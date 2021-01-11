@@ -18,6 +18,20 @@ namespace Stocks.Data.Model
         public double Low { get; set; }
         public double Close { get; set; }
         public double Volume { get; set; }
+        public long TotalSharesEmitted { get; set; }
+        public double MarketCap { get; set; }
+        public double BookValue { get; set; }
+        public double? DividendYield { get; set; }
+        public double PriceToEarningsRatio { get; set; }
+
+        [NotMapped]
+        public double PriceToBookValueRatio => MarketCap / BookValue;
+        [NotMapped]
+        public double LastYearYield => MarketCap / PriceToEarningsRatio;
+        [NotMapped]
+        public double BookValuePerShare => BookValue / TotalSharesEmitted;
+        [NotMapped]
+        public double EarningsPerShare => LastYearYield / TotalSharesEmitted;
 
         [NotMapped]
         public DateTime DateParsed => DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);

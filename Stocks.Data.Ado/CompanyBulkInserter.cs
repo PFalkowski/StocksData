@@ -8,15 +8,11 @@ namespace Stocks.Data.Ado
     public class CompanyBulkInserter : BulkInserter<Company>
     {
         public BulkInserter<StockQuote> StockQuoteBulkInserter { get; set; }
-        public CompanyBulkInserter(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
 
-        public override void BulkInsert(string destinationTableName, IEnumerable<Company> companies)
+        public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<Company> companies)
         {
 
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 foreach (var company in companies)
@@ -27,7 +23,7 @@ namespace Stocks.Data.Ado
                         command.Parameters["@value"].Value = company.Ticker;
                         command.ExecuteNonQuery();
                     }
-                    StockQuoteBulkInserter.BulkInsert( destinationTableName, company.Quotes);
+                    StockQuoteBulkInserter.BulkInsert(connectionString, destinationTableName, company.Quotes);
                 }
             }
         }

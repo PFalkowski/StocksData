@@ -9,7 +9,6 @@ namespace Stocks.Data.Model
     public sealed class Company : IValidatable
     {
         [Key]
-        //[ForeignKey(nameof(Quotes))]
         public string Ticker { get; set; }
         public string ISIN { get; set; }
         public string Sector { get; set; }

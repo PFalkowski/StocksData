@@ -3,12 +3,12 @@ using Xunit;
 
 namespace Stocks.Data.UnitTests.Model.TestData
 {
-    public class ValidStockQuoteWithFundamentalsProvider : TheoryData<StockQuoteWithFundamentals>
+    public class ValidStockQuoteProvider : TheoryData<StockQuote>
     {
         public const string TestTicker = "TestCompany";
-        public ValidStockQuoteWithFundamentalsProvider()
+        public ValidStockQuoteProvider()
         {
-            Add(new StockQuoteWithFundamentals
+            Add(new StockQuote
             {
                 Open = 10,
                 High = 12,

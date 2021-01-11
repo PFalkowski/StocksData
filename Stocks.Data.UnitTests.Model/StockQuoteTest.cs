@@ -1,3 +1,4 @@
+using Extensions.Standard;
 using Stocks.Data.Model;
 using Stocks.Data.UnitTests.Model.TestData;
 using Xunit;
@@ -45,6 +46,31 @@ namespace Stocks.Data.UnitTests.Model
         public void GetHashCodeReturnsDifferentForUnequalStocks(StockQuote quote1, StockQuote quote2)
         {
             Assert.NotEqual(quote1.GetHashCode(), quote2.GetHashCode());
+        }
+
+        [Theory]
+        [ClassData(typeof(ValidStockQuoteProvider))]
+        public void PriceToBookValueRatio_Calculates_Correctly(StockQuote input)
+        {
+            Assert.Equal(1.13, input.PriceToBookValueRatio, 2);
+        }
+        [Theory]
+        [ClassData(typeof(ValidStockQuoteProvider))]
+        public void LastYearYield_Calculates_Correctly(StockQuote input)
+        {
+            Assert.True(input.LastYearYield.InClosedRange(107900000, 107990000));
+        }
+        [Theory]
+        [ClassData(typeof(ValidStockQuoteProvider))]
+        public void BookValuePerShare_Calculates_Correctly(StockQuote input)
+        {
+            Assert.Equal(103.18, input.BookValuePerShare, 1);
+        }
+        [Theory]
+        [ClassData(typeof(ValidStockQuoteProvider))]
+        public void EarningsPerShare_Calculates_Correctly(StockQuote input)
+        {
+            Assert.Equal(13.877, input.EarningsPerShare, 1);
         }
     }
 }

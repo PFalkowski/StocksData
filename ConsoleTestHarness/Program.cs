@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using LoggerLite;
 using Microsoft.EntityFrameworkCore;
+using Stocks.Data.Api.Models;
+using Stocks.Data.Api.Services;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
 
@@ -9,6 +13,8 @@ namespace Stocks.Data.ConsoleTestHarness
 {
     class Program
     {
+        private static ILogger _logger = new ConsoleLogger();
+        private static readonly IDatabaseManagementService DbManagementService = new MsSqlDatabaseManagementService(_logger);
         private static Company GetStub()
         {
             const string ticker = "test";
@@ -20,7 +26,12 @@ namespace Stocks.Data.ConsoleTestHarness
                 High = 10,
                 Low = 10,
                 Volume = 1000,
-                Open = 10
+                Open = 10,
+                TotalSharesEmitted = 100000,
+                MarketCap = 200000,
+                BookValue = 1000,
+                DividendYield = 1.0,
+                PriceToEarningsRatio = 2
             };
             var testStock = new Company
             {
@@ -30,29 +41,22 @@ namespace Stocks.Data.ConsoleTestHarness
             return testStock;
         }
 
-        private static DbContextOptions<DbContext> GetOptions(string connectionStr)
-        {
-            var options = new DbContextOptionsBuilder<DbContext>()
-                .UseSqlServer(connectionStr)
-                .Options;
-            return options;
-        }
-
-        static void Main()
+        static async Task Main()
         {
             var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
-            string cs = $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;";
-
-            var options = GetOptions(cs);
+            var proj = new Project
+            {
+                ConnectionString =
+                    $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;"
+            };
             var input = GetStub();
 
             DbContext context = null;
             StockUnitOfWork tested = null;
             try
             {
-                context = new StockContext(options);
-                context.Database.EnsureCreated();
-                Console.WriteLine($"Created database {dbName}");
+                var res = await DbManagementService.EnsureDbExists(proj);
+                context = new StockContext(GetOptions(proj.ConnectionString));
                 tested = new StockUnitOfWork(context);
 
                 tested.StockRepository.Add(input);
@@ -62,13 +66,21 @@ namespace Stocks.Data.ConsoleTestHarness
 
                 Console.WriteLine($"Added {actual} record(s) to db");
                 Console.ReadKey();
+                await DbManagementService.DropLocalDbAsync(proj);
             }
             finally
             {
-                context?.Database.EnsureDeleted();
                 tested?.Dispose();
-                context?.Dispose();
+                if (context != null)
+                    await context.DisposeAsync();
             }
+        }
+        private static DbContextOptions<DbContext> GetOptions(string connectionStr)
+        {
+            var options = new DbContextOptionsBuilder<DbContext>()
+                .UseSqlServer(connectionStr)
+                .Options;
+            return options;
         }
     }
 }

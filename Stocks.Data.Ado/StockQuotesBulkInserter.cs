@@ -10,19 +10,14 @@ namespace Stocks.Data.Ado
     public class StockQuotesBulkInserter : BulkInserter<StockQuote>
     {
 
-        public StockQuotesBulkInserter(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-
-        public override void BulkInsert(string destinationTableName, IEnumerable<StockQuote> quotes)
+        public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<StockQuote> quotes)
         {
             var sqlConnection = default(SqlConnection);
             var sqlBulkCopy = default(SqlBulkCopy);
             var inMemoryTable = default(DataTable);
             try
             {
-                sqlConnection = new SqlConnection(ConnectionString);
+                sqlConnection = new SqlConnection(connectionString);
                 sqlBulkCopy = new SqlBulkCopy(sqlConnection)
                 {
                     DestinationTableName = destinationTableName,

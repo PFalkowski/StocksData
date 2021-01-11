@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="ConsoleUserInteractionHelper" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Stocks.Data.Api\Stocks.Data.Api.csproj" />
+    <ProjectReference Include="..\Stocks.Data.Ef\Stocks.Data.Ef.csproj" />
+    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
     <ProjectReference Include="..\Stocks.Data.Services\Stocks.Data.Services.csproj" />
   </ItemGroup>
 
