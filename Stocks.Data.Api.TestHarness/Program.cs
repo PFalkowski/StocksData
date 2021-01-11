@@ -64,13 +64,13 @@ namespace Stocks.Data.Api.TestHarness
             {
                 await quotesDownloader.Download(project);
             }
-
+            
             logger.LogInfo($"Would you like to upload quotes to database? (y/n)");
             response = GetBinaryDecisionFromUser();
             
             if (response)
             {
-                await api.Migrate(project, TargetLocation.File);
+                await api.Migrate(project);
             }
         }
     }

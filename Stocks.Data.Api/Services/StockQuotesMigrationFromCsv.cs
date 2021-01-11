@@ -38,14 +38,38 @@ namespace Stocks.Data.Api.Services
             _companyBulkInserter = companyBulkInserter;
         }
 
+        public async Task Migrate(Project project)
+        {
+            var unzip = false;
+            if (!project.UnzippedFilesDirectory.Exists)
+            {
+                unzip = true;
+            }
+            else
+            {
+                var filesFound = Directory.GetFiles(project.UnzippedFilesDirectory.FullName).Select(f => new FileInfo(f))
+                    .Count(f => f.Extension.EndsWith(project.QuotesFileExtension));
+                unzip = filesFound == 0;
+            }
+
+            if (unzip)
+            {
+                await Migrate(project, TargetLocation.ZipArchive);
+            }
+            else
+            {
+                await Migrate(project, TargetLocation.Directory);
+            }
+        }
+
         public async Task Migrate(Project project, TargetLocation location)
         {
             project.EnsureAllDirectoriesExist();
             Dictionary<string, string> fromDisk;
             switch (location)
             {
-                case TargetLocation.File:
-                    fromDisk = await ReadFromDisk(project);
+                case TargetLocation.Directory:
+                    fromDisk = await ReadFromDirectory(project);
                     break;
                 case TargetLocation.ZipArchive:
                     fromDisk = await ReadFromZip(project);
@@ -77,11 +101,11 @@ namespace Stocks.Data.Api.Services
             return unzippedStocks;
         }
 
-        private async Task<Dictionary<string, string>> ReadFromDisk(Project project)
+        private async Task<Dictionary<string, string>> ReadFromDirectory(Project project)
         {
-            if (!project.ArchiveFile.Exists)
+            if (!project.UnzippedFilesDirectory.Exists)
             {
-                throw new FileNotFoundException(project.ArchiveFile.FullName);
+                throw new DirectoryNotFoundException(project.UnzippedFilesDirectory.FullName);
             }
 
             var filesFound = Directory.GetFiles(project.UnzippedFilesDirectory.FullName).Select(f => new FileInfo(f))
@@ -93,7 +117,7 @@ namespace Stocks.Data.Api.Services
                 throw new ArgumentException(project.ArchiveFile.FullName);
             }
 
-            _logger.LogInfo($"Found {filesFound} files in {project.WorkingDirectory.FullName}.");
+            _logger.LogInfo($"Found {filesFound} files in {project.UnzippedFilesDirectory.FullName}.");
 
 
             var unzippedStocks = await _directoryStocksReader.ReadTopDirectoryAsync(project.UnzippedFilesDirectory.FullName, $"*.{project.QuotesFileExtension}");

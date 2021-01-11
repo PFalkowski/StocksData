@@ -26,10 +26,10 @@ namespace Stocks.Data.Api.Models
             {
                 WorkingDirectory.Create();
             }
-            if (!UnzippedFilesDirectory.Exists)
-            {
-                UnzippedFilesDirectory.Create();
-            }
+            //if (!UnzippedFilesDirectory.Exists)
+            //{
+            //    UnzippedFilesDirectory.Create();
+            //}
         }
     }
 }

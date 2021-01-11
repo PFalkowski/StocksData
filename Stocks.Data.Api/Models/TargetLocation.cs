@@ -6,7 +6,7 @@ namespace Stocks.Data.Api.Models
 {
     public enum TargetLocation
     {
-        File,
+        Directory,
         ZipArchive
     }
 }
