@@ -40,15 +40,12 @@ namespace Stocks.Data.Api.Services
 
         public async Task Migrate(Project project)
         {
-            var unzip = false;
-            if (!project.UnzippedFilesDirectory.Exists)
-            {
-                unzip = true;
-            }
-            else
+            var unzip = true;
+            if (project.UnzippedFilesDirectory.Exists)
             {
                 var filesFound = Directory.GetFiles(project.UnzippedFilesDirectory.FullName).Select(f => new FileInfo(f))
-                    .Count(f => f.Extension.EndsWith(project.QuotesFileExtension));
+                .Count(f => f.Extension.EndsWith(project.QuotesFileExtension));
+
                 unzip = filesFound == 0;
             }
 
@@ -98,7 +95,27 @@ namespace Stocks.Data.Api.Services
             var unzippedStocks = await _unzipper.UnzipAsync(rawBytes, CancellationToken.None);
             _logger.LogInfo($"Unzipped {unzippedStocks.Count} stocks from {project.ArchiveFileName}");
 
+            await SaveUnzippedFiles(project, unzippedStocks);
+
             return unzippedStocks;
+        }
+
+        private async Task SaveUnzippedFiles(Project project, Dictionary<string, string> unzippedStocks)
+        {
+            if (!project.UnzippedFilesDirectory.Exists) { project.UnzippedFilesDirectory.Create(); }
+            var tasksToSave = new List<Task>();
+            foreach (var stock in unzippedStocks)
+            {
+                var path = Path.Combine(project.UnzippedFilesDirectory.FullName, stock.Key);
+                if (File.Exists(path))
+                {
+                    _logger.LogWarning($"File {path} already exists and will be overwritten.");
+                }
+                tasksToSave.Add(File.WriteAllTextAsync(path, stock.Value));
+            }
+            _logger.LogInfo($"Saved {unzippedStocks.Count} files to {project.UnzippedFilesDirectory.FullName}.");
+
+            await Task.WhenAll(tasksToSave);
         }
 
         private async Task<Dictionary<string, string>> ReadFromDirectory(Project project)

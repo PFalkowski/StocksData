@@ -45,6 +45,7 @@ namespace Stocks.Data.Api.TestHarness
             SimpleInjectorInitialize.Initialize(_container, null);
 
             var api = _container.GetInstance<IStockQuotesMigrationFromCsv>();
+            var dbManagementSvc = _container.GetInstance<IDatabaseManagementService>();
             var logger = _container.GetInstance<ILogger>();
             var quotesDownloader = _container.GetInstance<IStockQuotesDownloadService>();
             var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
@@ -53,24 +54,32 @@ namespace Stocks.Data.Api.TestHarness
                 ConnectionString =
                     $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;"
             };
-            var input = GetStub();
 
-            
-            logger.LogInfo($"Hello in {project.Name}. This test will read a directory and load it into Dictionary of deserialized stock quotes.");
-            logger.LogInfo($"Would you like to download latest stocks from {project.QuotesDownloadUrl} ? (y/n)");
-            var response = GetBinaryDecisionFromUser();
-
-            if (response)
+            try
             {
-                await quotesDownloader.Download(project);
+                var input = GetStub();
+
+
+                logger.LogInfo($"Hello in {project.Name}. This test will read a directory and load it into Dictionary of deserialized stock quotes.");
+                logger.LogInfo($"Would you like to download latest stocks from {project.QuotesDownloadUrl} ? (y/n)");
+                var response = GetBinaryDecisionFromUser();
+
+                if (response)
+                {
+                    await quotesDownloader.Download(project);
+                }
+
+                logger.LogInfo($"Would you like to upload quotes to database? (y/n)");
+                response = GetBinaryDecisionFromUser();
+
+                if (response)
+                {
+                    await api.Migrate(project);
+                }
             }
-            
-            logger.LogInfo($"Would you like to upload quotes to database? (y/n)");
-            response = GetBinaryDecisionFromUser();
-            
-            if (response)
+            finally
             {
-                await api.Migrate(project);
+                await dbManagementSvc.DropLocalDbAsync(project);
             }
         }
     }
