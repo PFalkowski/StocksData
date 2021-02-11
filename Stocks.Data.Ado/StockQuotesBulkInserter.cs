@@ -83,7 +83,7 @@ namespace Stocks.Data.Ado
                     newQuoteRow[Constants.BookValueName] = DBNull.Value;
                     newQuoteRow[Constants.DividendYieldName] = DBNull.Value;
                     newQuoteRow[Constants.PriceToEarningsRatioName] = DBNull.Value;
-
+                    
                     inMemoryTable.Rows.Add(newQuoteRow);
                 }
                 sqlConnection.Open();

@@ -31,7 +31,7 @@ namespace Stocks.Data.Ado
                         command.Parameters["@value"].Value = company.Ticker;
                         command.ExecuteNonQuery();
                     }
-                    _stockQuoteBulkInserter.BulkInsert(connectionString, destinationTableName, company.Quotes);
+                    _stockQuoteBulkInserter.BulkInsert(connectionString, Infrastructure.Constants.StockQuoteName, company.Quotes);
                 }
             }
         }
