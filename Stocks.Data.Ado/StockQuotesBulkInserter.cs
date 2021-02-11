@@ -83,8 +83,15 @@ namespace Stocks.Data.Ado
                     newQuoteRow[Constants.BookValueName] = DBNull.Value;
                     newQuoteRow[Constants.DividendYieldName] = DBNull.Value;
                     newQuoteRow[Constants.PriceToEarningsRatioName] = DBNull.Value;
-                    
-                    inMemoryTable.Rows.Add(newQuoteRow);
+
+                    try
+                    {
+                        inMemoryTable.Rows.Add(newQuoteRow);
+                    }
+                    catch (ConstraintException constraintException)
+                    {
+                        _logger?.LogWarning($"{constraintException.Message}. Skipped.");
+                    }
                 }
                 sqlConnection.Open();
                 sqlBulkCopy.WriteToServer(inMemoryTable);

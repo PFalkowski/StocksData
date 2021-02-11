@@ -1,0 +1,1 @@
+﻿select count(Ticker) from StockQuote
