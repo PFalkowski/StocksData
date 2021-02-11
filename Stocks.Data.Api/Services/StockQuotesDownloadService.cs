@@ -20,7 +20,7 @@ namespace Stocks.Data.Api.Services
             _logger = logger;
         }
 
-        public async Task Download(Project project)
+        public async Task Download(ProjectSettings project)
         {
             var workingDirectory = project.WorkingDirectory;
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

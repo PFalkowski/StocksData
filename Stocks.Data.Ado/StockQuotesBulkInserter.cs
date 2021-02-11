@@ -36,7 +36,12 @@ namespace Stocks.Data.Ado
                         new SqlBulkCopyColumnMapping(Constants.HighName, Constants.HighName),
                         new SqlBulkCopyColumnMapping(Constants.LowName, Constants.LowName),
                         new SqlBulkCopyColumnMapping(Constants.CloseName, Constants.CloseName),
-                        new SqlBulkCopyColumnMapping(Constants.VolName, Constants.VolName)
+                        new SqlBulkCopyColumnMapping(Constants.VolName, Constants.VolName),
+                        new SqlBulkCopyColumnMapping(Constants.TotalSharesEmittedName, Constants.TotalSharesEmittedName),
+                        new SqlBulkCopyColumnMapping(Constants.MarketCapName, Constants.MarketCapName),
+                        new SqlBulkCopyColumnMapping(Constants.BookValueName, Constants.BookValueName),
+                        new SqlBulkCopyColumnMapping(Constants.DividendYieldName, Constants.DividendYieldName),
+                        new SqlBulkCopyColumnMapping(Constants.PriceToEarningsRatioName, Constants.PriceToEarningsRatioName),
                     }
                 };
                 inMemoryTable = new DataTable(destinationTableName)
@@ -48,7 +53,12 @@ namespace Stocks.Data.Ado
                         new DataColumn(Constants.HighName, typeof(double)),
                         new DataColumn(Constants.LowName, typeof(double)),
                         new DataColumn(Constants.CloseName, typeof(double)),
-                        new DataColumn(Constants.VolName, typeof(double))
+                        new DataColumn(Constants.VolName, typeof(double)),
+                        new DataColumn(Constants.TotalSharesEmittedName, typeof(long)) { AllowDBNull = true },
+                        new DataColumn(Constants.MarketCapName, typeof(double)) { AllowDBNull = true },
+                        new DataColumn(Constants.BookValueName, typeof(double)) { AllowDBNull = true },
+                        new DataColumn(Constants.DividendYieldName, typeof(double)) { AllowDBNull = true },
+                        new DataColumn(Constants.PriceToEarningsRatioName, typeof(double)) { AllowDBNull = true },
                     }
                 };
                 inMemoryTable.PrimaryKey = new[]
@@ -68,6 +78,11 @@ namespace Stocks.Data.Ado
                     newQuoteRow[Constants.LowName] = quote.Low;
                     newQuoteRow[Constants.CloseName] = quote.Close;
                     newQuoteRow[Constants.VolName] = quote.Volume;
+                    newQuoteRow[Constants.TotalSharesEmittedName] = DBNull.Value;
+                    newQuoteRow[Constants.MarketCapName] = DBNull.Value;
+                    newQuoteRow[Constants.BookValueName] = DBNull.Value;
+                    newQuoteRow[Constants.DividendYieldName] = DBNull.Value;
+                    newQuoteRow[Constants.PriceToEarningsRatioName] = DBNull.Value;
 
                     inMemoryTable.Rows.Add(newQuoteRow);
                 }

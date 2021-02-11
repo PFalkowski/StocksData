@@ -55,7 +55,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
 
             Assert.Throws<ObjectDisposedException>(() => ufo.GetInstance());
             Assert.Throws<ObjectDisposedException>(() => uow.Complete());
-            Assert.Throws<ObjectDisposedException>(() => testContext.Companies.Find(1));
+            Assert.Throws<ObjectDisposedException>(() => testContext.Company.Find(1));
         }
     }
 }

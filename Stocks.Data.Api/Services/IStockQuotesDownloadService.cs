@@ -5,6 +5,6 @@ namespace Stocks.Data.Api.Services
 {
     public interface IStockQuotesDownloadService
     {
-        Task Download(Project project);
+        Task Download(ProjectSettings project);
     }
 }

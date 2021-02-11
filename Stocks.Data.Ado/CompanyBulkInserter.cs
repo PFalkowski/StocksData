@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Stocks.Data.Model;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Stocks.Data.Model;
 
 namespace Stocks.Data.Ado
 {
@@ -22,7 +22,10 @@ namespace Stocks.Data.Ado
                 connection.Open();
                 foreach (var company in companies)
                 {
-                    using (var command = new SqlCommand("insert into [Companies] (Ticker) values (@value)", connection))
+                    using (var command = new SqlCommand($"if not exists" +
+                                                        $" (select * from [{Infrastructure.Constants.CompanyName}] where {Infrastructure.Constants.TickerName} = @value)" +
+                                                        $" begin insert into [{Infrastructure.Constants.CompanyName}] ({Infrastructure.Constants.TickerName}) values (@value) end",
+                        connection))
                     {
                         command.Parameters.Add("@value", SqlDbType.VarChar);
                         command.Parameters["@value"].Value = company.Ticker;

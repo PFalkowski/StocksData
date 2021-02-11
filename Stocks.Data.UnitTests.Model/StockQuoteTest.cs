@@ -52,25 +52,25 @@ namespace Stocks.Data.UnitTests.Model
         [ClassData(typeof(ValidStockQuoteProvider))]
         public void PriceToBookValueRatio_Calculates_Correctly(StockQuote input)
         {
-            Assert.Equal(1.13, input.PriceToBookValueRatio, 2);
+            Assert.Equal(1.13, input.PriceToBookValueRatio.Value, 2);
         }
         [Theory]
         [ClassData(typeof(ValidStockQuoteProvider))]
         public void LastYearYield_Calculates_Correctly(StockQuote input)
         {
-            Assert.True(input.LastYearYield.InClosedRange(107900000, 107990000));
+            Assert.True(input.LastYearYield.Value.InClosedRange(107900000, 107990000));
         }
         [Theory]
         [ClassData(typeof(ValidStockQuoteProvider))]
         public void BookValuePerShare_Calculates_Correctly(StockQuote input)
         {
-            Assert.Equal(103.18, input.BookValuePerShare, 1);
+            Assert.Equal(103.18, input.BookValuePerShare.Value, 1);
         }
         [Theory]
         [ClassData(typeof(ValidStockQuoteProvider))]
         public void EarningsPerShare_Calculates_Correctly(StockQuote input)
         {
-            Assert.Equal(13.877, input.EarningsPerShare, 1);
+            Assert.Equal(13.877, input.EarningsPerShare.Value, 1);
         }
     }
 }

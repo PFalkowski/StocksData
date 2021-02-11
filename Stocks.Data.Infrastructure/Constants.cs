@@ -2,8 +2,8 @@
 {
     public static class Constants
     {
-        public const string StockQuotesName = "StockQuotes";
-        public const string CompaniesName = "Companies";
+        public const string StockQuoteName = "StockQuote";
+        public const string CompanyName = "Company";
 
         public const string TickerName = "Ticker";
         public const string DateName = "Date";
@@ -20,5 +20,12 @@
         public const string LowNameRaw = "<LOW>";
         public const string CloseNameRaw = "<CLOSE>";
         public const string VolNameRaw = "<VOL>";
+
+
+        public const string TotalSharesEmittedName = "TotalSharesEmitted";
+        public const string MarketCapName = "MarketCap";
+        public const string BookValueName = "BookValue";
+        public const string DividendYieldName = "DividendYield";
+        public const string PriceToEarningsRatioName = "PriceToEarningsRatio";
     }
 }

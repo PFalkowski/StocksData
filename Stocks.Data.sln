@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Ado", "Stocks.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Api", "Stocks.Data.Api\Stocks.Data.Api.csproj", "{1976A108-31B4-489E-ACA5-189FE2DD7F21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.Api.TestHarness", "Stocks.Data.Api.TestHarness\Stocks.Data.Api.TestHarness.csproj", "{A26EEF29-7FD6-4FD9-9097-D296324D3E96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Api.TestHarness", "Stocks.Data.Api.TestHarness\Stocks.Data.Api.TestHarness.csproj", "{A26EEF29-7FD6-4FD9-9097-D296324D3E96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.ConsoleApp", "Stocks.Data.ConsoleApp\Stocks.Data.ConsoleApp.csproj", "{7B98D755-186E-4731-ABB2-A77117A57BDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +120,12 @@ Global
 		{A26EEF29-7FD6-4FD9-9097-D296324D3E96}.Pack|Any CPU.Build.0 = Release|Any CPU
 		{A26EEF29-7FD6-4FD9-9097-D296324D3E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A26EEF29-7FD6-4FD9-9097-D296324D3E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Pack|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Pack|Any CPU.Build.0 = Debug|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,11 +45,11 @@ namespace Stocks.Data.Api.TestHarness
             SimpleInjectorInitialize.Initialize(_container, null);
 
             var api = _container.GetInstance<IStockQuotesMigrationFromCsv>();
+            var quotesDownloader = _container.GetInstance<IStockQuotesDownloadService>();
             var dbManagementSvc = _container.GetInstance<IDatabaseManagementService>();
             var logger = _container.GetInstance<ILogger>();
-            var quotesDownloader = _container.GetInstance<IStockQuotesDownloadService>();
             var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
-            var project = new Project
+            var project = new ProjectSettings
             {
                 ConnectionString =
                     $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;"

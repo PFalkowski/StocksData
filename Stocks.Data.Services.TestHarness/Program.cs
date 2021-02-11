@@ -18,7 +18,7 @@ namespace Stocks.Data.Services.TestHarness
     {
         private static async Task Main(string[] args)
         {
-            var project = new Project();
+            var project = new ProjectSettings();
             var logger = new AggregateLogger(
                 new ConsoleLogger { InfoColor = ConsoleColor.Gray, Formatter = (level, message) => $"{message}{Environment.NewLine}" },
                 new FileLoggerBase(Path.Combine(project.WorkingDirectory.FullName, project.LogFileName)));

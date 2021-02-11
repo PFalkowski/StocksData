@@ -16,7 +16,7 @@ namespace Stocks.Data.Api.Services
             _logger = logger;
         }
 
-        public async Task<bool> EnsureDbExists(Project project, int retries = 3)
+        public async Task<bool> EnsureDbExists(ProjectSettings project, int retries = 3)
         {
             var options = GetOptions(project.ConnectionString);
 
@@ -64,7 +64,7 @@ namespace Stocks.Data.Api.Services
             return options;
         }
 
-        public async Task<bool> DropLocalDbAsync(Project project, int retries = 3)
+        public async Task<bool> DropLocalDbAsync(ProjectSettings project, int retries = 3)
         {
             var options = GetOptions(project.ConnectionString);
 

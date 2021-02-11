@@ -44,7 +44,7 @@ namespace Stocks.Data.ConsoleTestHarness
         static async Task Main()
         {
             var dbName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
-            var proj = new Project
+            var proj = new ProjectSettings
             {
                 ConnectionString =
                     $"server=(localdb)\\MSSQLLocalDB;Initial Catalog={dbName};Integrated Security=True;"

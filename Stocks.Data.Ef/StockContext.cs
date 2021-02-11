@@ -18,6 +18,6 @@ namespace Stocks.Data.Ef
                 .HasForeignKey(q => q.Ticker)
                 .HasPrincipalKey(q => q.Ticker);
         }
-        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
     }
 }
