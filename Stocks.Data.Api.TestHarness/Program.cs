@@ -74,7 +74,7 @@ namespace Stocks.Data.Api.TestHarness
 
                 if (response)
                 {
-                    await api.Migrate(project);
+                    await api.Migrate(project, TargetLocation.ZipArchive);
                 }
             }
             finally

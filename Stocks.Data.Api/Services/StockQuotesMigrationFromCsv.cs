@@ -38,27 +38,6 @@ namespace Stocks.Data.Api.Services
             _companyBulkInserter = companyBulkInserter;
         }
 
-        public async Task Migrate(IProjectSettings project)
-        {
-            var unzip = true;
-            if (project.UnzippedFilesDirectory.Exists)
-            {
-                var filesFound = Directory.GetFiles(project.UnzippedFilesDirectory.FullName).Select(f => new FileInfo(f))
-                .Count(f => f.Extension.EndsWith(project.QuotesFileExtension));
-
-                unzip = filesFound == 0;
-            }
-
-            if (unzip)
-            {
-                await Migrate(project, TargetLocation.ZipArchive);
-            }
-            else
-            {
-                await Migrate(project, TargetLocation.Directory);
-            }
-        }
-
         public async Task Migrate(IProjectSettings project, TargetLocation location)
         {
             project.EnsureAllDirectoriesExist();

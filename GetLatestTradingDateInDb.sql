@@ -1,0 +1,1 @@
+﻿select MAX(date) from StockQuote

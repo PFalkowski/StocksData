@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using SimpleInjector.Lifestyles;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
+using Stocks.Data.TradingSimulator;
 
 namespace Stocks.Data.ConsoleApp.Startup
 {
@@ -34,7 +35,7 @@ namespace Stocks.Data.ConsoleApp.Startup
             container.Register<IDatabaseManagementService, MsSqlDatabaseManagementService>();
             container.Register<IStockQuotesDownloadService, StockQuotesDownloadService>();
             container.Register<IStockQuotesMigrationFromCsv, StockQuotesMigrationFromCsv>();
-            
+
             #region Singletons
             container.RegisterSingleton<IProjectSettings, ProjectSettings>();
             #endregion
@@ -44,6 +45,12 @@ namespace Stocks.Data.ConsoleApp.Startup
 
             container.Register<ICompanyRepository, CompanyRepository>(Lifestyle.Scoped);
             //container.Register<ICompanyRepository<StockQuote>, Repository<StockQuote>>();
+
+            #endregion
+
+            #region Trading Simulators
+
+            container.Register<ITradingSimulator, Top10TradingSimulator>();
 
             #endregion
 

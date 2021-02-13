@@ -36,6 +36,11 @@ namespace Stocks.Data.Model
         [NotMapped]
         public DateTime DateParsed => DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
 
+        [NotMapped]
+        public double AveragePrice => (Low + High) / 2;
+        [NotMapped]
+        public double AveragePriceChange { get; set; }
+
         public bool ValueEquals(StockQuote other)
         {
             return other.Ticker == Ticker &&

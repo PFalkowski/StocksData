@@ -5,7 +5,6 @@ namespace Stocks.Data.Api.Services
 {
     public interface IStockQuotesMigrationFromCsv
     {
-        Task Migrate(IProjectSettings project);
         Task Migrate(IProjectSettings project, TargetLocation location);
     }
 }

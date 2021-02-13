@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="ConsoleUserInteractionHelper" Version="2.0.0" />
+    <PackageReference Include="Goblinfactory.Konsole" Version="6.2.1" />
     <PackageReference Include="LoggerLite" Version="3.1.0" />
     <PackageReference Include="SimpleInjector" Version="5.2.0" />
   </ItemGroup>
@@ -16,6 +17,7 @@
     <ProjectReference Include="..\Stocks.Data.Ef\Stocks.Data.Ef.csproj" />
     <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
     <ProjectReference Include="..\Stocks.Data.Services\Stocks.Data.Services.csproj" />
+    <ProjectReference Include="..\Stocks.Data.TradingSimulator\Stocks.Data.TradingSimulator.csproj" />
   </ItemGroup>
 
 </Project>

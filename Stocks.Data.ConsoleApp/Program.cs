@@ -5,8 +5,11 @@ using Stocks.Data.Common.Models;
 using Stocks.Data.ConsoleApp.Startup;
 using Stocks.Data.Ef;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using SimpleInjector.Lifestyles;
+using Stocks.Data.TradingSimulator;
+using Stocks.Data.TradingSimulator.Models;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.ConsoleApp
@@ -17,7 +20,8 @@ namespace Stocks.Data.ConsoleApp
 - download: download stock archive and unzip it to working directory
 - migrate: seed the database with data unzipped in working directory
 - dopDb: Remove the database
-- print: print selected stock quotes";
+- print: print selected stock quotes
+- simulate: run trading simulation";
         private static Container Container { get; set; } = new Container();
         static async Task Main(string[] args)
         {
@@ -31,6 +35,7 @@ namespace Stocks.Data.ConsoleApp
 
             await using var scope = AsyncScopedLifestyle.BeginScope(Container);
             using var companyRepository = Container.GetInstance<ICompanyRepository>();
+            var simulator = Container.GetInstance<ITradingSimulator>();
 
             logger.LogInfo($"Hello in {projectSettings.Name}. Type \"h\" for help");
             string userInput;
@@ -43,8 +48,7 @@ namespace Stocks.Data.ConsoleApp
                         await quotesDownloader.Download(projectSettings);
                         break;
                     case "migrate":
-                        await dbManagementSvc.EnsureDbDoesNotExist(projectSettings);
-                        await api.Migrate(projectSettings);
+                        await api.Migrate(projectSettings, TargetLocation.ZipArchive);
                         break;
                     case "dropDb":
                         await dbManagementSvc.EnsureDbDoesNotExist(projectSettings);
@@ -59,8 +63,23 @@ namespace Stocks.Data.ConsoleApp
                         }
                         else
                         {
-                            found.Quotes.ForEach(q => Console.Out.WriteLine($"{q} Open: {q.Open} High: {q.High} Low: {q.Low} Close: {q.Close}"));
+                            found.Quotes.ForEach(q => Console.Out.WriteLine($"{q} Open: {q.Open} High: {q.High} Low: {q.Low} Close: {q.Close} Volume: {q.Volume}"));
                         }
+                        break;
+                    case "simulate":
+                        var allCompanies = companyRepository.GetAll().ToList();
+                        var tradingConfig = new TradingSimulationConfig
+                        {
+                            FromDate = new DateTime(2019, 01, 01),
+                            ToDate = new DateTime(2020, 01, 01),
+                            StartingCash = 1000
+                        };
+                        var simulationResult = simulator.Simulate(allCompanies, tradingConfig);
+                        logger.LogInfo($"Simulation finished. Initial investment = {tradingConfig.StartingCash}. " +
+                                       $"Final balance = {Math.Round(simulationResult.finalBalance, 2)}. " +
+                                       $"ROI = {Math.Round((simulationResult.finalBalance - tradingConfig.StartingCash) / tradingConfig.StartingCash, 2) * 100} %. " +
+                                       $"Total buy orders = {simulationResult.transactionsLedger.Count(x => x.TransactionType == StockTransactionType.Buy)}. " +
+                                       $"Total sell orders = {simulationResult.transactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell)}");
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);
