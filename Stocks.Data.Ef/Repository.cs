@@ -11,7 +11,7 @@ namespace Stocks.Data.Ef
     {
         private DbContext Context { get; }
 
-        private DbSet<TEntity> Entities { get; }
+        protected DbSet<TEntity> Entities { get; }
 
         public Repository(DbContext context)
         {
@@ -19,34 +19,34 @@ namespace Stocks.Data.Ef
             Entities = Context.Set<TEntity>();
         }
 
-        public int Count() 
+        public int Count()
             => Entities.Count();
 
-        public int Count(Expression<Func<TEntity, bool>> predicate) 
+        public int Count(Expression<Func<TEntity, bool>> predicate)
             => Entities.Count(predicate.Compile());
 
-        public TEntity Get(object id) 
+        public TEntity GetById(params object[] id)
             => Entities.Find(id);
 
-        public TEntity Get(Expression<Func<TEntity, bool>> predicate) 
+        public TEntity Get(Expression<Func<TEntity, bool>> predicate)
             => Entities.FirstOrDefault(predicate.Compile());
 
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate) 
+        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate)
             => Entities.Where(predicate.Compile());
 
-        public IEnumerable<TEntity> GetAll() 
+        public IEnumerable<TEntity> GetAll()
             => Entities;
 
-        public void Add(TEntity entity) 
+        public void Add(TEntity entity)
             => Entities.Add(entity);
 
-        public void AddRange(IEnumerable<TEntity> entities) 
+        public void AddRange(IEnumerable<TEntity> entities)
             => Entities.AddRange(entities);
 
         public void Remove(TEntity entity)
             => Entities.Remove(entity);
 
-        public void RemoveAll() 
+        public void RemoveAll()
             => RemoveAll(x => true);
 
         public void RemoveAll(Expression<Func<TEntity, bool>> predicate)
@@ -62,7 +62,7 @@ namespace Stocks.Data.Ef
             Entities.RemoveRange(list);
         }
 
-        public void AddOrUpdate(TEntity entity) 
+        public void AddOrUpdate(TEntity entity)
             => Entities.Update(entity);
 
         public void Dispose()

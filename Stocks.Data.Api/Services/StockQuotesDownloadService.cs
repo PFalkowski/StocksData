@@ -5,7 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Stocks.Data.Api.Models;
+using Stocks.Data.Common.Models;
 
 namespace Stocks.Data.Api.Services
 {
@@ -20,7 +20,7 @@ namespace Stocks.Data.Api.Services
             _logger = logger;
         }
 
-        public async Task Download(ProjectSettings project)
+        public async Task Download(IProjectSettings project)
         {
             var workingDirectory = project.WorkingDirectory;
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;

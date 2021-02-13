@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef;
 using System;
 using System.Threading.Tasks;
-using Stocks.Data.Api.Models;
+using Stocks.Data.Common.Models;
 
 namespace Stocks.Data.Api.Services
 {
@@ -16,15 +16,13 @@ namespace Stocks.Data.Api.Services
             _logger = logger;
         }
 
-        public async Task<bool> EnsureDbExists(ProjectSettings project, int retries = 3)
+        public async Task<bool> EnsureDbExists(IProjectSettings project, int retries = 3)
         {
-            var options = GetOptions(project.ConnectionString);
-
             DbContext context = null;
             var result = false;
             try
             {
-                context = new StockContext(options);
+                context = new StockContext(project);
                 var i = 0;
                 while (!result && i < retries)
                 {
@@ -55,24 +53,14 @@ namespace Stocks.Data.Api.Services
 
             return result;
         }
-
-        private static DbContextOptions<DbContext> GetOptions(string connectionStr)
+        
+        public async Task<bool> EnsureDbDoesNotExist(IProjectSettings project, int retries = 3)
         {
-            var options = new DbContextOptionsBuilder<DbContext>()
-                .UseSqlServer(connectionStr)
-                .Options;
-            return options;
-        }
-
-        public async Task<bool> EnsureDbDoesNotExist(ProjectSettings project, int retries = 3)
-        {
-            var options = GetOptions(project.ConnectionString);
-
             DbContext context = null;
             var result = false;
             try
             {
-                context = new StockContext(options);
+                context = new StockContext(project);
                 var i = 0;
                 while (!result && i < retries)
                 {

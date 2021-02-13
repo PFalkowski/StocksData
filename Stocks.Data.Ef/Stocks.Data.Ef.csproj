@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Stocks.Data.Common\Stocks.Data.Common.csproj" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' != 'Pack'" />
     <ProjectReference Remove="..\Stocks.Data.Model\Stocks.Data.Model.csproj" Condition="'$(Configuration)' == 'Pack'" />
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using Extensions.Standard;
 using LoggerLite;
 using Services.IO;
-using Stocks.Data.Api.Models;
 using Stocks.Data.Api.Services;
 using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
@@ -10,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Stocks.Data.Common.Models;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.Services.TestHarness

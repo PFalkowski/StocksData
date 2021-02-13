@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef;
+using Stocks.Data.UnitTests.Ef.Test.Config;
 using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Xunit;
 
@@ -15,14 +16,13 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void AddAdds(MockPoco input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
 
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -47,14 +47,14 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void AddRangeAddsRange(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
 
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -79,14 +79,14 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void RemoveRangeRemovesRange(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
 
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -116,8 +116,8 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void CountReturnsAccurateCount(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
@@ -125,7 +125,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
             var expected = input.Count;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -152,8 +152,8 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void PredicateCountReturnsAccurateCount(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
@@ -161,7 +161,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
             var expected = input.Count(predicate);
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -188,8 +188,8 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void PredicateGetReturnsAccurateResult(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
@@ -197,7 +197,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
             var expected = input.FirstOrDefault(predicate);
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -221,8 +221,8 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void PredicateGetAllReturnsAccurateResult(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
@@ -230,7 +230,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
             var expected = input.Where(predicate);
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -257,8 +257,8 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void PredicateRemoveAllRemoves(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
@@ -267,7 +267,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
             var expected = input.Except(except);
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
                 testContext.AddRange(inputList);
@@ -294,14 +294,14 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void RemoveAllRemovesAll(List<MockPoco> input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             var inputList = input.ToList();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
                 testContext.AddRange(inputList);
@@ -328,13 +328,13 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void AddOrUpdateAdds(MockPoco input)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
 
@@ -360,12 +360,12 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
             const string expected = "newValue1";
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
                 testContext.Add(input);
@@ -394,12 +394,12 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
             const string expected = "newValue1";
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
             DbContext testContext = null;
             Repository<MockPoco> tested = null;
             try
             {
-                testContext = new MockPocoContext(options);
+                testContext = new MockPocoContext(testSettings);
                 tested = new Repository<MockPoco>(testContext);
                 testContext.Database.EnsureCreated();
                 testContext.Add(input);

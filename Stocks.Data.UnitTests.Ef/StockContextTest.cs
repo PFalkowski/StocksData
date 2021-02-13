@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollector.InProcDataCollector;
 using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Stocks.Data.Model;
 using Xunit;
 using Stocks.Data.Ef;
+using Stocks.Data.UnitTests.Ef.Test.Config;
 
 namespace Stocks.Data.UnitTests.Ef.Test
 {
@@ -14,14 +16,12 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void AddStock(Company company)
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
-
+            var testSettings = new TestProjectSettings();
             StockContext testContext = null;
             Repository<Company> tested = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 testContext.Database.EnsureCreated();
                 tested = new Repository<Company>(testContext);
                 testContext.Add(company);
@@ -50,13 +50,13 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
 
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
 
             StockContext testContext = null;
             Repository<Company> tested = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 testContext.Database.EnsureCreated();
                 tested = new Repository<Company>(testContext);
                 testContext.Add(company);
@@ -87,14 +87,14 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void RemoveSpecificStockThrowsWhenNull()
         {
             // Arrange
-
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
 
             StockContext testContext = null;
             Repository<Company> tested = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 testContext.Database.EnsureCreated();
                 tested = new Repository<Company>(testContext);
 

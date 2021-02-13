@@ -4,6 +4,7 @@ using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Stocks.Data.Model;
 using Xunit;
 using Stocks.Data.Ef;
+using Stocks.Data.UnitTests.Ef.Test.Config;
 
 namespace Stocks.Data.UnitTests.Ef.Test
 {
@@ -15,13 +16,13 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
 
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
 
             DbContext testContext = null;
             StockUnitOfWork tested = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 testContext.Database.EnsureCreated();
                 tested = new StockUnitOfWork(testContext);
 
@@ -50,13 +51,13 @@ namespace Stocks.Data.UnitTests.Ef.Test
         {
             // Arrange
 
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
+            var testSettings = new TestProjectSettings();
 
             DbContext testContext = null;
             StockUnitOfWork tested = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 testContext.Database.EnsureCreated();
                 tested = new StockUnitOfWork(testContext);
 

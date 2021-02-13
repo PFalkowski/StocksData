@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Api", "Stocks.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Api.TestHarness", "Stocks.Data.Api.TestHarness\Stocks.Data.Api.TestHarness.csproj", "{A26EEF29-7FD6-4FD9-9097-D296324D3E96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.ConsoleApp", "Stocks.Data.ConsoleApp\Stocks.Data.ConsoleApp.csproj", "{7B98D755-186E-4731-ABB2-A77117A57BDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.ConsoleApp", "Stocks.Data.ConsoleApp\Stocks.Data.ConsoleApp.csproj", "{7B98D755-186E-4731-ABB2-A77117A57BDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.TradingSimulator", "Stocks.Data.TradingSimulator\Stocks.Data.TradingSimulator.csproj", "{0B443286-EFB2-4AA4-9C13-10C614A08CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.Common", "Stocks.Data.Common\Stocks.Data.Common.csproj", "{44A63088-A184-4B6C-8CF5-765FDA39BEC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +130,18 @@ Global
 		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Pack|Any CPU.Build.0 = Debug|Any CPU
 		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B98D755-186E-4731-ABB2-A77117A57BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Pack|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Pack|Any CPU.Build.0 = Debug|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B443286-EFB2-4AA4-9C13-10C614A08CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Pack|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Pack|Any CPU.Build.0 = Debug|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A63088-A184-4B6C-8CF5-765FDA39BEC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

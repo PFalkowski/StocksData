@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef;
+using Stocks.Data.UnitTests.Ef.Test.Config;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Ef.Test
@@ -11,15 +12,15 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void FactoryProvidesNewInstanceEverytimeItsCalled()
         {
             // Arrange
-
-            DbContextOptions<DbContext> options = Config.ChoosenDbProviderFactory.GetInstance();
+            
+            var testSettings = new TestProjectSettings();
             StockContext testContext = null;
             StockUnitOfWorkFactory ufo = null;
             StockUnitOfWork uow = null;
             StockUnitOfWork uow2 = null;
             try
             {
-                testContext = new StockContext(options);
+                testContext = new StockContext(testSettings);
                 ufo = new StockUnitOfWorkFactory(testContext);
 
                 // Act
@@ -42,10 +43,10 @@ namespace Stocks.Data.UnitTests.Ef.Test
         public void FactoryDisposes()
         {
             // Arrange
+            
+            var testSettings = new TestProjectSettings();
 
-            var options = Config.ChoosenDbProviderFactory.GetInstance();
-
-            var testContext = new StockContext(options);
+            var testContext = new StockContext(testSettings);
             var ufo = new StockUnitOfWorkFactory(testContext);
             var uow = ufo.GetInstance();
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using System.Linq;
 
-namespace Stocks.Data.Api.Models
+namespace Stocks.Data.Common.Models
 {
-    public class ProjectSettings
+    public class ProjectSettings : IProjectSettings
     {
         public ProjectSettings()
         {
@@ -70,6 +71,9 @@ namespace Stocks.Data.Api.Models
         public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
         public FileInfo ArchiveFile => new FileInfo(Path.Combine(WorkingDirectory.FullName, ArchiveFileName));
+        public DbContextOptions<DbContext> GetDbContextOptions => new DbContextOptionsBuilder<DbContext>()
+            .UseSqlServer(ConnectionString)
+            .Options;
 
         public void EnsureAllDirectoriesExist()
         {
@@ -81,6 +85,21 @@ namespace Stocks.Data.Api.Models
             //{
             //    UnzippedFilesDirectory.Create();
             //}
+        }
+
+        public void ParseSettings(string[] args)
+        {
+            foreach (var arg in args)
+            {
+                var split = arg.TrimStart('-').Split("-");
+                var firstPart = split.FirstOrDefault();
+                var secondPart = split.LastOrDefault();
+                if (firstPart != null && secondPart != null &&
+                    SettingsDictionary.ContainsKey(firstPart))
+                {
+                    SettingsDictionary[firstPart] = secondPart;
+                }
+            }
         }
     }
 }

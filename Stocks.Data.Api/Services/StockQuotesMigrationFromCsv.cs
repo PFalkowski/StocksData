@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using LoggerLite;
 using Services.IO;
 using Stocks.Data.Ado;
-using Stocks.Data.Api.Models;
+using Stocks.Data.Common.Models;
 using Stocks.Data.Model;
 using Stocks.Data.Services;
 
@@ -38,7 +38,7 @@ namespace Stocks.Data.Api.Services
             _companyBulkInserter = companyBulkInserter;
         }
 
-        public async Task Migrate(ProjectSettings project)
+        public async Task Migrate(IProjectSettings project)
         {
             var unzip = true;
             if (project.UnzippedFilesDirectory.Exists)
@@ -59,7 +59,7 @@ namespace Stocks.Data.Api.Services
             }
         }
 
-        public async Task Migrate(ProjectSettings project, TargetLocation location)
+        public async Task Migrate(IProjectSettings project, TargetLocation location)
         {
             project.EnsureAllDirectoriesExist();
             Dictionary<string, string> fromDisk;
@@ -81,7 +81,7 @@ namespace Stocks.Data.Api.Services
         }
 
 
-        private async Task<Dictionary<string, string>> ReadFromZip(ProjectSettings project)
+        private async Task<Dictionary<string, string>> ReadFromZip(IProjectSettings project)
         {
             if (!project.ArchiveFile.Exists)
             {
@@ -100,7 +100,7 @@ namespace Stocks.Data.Api.Services
             return unzippedStocks;
         }
 
-        private async Task SaveUnzippedFiles(ProjectSettings project, Dictionary<string, string> unzippedStocks)
+        private async Task SaveUnzippedFiles(IProjectSettings project, Dictionary<string, string> unzippedStocks)
         {
             if (!project.UnzippedFilesDirectory.Exists) { project.UnzippedFilesDirectory.Create(); }
             var tasksToSave = new List<Task>();
@@ -118,7 +118,7 @@ namespace Stocks.Data.Api.Services
             await Task.WhenAll(tasksToSave);
         }
 
-        private async Task<Dictionary<string, string>> ReadFromDirectory(ProjectSettings project)
+        private async Task<Dictionary<string, string>> ReadFromDirectory(IProjectSettings project)
         {
             if (!project.UnzippedFilesDirectory.Exists)
             {

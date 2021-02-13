@@ -4,8 +4,8 @@ using System.IO;
 using System.Threading.Tasks;
 using LoggerLite;
 using Microsoft.EntityFrameworkCore;
-using Stocks.Data.Api.Models;
 using Stocks.Data.Api.Services;
+using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
 
@@ -56,7 +56,7 @@ namespace Stocks.Data.ConsoleTestHarness
             try
             {
                 var res = await DbManagementService.EnsureDbExists(proj);
-                context = new StockContext(GetOptions(proj.ConnectionString));
+                context = new StockContext(proj);
                 tested = new StockUnitOfWork(context);
 
                 tested.StockRepository.Add(input);
@@ -74,13 +74,6 @@ namespace Stocks.Data.ConsoleTestHarness
                 if (context != null)
                     await context.DisposeAsync();
             }
-        }
-        private static DbContextOptions<DbContext> GetOptions(string connectionStr)
-        {
-            var options = new DbContextOptionsBuilder<DbContext>()
-                .UseSqlServer(connectionStr)
-                .Options;
-            return options;
         }
     }
 }
