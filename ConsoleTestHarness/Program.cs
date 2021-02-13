@@ -66,7 +66,7 @@ namespace Stocks.Data.ConsoleTestHarness
 
                 Console.WriteLine($"Added {actual} record(s) to db");
                 Console.ReadKey();
-                await DbManagementService.DropLocalDbAsync(proj);
+                await DbManagementService.EnsureDbDoesNotExist(proj);
             }
             finally
             {

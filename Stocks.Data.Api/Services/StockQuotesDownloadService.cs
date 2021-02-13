@@ -54,8 +54,7 @@ namespace Stocks.Data.Api.Services
         {
             if (url == null) throw new ArgumentNullException(nameof(url));
             if (logger == null) throw new ArgumentNullException(nameof(logger));
-
-            Console.WriteLine();
+            
             var rawBytes = _downloader.GetBytesAsync(new Uri(url), CancellationToken.None);
             var res = await rawBytes;
             logger.LogInfo($"Downloaded {res.Length}");

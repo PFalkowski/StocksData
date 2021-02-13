@@ -30,14 +30,14 @@ namespace Stocks.Data.ConsoleApp
                 await quotesDownloader.Download(projectSettings);
             }
 
-            logger.LogInfo("Would you like to upload quotes to database? (y/n)");
+            logger.LogInfo("Would you like to bulk upload quotes to database? (This will fully re-generate the database; y/n)");
             response = GetBinaryDecisionFromUser();
 
             if (response)
             {
+                await dbManagementSvc.EnsureDbDoesNotExist(projectSettings);
                 await api.Migrate(projectSettings);
             }
-
         }
 
         private static ProjectSettings ParseSettings(string[] args)

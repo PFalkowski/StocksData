@@ -79,7 +79,7 @@ namespace Stocks.Data.Api.TestHarness
             }
             finally
             {
-                await dbManagementSvc.DropLocalDbAsync(project);
+                await dbManagementSvc.EnsureDbDoesNotExist(project);
             }
         }
     }
