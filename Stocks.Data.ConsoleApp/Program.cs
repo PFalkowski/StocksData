@@ -85,7 +85,7 @@ namespace Stocks.Data.ConsoleApp
                             !tradingConfig.BlackListPattern.IsMatch(x.Ticker)
                             && x.DateParsed.InOpenRange(date.AddDays(-30), date.AddDays(30))).ToList();
                         var prediction = simulator.GetTopN(quotes, date);
-                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker))}");
+                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);
