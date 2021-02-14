@@ -1,4 +1,5 @@
-﻿using LoggerLite;
+﻿using Extensions.Standard;
+using LoggerLite;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using Stocks.Data.Api.Services;
@@ -8,6 +9,7 @@ using Stocks.Data.Ef;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
@@ -32,6 +34,7 @@ namespace Stocks.Data.ConsoleApp
             var quotesDownloader = Container.GetInstance<IStockQuotesDownloadService>();
             var dbManagementSvc = Container.GetInstance<IDatabaseManagementService>();
             var logger = Container.GetInstance<ILogger>();
+            var tradingConfig = Container.GetInstance<ITradingSimulationConfig>();
 
             await using var scope = AsyncScopedLifestyle.BeginScope(Container);
             using var companyRepository = Container.GetInstance<ICompanyRepository>();
@@ -69,18 +72,20 @@ namespace Stocks.Data.ConsoleApp
                         break;
                     case "simulate":
                         var progressReporter = new ConsoleProgressReporter();
-                        var tradingConfig = new TradingSimulationConfig
-                        {
-                            FromDate = new DateTime(2016, 01, 01),
-                            ToDate = new DateTime(2021, 02, 12),
-                            StartingCash = 1000
-                        };
+                        tradingConfig.FromDate = new DateTime(2016, 01, 01);
+                        tradingConfig.ToDate = new DateTime(2021, 02, 12);
+                        tradingConfig.StartingCash = 1000;
                         var simulationResult = simulator.Simulate(tradingConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
                         break;
                     case "predict":
                         logger.LogInfo("Enter date in format YYYY-MM-DD: ");
                         var date = GetDateFromUser();
+                        var quotes = stockQuoteRepository.GetAll(x =>
+                            !tradingConfig.BlackListPattern.IsMatch(x.Ticker)
+                            && x.DateParsed.InOpenRange(date.AddDays(-30), date.AddDays(30))).ToList();
+                        var prediction = simulator.GetTopN(quotes, date);
+                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker))}");
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);

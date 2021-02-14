@@ -1,13 +1,12 @@
-﻿using System;
-using Extensions.Standard;
+﻿using Extensions.Standard;
 using LoggerLite;
 using ProgressReporting;
+using Stocks.Data.Ef;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Stocks.Data.Ef;
 
 namespace Stocks.Data.TradingSimulator
 {
@@ -22,12 +21,12 @@ namespace Stocks.Data.TradingSimulator
         }
         public int TopN { get; set; } = 10;
 
-        public SimulationResult Simulate(TradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
+        public SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
             Balance = tradingSimulationConfig.StartingCash;
-            var regex = new Regex(tradingSimulationConfig.BlackListPattern, RegexOptions.Compiled);
-            var allQuotesPrefilterd = _stockQuoteRepository.GetAll(x =>!regex.IsMatch(x.Ticker) 
-                && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
+            var allQuotesPrefilterd = _stockQuoteRepository
+                .GetAll(x => !tradingSimulationConfig.BlackListPattern.IsMatch(x.Ticker)
+                            && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
                 .ToList();
 
             var filteredQuotes = allQuotesPrefilterd.Where(x =>

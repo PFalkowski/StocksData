@@ -14,6 +14,7 @@ using SimpleInjector.Lifestyles;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.TradingSimulator;
+using Stocks.Data.TradingSimulator.Models;
 
 namespace Stocks.Data.ConsoleApp.Startup
 {
@@ -36,6 +37,8 @@ namespace Stocks.Data.ConsoleApp.Startup
             container.Register<IStockQuotesDownloadService, StockQuotesDownloadService>();
             container.Register<IStockQuotesMigrationFromCsv, StockQuotesMigrationFromCsv>();
 
+            container.Register<ITradingSimulationConfig, TradingSimulationConfig>();
+
             #region Singletons
             container.RegisterSingleton<IProjectSettings, ProjectSettings>();
             #endregion
@@ -49,7 +52,7 @@ namespace Stocks.Data.ConsoleApp.Startup
             #endregion
 
             #region Trading Simulators
-            
+
             container.Register<ITradingSimulator, Top10TradingSimulator>();
 
             #endregion

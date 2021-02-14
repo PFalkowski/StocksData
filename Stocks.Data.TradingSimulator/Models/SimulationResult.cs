@@ -8,7 +8,7 @@ namespace Stocks.Data.TradingSimulator.Models
     {
         public List<StockTransaction> TransactionsLedger { get; set; }
         public double FinalBalance { get; set; }
-        public TradingSimulationConfig TradingSimulationConfig { get; set; }
+        public ITradingSimulationConfig TradingSimulationConfig { get; set; }
 
         public double ReturnOnInvestment => (FinalBalance - TradingSimulationConfig.StartingCash) /
             TradingSimulationConfig.StartingCash * 100;
