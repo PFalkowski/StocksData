@@ -1,15 +1,15 @@
 ﻿using LoggerLite;
 using SimpleInjector;
+using SimpleInjector.Lifestyles;
 using Stocks.Data.Api.Services;
 using Stocks.Data.Common.Models;
 using Stocks.Data.ConsoleApp.Startup;
 using Stocks.Data.Ef;
+using Stocks.Data.TradingSimulator;
+using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using SimpleInjector.Lifestyles;
-using Stocks.Data.TradingSimulator;
-using Stocks.Data.TradingSimulator.Models;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.ConsoleApp
@@ -67,6 +67,7 @@ namespace Stocks.Data.ConsoleApp
                         }
                         break;
                     case "simulate":
+                        var progressReporter = new ConsoleProgressReporter();
                         var allCompanies = companyRepository.GetAll().ToList();
                         var tradingConfig = new TradingSimulationConfig
                         {
@@ -74,7 +75,7 @@ namespace Stocks.Data.ConsoleApp
                             ToDate = new DateTime(2021, 01, 01),
                             StartingCash = 1000
                         };
-                        var simulationResult = simulator.Simulate(allCompanies, tradingConfig);
+                        var simulationResult = simulator.Simulate(allCompanies, tradingConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
                         break;
                     case "h":

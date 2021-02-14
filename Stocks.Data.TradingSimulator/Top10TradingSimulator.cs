@@ -1,11 +1,11 @@
 ﻿using Extensions.Standard;
+using LoggerLite;
+using ProgressReporting;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using LoggerLite;
 
 namespace Stocks.Data.TradingSimulator
 {
@@ -18,7 +18,7 @@ namespace Stocks.Data.TradingSimulator
         }
         public int TopN { get; set; } = 10;
 
-        public SimulationResult Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig)
+        public SimulationResult Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
             Balance = tradingSimulationConfig.StartingCash;
             var regex = new Regex(tradingSimulationConfig.BlackListPattern);
@@ -38,7 +38,7 @@ namespace Stocks.Data.TradingSimulator
                 .Distinct()
                 .OrderBy(x => x.Date)
                 .ToList();
-
+            progress?.Restart(datesToTrade.Count);
             foreach (var date in datesToTrade)
             {
                 var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
@@ -81,8 +81,9 @@ namespace Stocks.Data.TradingSimulator
                         }
                     }
                 }
+                progress?.ReportProgress();
             }
-            
+
             return new SimulationResult
             {
                 TransactionsLedger = TransactionsLedger,

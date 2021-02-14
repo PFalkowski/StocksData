@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="LoggerLite" Version="3.1.0" />
+    <PackageReference Include="ProgressReporting" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
