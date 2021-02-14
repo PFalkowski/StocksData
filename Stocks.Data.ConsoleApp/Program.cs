@@ -70,16 +70,12 @@ namespace Stocks.Data.ConsoleApp
                         var allCompanies = companyRepository.GetAll().ToList();
                         var tradingConfig = new TradingSimulationConfig
                         {
-                            FromDate = new DateTime(2014, 01, 01),
-                            ToDate = new DateTime(2018, 01, 01),
+                            FromDate = new DateTime(2020, 01, 01),
+                            ToDate = new DateTime(2021, 01, 01),
                             StartingCash = 1000
                         };
                         var simulationResult = simulator.Simulate(allCompanies, tradingConfig);
-                        logger.LogInfo($"Simulation for {tradingConfig.FromDate.ToShortDateString()} - {tradingConfig.ToDate.ToShortDateString()} finished. Initial investment = {tradingConfig.StartingCash}. " +
-                                       $"Final balance = {Math.Round(simulationResult.finalBalance, 2)}. " +
-                                       $"ROI = {Math.Round((simulationResult.finalBalance - tradingConfig.StartingCash) / tradingConfig.StartingCash * 100, 2)} %. " +
-                                       $"Total buy orders = {simulationResult.transactionsLedger.Count(x => x.TransactionType == StockTransactionType.Buy)}. " +
-                                       $"Total sell orders = {simulationResult.transactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell)}");
+                        logger.LogInfo(simulationResult.ToString());
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);

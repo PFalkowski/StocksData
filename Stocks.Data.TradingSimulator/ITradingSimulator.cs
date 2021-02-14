@@ -6,6 +6,6 @@ namespace Stocks.Data.TradingSimulator
 {
     public interface ITradingSimulator
     {
-        (List<StockTransaction> transactionsLedger, double finalBalance) Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig);
+        SimulationResult Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig);
     }
 }

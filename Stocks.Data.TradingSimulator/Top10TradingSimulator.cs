@@ -18,7 +18,7 @@ namespace Stocks.Data.TradingSimulator
         }
         public int TopN { get; set; } = 10;
 
-        public (List<StockTransaction> transactionsLedger, double finalBalance) Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig)
+        public SimulationResult Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig)
         {
             Balance = tradingSimulationConfig.StartingCash;
             var regex = new Regex(tradingSimulationConfig.BlackListPattern);
@@ -76,14 +76,19 @@ namespace Stocks.Data.TradingSimulator
                         var sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Close);
                         if (!sold)
                         {
-                            _logger.LogWarning($"Could not perform closing sell on {stockQuoteForToday.Ticker} {stockQuoteForToday.DateParsed}. Rolling back the trade...");
+                            _logger.LogWarning($"Could not perform closing sell on {stockQuoteForToday.Ticker} {stockQuoteForToday.DateParsed}. Selling the trade for buy price...");
                             sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Open);
                         }
                     }
                 }
             }
-
-            return (TransactionsLedger, Balance);
+            
+            return new SimulationResult
+            {
+                TransactionsLedger = TransactionsLedger,
+                FinalBalance = Balance,
+                TradingSimulationConfig = tradingSimulationConfig
+            };
         }
     }
 }
