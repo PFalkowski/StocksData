@@ -34,7 +34,21 @@ namespace Stocks.Data.Model
         public double? EarningsPerShare => LastYearYield / TotalSharesEmitted;
 
         [NotMapped]
-        public DateTime DateParsed => DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+        private DateTime? _dateParsed;
+        [NotMapped]
+        public DateTime DateParsed
+        {
+            get
+            {
+                if (!_dateParsed.HasValue)
+                {
+                    _dateParsed =
+                        DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+                }
+
+                return _dateParsed.Value;
+            }
+        }
 
         [NotMapped]
         public double AveragePrice => (Low + High) / 2;
@@ -43,7 +57,7 @@ namespace Stocks.Data.Model
 
         [NotMapped]
         public double DayPriceChange => (Close - Open) / Open;
-        
+
         [NotMapped]
         public StockQuote PreviousStockQuote { get; set; }
 
@@ -70,5 +84,8 @@ namespace Stocks.Data.Model
         {
             return $"{Ticker} {Date}";
         }
+
+        public string Summary() =>
+            $"{Ticker} {Date} Open: {Open} High: {High} Low: {Low} Close: {Close} Volume: {Volume}";
     }
 }

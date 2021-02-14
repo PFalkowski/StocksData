@@ -44,12 +44,12 @@ namespace Stocks.Data.ConsoleApp.Startup
             #region Repositories
 
             container.Register<ICompanyRepository, CompanyRepository>(Lifestyle.Scoped);
-            //container.Register<ICompanyRepository<StockQuote>, Repository<StockQuote>>();
+            container.Register<IStockQuoteRepository, StockQuoteRepository>(Lifestyle.Scoped);
 
             #endregion
 
             #region Trading Simulators
-
+            
             container.Register<ITradingSimulator, Top10TradingSimulator>();
 
             #endregion

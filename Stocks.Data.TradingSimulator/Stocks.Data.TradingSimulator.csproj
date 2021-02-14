@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Stocks.Data.Common\Stocks.Data.Common.csproj" />
+    <ProjectReference Include="..\Stocks.Data.Ef\Stocks.Data.Ef.csproj" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
   </ItemGroup>
 

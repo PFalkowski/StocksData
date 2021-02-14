@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Model;
 
@@ -13,7 +15,7 @@ namespace Stocks.Data.Ef
 
         public Company GetById(string ticker)
         {
-            return base.Entities
+            return Entities
                 .Where(x => x.Ticker.Equals(ticker))
                 .Include(x => x.Quotes)
                 .SingleOrDefault();
@@ -23,6 +25,13 @@ namespace Stocks.Data.Ef
         {
             return Entities
                 .Include(x => x.Quotes);
+        }
+
+        public override IEnumerable<Company> GetAll(Expression<Func<Company, bool>> predicate)
+        {
+            return Entities
+                .Include(x => x.Quotes)
+                .Where(predicate.Compile());
         }
     }
 }

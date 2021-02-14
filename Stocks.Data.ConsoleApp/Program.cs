@@ -8,7 +8,6 @@ using Stocks.Data.Ef;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
@@ -21,7 +20,8 @@ namespace Stocks.Data.ConsoleApp
 - migrate: seed the database with data unzipped in working directory
 - dopDb: Remove the database
 - print: print selected stock quotes
-- simulate: run trading simulation";
+- simulate: run trading simulation
+- predict: get prediction for selected day";
         private static Container Container { get; set; } = new Container();
         static async Task Main(string[] args)
         {
@@ -35,6 +35,7 @@ namespace Stocks.Data.ConsoleApp
 
             await using var scope = AsyncScopedLifestyle.BeginScope(Container);
             using var companyRepository = Container.GetInstance<ICompanyRepository>();
+            using var stockQuoteRepository = Container.GetInstance<IStockQuoteRepository>();
             var simulator = Container.GetInstance<ITradingSimulator>();
 
             logger.LogInfo($"Hello in {projectSettings.Name}. Type \"h\" for help");
@@ -63,20 +64,23 @@ namespace Stocks.Data.ConsoleApp
                         }
                         else
                         {
-                            found.Quotes.ForEach(q => Console.Out.WriteLine($"{q} Open: {q.Open} High: {q.High} Low: {q.Low} Close: {q.Close} Volume: {q.Volume}"));
+                            found.Quotes.ForEach(q => Console.Out.WriteLine(q.Summary()));
                         }
                         break;
                     case "simulate":
                         var progressReporter = new ConsoleProgressReporter();
-                        var allCompanies = companyRepository.GetAll().ToList();
                         var tradingConfig = new TradingSimulationConfig
                         {
-                            FromDate = new DateTime(2020, 01, 01),
-                            ToDate = new DateTime(2021, 01, 01),
+                            FromDate = new DateTime(2016, 01, 01),
+                            ToDate = new DateTime(2021, 02, 12),
                             StartingCash = 1000
                         };
-                        var simulationResult = simulator.Simulate(allCompanies, tradingConfig, progressReporter);
+                        var simulationResult = simulator.Simulate(tradingConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
+                        break;
+                    case "predict":
+                        logger.LogInfo("Enter date in format YYYY-MM-DD: ");
+                        var date = GetDateFromUser();
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);
