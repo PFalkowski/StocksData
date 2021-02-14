@@ -9,7 +9,7 @@ namespace Stocks.Data.TradingSimulator
     public class TradingSimulatorBase
     {
         public double Balance { get; protected set; }
-        public readonly Dictionary<string, (double price, double volume)> OpenedPositions = new Dictionary<string, (double price, double volume)>();
+        public readonly Dictionary<string, OpenedPosition> OpenedPositions = new Dictionary<string, OpenedPosition>();
         public readonly List<StockTransaction> TransactionsLedger = new List<StockTransaction>();
 
         public bool PlaceBuyOrder(StockQuote quote, double price, double volume)
@@ -23,17 +23,15 @@ namespace Stocks.Data.TradingSimulator
                 return false;
             }
 
-            var isPositionOpened = OpenedPositions.TryGetValue(quote.Ticker, out var openedPosition);
-
+            var isPositionOpened = OpenedPositions.ContainsKey(quote.Ticker);
+            var newPosition = new OpenedPosition {Price = price, Volume = volume};
             if (isPositionOpened)
             {
-                openedPosition.price = (openedPosition.price * openedPosition.volume + price * volume)
-                    / (openedPosition.volume + volume);
-                openedPosition.volume += volume;
+                OpenedPositions[quote.Ticker] += newPosition;
             }
             else
             {
-                OpenedPositions.Add(quote.Ticker, (price: price, volume: volume));
+                OpenedPositions.Add(quote.Ticker, newPosition);
             }
 
             TransactionsLedger.Add(new StockTransaction
@@ -81,15 +79,15 @@ namespace Stocks.Data.TradingSimulator
             {
                 return false;
             }
-            
-            if (volume >= openedPosition.volume)
+
+            if (volume >= openedPosition.Volume)
             {
-                volume = openedPosition.volume;
+                volume = openedPosition.Volume;
                 OpenedPositions.Remove(quote.Ticker);
             }
             else
             {
-                openedPosition.volume -= volume;
+                openedPosition.Decrease(volume);
             }
 
             TransactionsLedger.Add(new StockTransaction

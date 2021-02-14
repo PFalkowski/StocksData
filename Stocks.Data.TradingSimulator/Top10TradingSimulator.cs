@@ -23,6 +23,7 @@ namespace Stocks.Data.TradingSimulator
 
         public SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
+            var result = new SimulationResult();
             Balance = tradingSimulationConfig.StartingCash;
             var allQuotesPrefilterd = _stockQuoteRepository
                 .GetAll(x => !tradingSimulationConfig.BlackListPattern.IsMatch(x.Ticker)
@@ -62,16 +63,16 @@ namespace Stocks.Data.TradingSimulator
                             sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Open);
                         }
                     }
+                    result.ROC.Activate(true, stockQuoteForToday.Close > stockQuoteForToday.Open);
                 }
                 progress?.ReportProgress();
             }
 
-            return new SimulationResult
-            {
-                TransactionsLedger = TransactionsLedger,
-                FinalBalance = Balance,
-                TradingSimulationConfig = tradingSimulationConfig
-            };
+            result.TransactionsLedger = TransactionsLedger;
+            result.FinalBalance = Balance;
+            result.TradingSimulationConfig = tradingSimulationConfig;
+
+            return result;
         }
 
         public List<StockQuote> GetTopN(List<StockQuote> allQuotesPrefilterd, DateTime date)

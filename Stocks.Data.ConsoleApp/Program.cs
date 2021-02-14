@@ -72,8 +72,8 @@ namespace Stocks.Data.ConsoleApp
                         break;
                     case "simulate":
                         var progressReporter = new ConsoleProgressReporter();
-                        tradingConfig.FromDate = new DateTime(2016, 01, 01);
-                        tradingConfig.ToDate = new DateTime(2021, 02, 12);
+                        tradingConfig.FromDate = new DateTime(2019, 1, 1);
+                        tradingConfig.ToDate = new DateTime(2020, 1, 1);
                         tradingConfig.StartingCash = 1000;
                         var simulationResult = simulator.Simulate(tradingConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
@@ -85,7 +85,7 @@ namespace Stocks.Data.ConsoleApp
                             !tradingConfig.BlackListPattern.IsMatch(x.Ticker)
                             && x.DateParsed.InOpenRange(date.AddDays(-30), date.AddDays(30))).ToList();
                         var prediction = simulator.GetTopN(quotes, date);
-                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
+                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);
