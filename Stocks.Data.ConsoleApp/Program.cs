@@ -72,8 +72,10 @@ namespace Stocks.Data.ConsoleApp
                         break;
                     case "simulate":
                         var progressReporter = new ConsoleProgressReporter();
-                        tradingConfig.FromDate = new DateTime(2019, 1, 1);
-                        tradingConfig.ToDate = new DateTime(2020, 1, 1);
+                        logger.LogInfo("Enter starting date in format YYYY-MM-DD: ");
+                        tradingConfig.FromDate = GetDateFromUser();
+                        logger.LogInfo("Enter end date in format YYYY-MM-DD: ");
+                        tradingConfig.ToDate = GetDateFromUser();
                         tradingConfig.StartingCash = 1000;
                         var simulationResult = simulator.Simulate(tradingConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
