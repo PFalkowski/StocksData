@@ -18,7 +18,7 @@ namespace Stocks.Data.TradingSimulator
             {
                 return false;
             }
-            if (!price.InClosedRange(quote.Low, quote.High))
+            if (!price.InOpenRange(quote.Low, quote.High))
             {
                 return false;
             }
@@ -38,6 +38,7 @@ namespace Stocks.Data.TradingSimulator
 
             TransactionsLedger.Add(new StockTransaction
             {
+                Ticker = quote.Ticker,
                 Date = quote.DateParsed,
                 Price = price,
                 Volume = volume,
@@ -76,7 +77,7 @@ namespace Stocks.Data.TradingSimulator
                 return false;
             }
 
-            if (!price.InClosedRange(quote.Low, quote.High))
+            if (!price.InOpenRange(quote.Low, quote.High))
             {
                 return false;
             }
@@ -93,6 +94,7 @@ namespace Stocks.Data.TradingSimulator
 
             TransactionsLedger.Add(new StockTransaction
             {
+                Ticker = quote.Ticker,
                 Date = quote.DateParsed,
                 Price = price,
                 Volume = volume,

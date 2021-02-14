@@ -41,6 +41,12 @@ namespace Stocks.Data.Model
         [NotMapped]
         public double AveragePriceChange { get; set; }
 
+        [NotMapped]
+        public double DayPriceChange => (Close - Open) / Open;
+        
+        [NotMapped]
+        public StockQuote PreviousStockQuote { get; set; }
+
         public bool ValueEquals(StockQuote other)
         {
             return other.Ticker == Ticker &&

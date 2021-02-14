@@ -5,11 +5,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using LoggerLite;
 
 namespace Stocks.Data.TradingSimulator
 {
     public class Top10TradingSimulator : TradingSimulatorBase, ITradingSimulator
     {
+        private readonly ILogger _logger;
+        public Top10TradingSimulator(ILogger logger)
+        {
+            _logger = logger;
+        }
         public int TopN { get; set; } = 10;
 
         public (List<StockTransaction> transactionsLedger, double finalBalance) Simulate(List<Company> companies, TradingSimulationConfig tradingSimulationConfig)
@@ -56,16 +62,24 @@ namespace Stocks.Data.TradingSimulator
                     newerQuote.AveragePriceChange = change;
                 }
 
-                var topMostRising = allQuotesFromMinusOneDay.OrderByDescending(x => x.AveragePriceChange).Take(TopN).Select(x => x.Ticker).ToHashSet();
+                var topMostRising = allQuotesFromMinusOneDay.OrderByDescending(x => x.AveragePriceChange).Take(TopN).ToHashSet();
                 var tradingDayQuotesForMostRising = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(date.Date)
-                    && topMostRising.Contains(x.Ticker)
+                    && topMostRising.Select(x => x.Ticker).ToHashSet().Contains(x.Ticker)
                     && x.IsValid());
 
                 foreach (var stockQuoteForToday in tradingDayQuotesForMostRising)
                 {
-                    var volume = (tradingSimulationConfig.StartingCash / TopN) / (stockQuoteForToday.Open * 1.0001);
-                    PlaceBuyOrder(stockQuoteForToday, stockQuoteForToday.Open * 1.0001, volume);
-                    ClosePosition(stockQuoteForToday, stockQuoteForToday.Close * 0.999);
+                    var volume = (Balance / TopN) / (stockQuoteForToday.Open);
+                    var bought = PlaceBuyOrder(stockQuoteForToday, stockQuoteForToday.Open, volume);
+                    if (bought)
+                    {
+                        var sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Close);
+                        if (!sold)
+                        {
+                            _logger.LogWarning($"Could not perform closing sell on {stockQuoteForToday.Ticker} {stockQuoteForToday.DateParsed}. Rolling back the trade...");
+                            sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Open);
+                        }
+                    }
                 }
             }
 

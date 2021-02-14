@@ -10,5 +10,6 @@ namespace Stocks.Data.TradingSimulator.Models
         public double Price { get; set; }
         public double Volume { get; set; }
         public DateTime Date { get; set; }
+        public string Ticker { get; set; }
     }
 }
