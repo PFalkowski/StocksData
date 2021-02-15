@@ -12,19 +12,16 @@ namespace Stocks.Data.TradingSimulator
 {
     public class Top10TradingSimulator : TradingSimulatorBase, ITradingSimulator
     {
-        private readonly ILogger _logger;
         private readonly IStockQuoteRepository _stockQuoteRepository;
-        public Top10TradingSimulator(ILogger logger, IStockQuoteRepository stockQuoteRepository)
+        public Top10TradingSimulator(ILogger logger, IStockQuoteRepository stockQuoteRepository) : base(logger)
         {
-            _logger = logger;
             _stockQuoteRepository = stockQuoteRepository;
         }
         public int TopN { get; set; } = 10;
 
-        public SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
+        public override SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
-            var result = new SimulationResult();
-            Balance = tradingSimulationConfig.StartingCash;
+            var result = base.Simulate(tradingSimulationConfig, progress);
             var allQuotesPrefilterd = _stockQuoteRepository
                 .GetAll(x => !tradingSimulationConfig.BlackListPattern.IsMatch(x.Ticker)
                             && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
@@ -53,14 +50,14 @@ namespace Stocks.Data.TradingSimulator
                 foreach (var stockQuoteForToday in tradingDayQuotesForMostRising)
                 {
                     var volume = (Balance / TopN) / (stockQuoteForToday.Open);
-                    var bought = PlaceBuyOrder(stockQuoteForToday, stockQuoteForToday.Open, volume);
-                    if (bought)
+                    var buyOrderStatus = PlaceBuyOrder(stockQuoteForToday, stockQuoteForToday.Open, volume);
+                    if (buyOrderStatus == OrderStatusType.Accepted)
                     {
-                        var sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Close);
-                        if (!sold)
+                        var sellOrderStatus = ClosePosition(stockQuoteForToday, stockQuoteForToday.Close);
+                        if (sellOrderStatus != OrderStatusType.Accepted)
                         {
                             _logger.LogWarning($"Could not perform closing sell on {stockQuoteForToday.Ticker} {stockQuoteForToday.DateParsed}. Selling the trade for buy price...");
-                            sold = ClosePosition(stockQuoteForToday, stockQuoteForToday.Open);
+                            ClosePosition(stockQuoteForToday, stockQuoteForToday.Open);
                         }
                     }
                     result.ROC.Activate(true, stockQuoteForToday.Close > stockQuoteForToday.Open);

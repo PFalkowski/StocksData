@@ -3,6 +3,8 @@ using Extensions.Standard;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
 using System.Collections.Generic;
+using LoggerLite;
+using ProgressReporting;
 
 namespace Stocks.Data.TradingSimulator
 {
@@ -11,16 +13,34 @@ namespace Stocks.Data.TradingSimulator
         public double Balance { get; protected set; }
         public readonly Dictionary<string, OpenedPosition> OpenedPositions = new Dictionary<string, OpenedPosition>();
         public readonly List<StockTransaction> TransactionsLedger = new List<StockTransaction>();
+        protected readonly ILogger _logger;
 
-        public bool PlaceBuyOrder(StockQuote quote, double price, double volume)
+        public TradingSimulatorBase(ILogger logger)
         {
-            if (Balance < price * volume)
+            _logger = logger;
+        }
+
+        public virtual SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig,
+            IProgressReportable progress = null)
+        {
+            Balance = tradingSimulationConfig.StartingCash;
+            OpenedPositions.Clear();
+            TransactionsLedger.Clear();
+
+            return new SimulationResult();
+        }
+
+        public OrderStatusType PlaceBuyOrder(StockQuote quote, double price, double volume)
+        {
+            if (Balance * 1.001 <= price * volume)
             {
-                return false;
+                _logger.LogWarning($"Buy order for {quote.Ticker} price = {price} vol = {volume} denied due to insufficient funds ({Balance}).");
+                return OrderStatusType.DeniedInsufficientFunds;
             }
             if (!price.InOpenRange(quote.Low, quote.High))
             {
-                return false;
+                _logger.LogWarning($"Buy order for {price * volume} denied due to price being out of range of today's {quote.Ticker} prices ({quote.Low} - {quote.High}.");
+                return OrderStatusType.DeniedOutOfRange;
             }
 
             var isPositionOpened = OpenedPositions.ContainsKey(quote.Ticker);
@@ -45,7 +65,7 @@ namespace Stocks.Data.TradingSimulator
 
             UpdateBalance(price, volume, StockTransactionType.Buy);
 
-            return true;
+            return OrderStatusType.Accepted;
         }
 
         private void UpdateBalance(double price, double volume, StockTransactionType transaction)
@@ -63,21 +83,23 @@ namespace Stocks.Data.TradingSimulator
             }
         }
 
-        public bool ClosePosition(StockQuote quote, double price)
+        public OrderStatusType ClosePosition(StockQuote quote, double price)
         {
             return PlaceSellOrder(quote, price, double.MaxValue);
         }
 
-        public bool PlaceSellOrder(StockQuote quote, double price, double volume)
+        public OrderStatusType PlaceSellOrder(StockQuote quote, double price, double volume)
         {
             if (!OpenedPositions.TryGetValue(quote.Ticker, out var openedPosition))
             {
-                return false;
+                _logger.LogWarning($"Sell order of {volume} stocks denied due to lack of open position on {quote.Ticker} .");
+                return OrderStatusType.DeniedNoOpenPosition;
             }
 
             if (!price.InOpenRange(quote.Low, quote.High))
             {
-                return false;
+                _logger.LogWarning($"Sell order for of {volume} stocks denied due to price being out of range of today's {quote.Ticker} prices ({quote.Low} - {quote.High}).");
+                return OrderStatusType.DeniedOutOfRange;
             }
 
             if (volume >= openedPosition.Volume)
@@ -101,7 +123,7 @@ namespace Stocks.Data.TradingSimulator
 
             UpdateBalance(price, volume, StockTransactionType.Sell);
 
-            return true;
+            return OrderStatusType.Accepted;
         }
     }
 }
