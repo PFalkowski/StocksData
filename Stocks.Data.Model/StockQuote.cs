@@ -8,6 +8,8 @@ namespace Stocks.Data.Model
     public class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
         public Company Company { get; set; }
+        
+        public virtual StockQuote PreviousStockQuote { get; set; }
 
         public string Ticker { get; set; }
 
@@ -57,9 +59,6 @@ namespace Stocks.Data.Model
 
         [NotMapped]
         public double DayPriceChange => (Close - Open) / Open;
-
-        [NotMapped]
-        public StockQuote PreviousStockQuote { get; set; }
 
         public bool ValueEquals(StockQuote other)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.TradingSimulator.Models
 {
@@ -9,7 +10,6 @@ namespace Stocks.Data.TradingSimulator.Models
         public DateTime ToDate { get; set; }
         public double StartingCash { get; set; } = 1000;
 
-        private const string PatternString = @".*\d{3,}|WIG.*|RC.*|INTL.*|INTS.*|WIG.*|.*PP\d.*";
-        public Regex BlackListPattern { get; set; } = new Regex(PatternString, RegexOptions.Compiled);
+        public Regex BlackListPattern { get; set; } = new Regex(Constants.BlacklistPatternString, RegexOptions.Compiled);
     }
 }
