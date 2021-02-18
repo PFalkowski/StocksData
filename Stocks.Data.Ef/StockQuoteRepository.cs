@@ -37,7 +37,7 @@ namespace Stocks.Data.Ef
         public List<StockQuote> GetAllQuotesFromPreviousNDays(DateTime currentDate, int n)
         {
             var lastDates = GetNTradingDatesBefore(currentDate, n);
-            return Entities.Where(x => x.DateParsed >= lastDates.First() && x.DateParsed <= lastDates.Last())
+            return Entities.Where(x => x.DateParsed >= lastDates.Min() && x.DateParsed <= lastDates.Max())
                 .ToList();
         }
 

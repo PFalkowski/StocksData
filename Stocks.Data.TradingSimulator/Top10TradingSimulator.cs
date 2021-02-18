@@ -76,36 +76,6 @@ namespace Stocks.Data.TradingSimulator
                 .OrderByDescending(x => x.AveragePriceChange)
                 .Take(TopN)
                 .ToList();
-
-            //var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
-            //var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
-            //var nMinusTwoDays = allQuotesBeforeTradeDay.Where(x => x.DateParsed.Date < nMinusOneDay).Select(x => x.DateParsed)
-            //    .Max();
-            //var allQuotesFromMinusTwoDays = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusTwoDays));
-            //var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay)).ToList();
-
-            //foreach (var quoteFromMinusTwoDays in allQuotesFromMinusTwoDays)
-            //{
-            //    var quoteFromMinusOneDay =
-            //        allQuotesFromMinusOneDay.SingleOrDefault(x => x.Ticker.Equals(quoteFromMinusTwoDays.Ticker));
-
-            //    if (quoteFromMinusOneDay == null)
-            //    {
-            //        continue;
-            //    }
-
-            //    var change = (quoteFromMinusOneDay.AveragePrice - quoteFromMinusTwoDays.AveragePrice) /
-            //                 quoteFromMinusTwoDays.AveragePrice;
-
-            //    quoteFromMinusOneDay.AveragePriceChange = change;
-            //}
-
-            //var topMostRising = allQuotesFromMinusOneDay
-            //    .OrderByDescending(x => x.AveragePriceChange)
-            //    .Take(TopN)
-            //    .ToList();
-
-            //return topMostRising;
         }
     }
 }
