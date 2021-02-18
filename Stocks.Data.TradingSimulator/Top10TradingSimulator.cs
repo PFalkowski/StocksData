@@ -25,19 +25,37 @@ namespace Stocks.Data.TradingSimulator
         public override SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
             var result = base.Simulate(tradingSimulationConfig, progress);
-            var datesToTrade = _stockQuoteRepository.GetTradingDates(tradingSimulationConfig.FromDate, tradingSimulationConfig.ToDate);
+
+            var allQuotesPrefilterd = _stockQuoteRepository
+                .GetAll(x => !_projectSettings.BlackListPattern.IsMatch(x.Ticker)
+                             && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
+                .ToList();
+
+            var filteredQuotes = allQuotesPrefilterd.Where(x =>
+                x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate, tradingSimulationConfig.ToDate)).ToList();
+
+            var tradingStartingDate = filteredQuotes.Min(x => x.DateParsed);
+            var tradingEndDate = filteredQuotes.Max(x => x.DateParsed);
+            var datesToTrade = filteredQuotes
+                .Where(x => x.DateParsed.InOpenRange(tradingStartingDate, tradingEndDate))
+                .Select(x => x.DateParsed)
+                .Distinct()
+                .OrderBy(x => x.Date)
+                .ToList();
+
+
             progress?.Restart(datesToTrade.Count);
             foreach (var date in datesToTrade)
             {
-                var topN = GetTopN(date);
-                if (topN.Count > TopN)
-                    throw new InvalidOperationException(nameof(topN));
-                if (topN.Any(x => x.DateParsed >= date))
-                    throw new InvalidOperationException(nameof(topN));
-                
+                var topN = GetTopN(allQuotesPrefilterd, date);
+                //if (topN.Count > TopN)
+                //    throw new InvalidOperationException(nameof(topN));
+                //if (topN.Any(x => x.DateParsed >= date))
+                //    throw new InvalidOperationException(nameof(topN));
+
                 var topNTickers = topN.Select(quote => quote.Ticker).ToHashSet();
-                var tradingDayQuotesForMostRising = _stockQuoteRepository.GetAll(x => x.DateParsed.Date.Equals(date.Date)
-                    && topNTickers.Contains(x.Ticker));
+                var tradingDayQuotesForMostRising = allQuotesPrefilterd
+                    .Where(x => x.DateParsed.Date.Equals(date.Date) && topNTickers.Contains(x.Ticker) && x.IsValid());
 
                 foreach (var stockQuoteForToday in tradingDayQuotesForMostRising)
                 {
@@ -66,16 +84,22 @@ namespace Stocks.Data.TradingSimulator
 
         public List<StockQuote> GetSignals(DateTime date)
         {
-            return GetTopN(date);
+            var allQuotesFromLastSession = _stockQuoteRepository.GetAllQuotesFromPreviousSession(date);
+            return GetTopN(allQuotesFromLastSession, date);
         }
 
-        private List<StockQuote> GetTopN(DateTime date)
+        private List<StockQuote> GetTopN(List<StockQuote> allQuotesPrefilterd, DateTime date)
         {
-            var allQuotesFromLastSession = _stockQuoteRepository.GetAllQuotesFromPreviousSession(date);
-            return allQuotesFromLastSession
+            var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
+            var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
+            var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay)).ToList();
+
+            var topN = allQuotesFromMinusOneDay
                 .OrderByDescending(x => x.AveragePriceChange)
                 .Take(TopN)
                 .ToList();
+
+            return topN;
         }
     }
 }

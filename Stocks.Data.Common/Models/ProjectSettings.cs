@@ -88,7 +88,7 @@ namespace Stocks.Data.Common.Models
             set => SettingsDictionary[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
         }
 
-        public Regex BlackListPattern => new Regex(BlacklistPatternString);
+        public Regex BlackListPattern => new Regex(BlacklistPatternString);//, RegexOptions.Compiled ?
         public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
         public FileInfo ArchiveFile => new FileInfo(Path.Combine(WorkingDirectory.FullName, ArchiveFileName));
