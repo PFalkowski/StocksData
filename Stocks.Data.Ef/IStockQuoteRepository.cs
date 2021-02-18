@@ -8,8 +8,8 @@ namespace Stocks.Data.Ef
     public interface IStockQuoteRepository : IRepository<StockQuote>, IDisposable
     {
         List<DateTime> GetTradingDates(DateTime fromInclusive, DateTime toInclusive);
-        List<DateTime> GetNTradingDatesBefore(DateTime lastDate, int n);
-        List<StockQuote> GetAllQuotesFromPreviousNDays(DateTime lastDate, int n);
+        List<DateTime> GetNTradingDatesBefore(DateTime currentDate, int n);
+        List<StockQuote> GetAllQuotesFromPreviousNDays(DateTime currentDate, int n);
         List<StockQuote> GetAllQuotesFromPreviousSession(DateTime currentDate);
     }
 }

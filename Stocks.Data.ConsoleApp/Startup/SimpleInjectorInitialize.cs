@@ -39,6 +39,10 @@ namespace Stocks.Data.ConsoleApp.Startup
 
             container.Register<ITradingSimulationConfig, TradingSimulationConfig>();
 
+            #region Decorators
+            container.RegisterDecorator<IStockQuoteRepository, StockQuotesRepositoryCacheDecorator>(Lifestyle.Scoped);
+            #endregion
+
             #region Singletons
             container.RegisterSingleton<IProjectSettings, ProjectSettings>();
             #endregion
