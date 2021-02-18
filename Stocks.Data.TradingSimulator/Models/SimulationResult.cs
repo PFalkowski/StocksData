@@ -23,7 +23,8 @@ namespace Stocks.Data.TradingSimulator.Models
                 $"ROI = {Math.Round(ReturnOnInvestment, 2)} %. " +
                 $"Total buy orders = {TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Buy)}. " +
                 $"Total sell orders = {TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell)}. " +
-                $"{ROC}";
+                $"{ROC} " +
+                $"Config ={TradingSimulationConfig}";
         }
     }
 }
