@@ -83,10 +83,7 @@ namespace Stocks.Data.ConsoleApp
                     case "predict":
                         logger.LogInfo("Enter date in format YYYY-MM-DD: ");
                         var date = GetDateFromUser();
-                        var quotes = stockQuoteRepository.GetAll(x =>
-                            !tradingConfig.BlackListPattern.IsMatch(x.Ticker)
-                            && x.DateParsed.InOpenRange(date.AddDays(-30), date.AddDays(30))).ToList();
-                        var prediction = simulator.GetTopN(quotes, date);
+                        var prediction = simulator.GetSignals(date);
                         logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
                         break;
                     case "h":

@@ -3,6 +3,7 @@ using Stocks.Data.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Stocks.Data.UnitTests.Ef.Test.Config
 {
@@ -17,6 +18,10 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         public string LogFileName { get; set; }
         public string QuotesDownloadUrl { get; set; }
         public string ConnectionString { get; set; }
+        public string BlacklistPatternString { get; set; }
+        public Regex BlackListPattern { get; }
+        public bool ExcludePennyStocks { get; set; }
+        public double PennyStockThreshold { get; set; }
         public DirectoryInfo WorkingDirectory { get; }
         public DirectoryInfo UnzippedFilesDirectory { get; }
         public FileInfo ArchiveFile { get; }

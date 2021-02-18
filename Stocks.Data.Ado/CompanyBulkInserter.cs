@@ -1,9 +1,11 @@
-﻿using Stocks.Data.Model;
+﻿using System;
+using Stocks.Data.Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
+using LoggerLite;
 using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Ado
@@ -11,10 +13,12 @@ namespace Stocks.Data.Ado
     public class CompanyBulkInserter : BulkInserter<Company>
     {
         private readonly BulkInserter<StockQuote> _stockQuoteBulkInserter;
+        private readonly ILogger _logger;
 
-        public CompanyBulkInserter(BulkInserter<StockQuote> stockQuoteBulkInserter)
+        public CompanyBulkInserter(BulkInserter<StockQuote> stockQuoteBulkInserter, ILogger logger)
         {
             _stockQuoteBulkInserter = stockQuoteBulkInserter;
+            _logger = logger;
         }
 
         public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<Company> companies)
@@ -35,7 +39,15 @@ namespace Stocks.Data.Ado
                         command.Parameters["@value"].Value = company.Ticker;
                         command.ExecuteNonQuery();
                     }
-                    _stockQuoteBulkInserter.BulkInsert(connectionString, Constants.StockQuoteName, company.Quotes);
+
+                    try
+                    {
+                        _stockQuoteBulkInserter.BulkInsert(connectionString, Constants.StockQuoteName, company.Quotes);
+                    }
+                    catch (Exception e)
+                    {
+                        _logger.LogError($"{e.Message} - rolling back all data for {company.Ticker}. {company.Ticker} will be skipped");
+                    }
                 }
             }
         }

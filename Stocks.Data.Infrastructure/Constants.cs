@@ -14,6 +14,8 @@
         public const string LowName = "Low";
         public const string CloseName = "Close";
         public const string VolName = "Volume";
+        public const string DateParsedName = "DateParsed";
+        public const string AveragePriceChangeName = "AveragePriceChange";
 
         public const string TickerNameRaw = "<TICKER>";
         public const string DateNameRaw = "<DTYYYYMMDD>";
@@ -29,7 +31,9 @@
         public const string BookValueName = "BookValue";
         public const string DividendYieldName = "DividendYield";
         public const string PriceToEarningsRatioName = "PriceToEarningsRatio";
-        
+
         public const string BlacklistPatternString = @".*\d{3,}|WIG.*|RC.*|INTL.*|INTS.*|WIG.*|.*PP\d.*|.*BAHOLDING.*";
+        public const bool ExcludePennyStocks = true;
+        public const double PennyStockThreshold = 1;
     }
 }

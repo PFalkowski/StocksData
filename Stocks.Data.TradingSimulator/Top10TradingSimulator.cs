@@ -7,45 +7,37 @@ using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Stocks.Data.Common.Models;
 
 namespace Stocks.Data.TradingSimulator
 {
     public class Top10TradingSimulator : TradingSimulatorBase, ITradingSimulator
     {
         private readonly IStockQuoteRepository _stockQuoteRepository;
-        public Top10TradingSimulator(ILogger logger, IStockQuoteRepository stockQuoteRepository) : base(logger)
+        private readonly IProjectSettings _projectSettings;
+        public Top10TradingSimulator(ILogger logger, IStockQuoteRepository stockQuoteRepository, IProjectSettings projectSettings) : base(logger)
         {
             _stockQuoteRepository = stockQuoteRepository;
+            _projectSettings = projectSettings;
         }
         public int TopN { get; set; } = 10;
 
         public override SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null)
         {
             var result = base.Simulate(tradingSimulationConfig, progress);
-            var allQuotesPrefilterd = _stockQuoteRepository
-                .GetAll(x => !tradingSimulationConfig.BlackListPattern.IsMatch(x.Ticker)
-                            && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
-                .ToList();
-
-            var filteredQuotes = allQuotesPrefilterd.Where(x =>
-                x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate, tradingSimulationConfig.ToDate)).ToList();
-
-            var tradingStartingDate = filteredQuotes.Min(x => x.DateParsed);
-            var tradingEndDate = filteredQuotes.Max(x => x.DateParsed);
-            var datesToTrade = filteredQuotes
-                .Where(x => x.DateParsed.InOpenRange(tradingStartingDate, tradingEndDate))
-                .Select(x => x.DateParsed)
-                .Distinct()
-                .OrderBy(x => x.Date)
-                .ToList();
+            var datesToTrade = _stockQuoteRepository.GetTradingDates(tradingSimulationConfig.FromDate, tradingSimulationConfig.ToDate);
             progress?.Restart(datesToTrade.Count);
             foreach (var date in datesToTrade)
             {
-                var topN = GetTopN(allQuotesPrefilterd, date);
+                var topN = GetTopN(date);
+                if (topN.Count > TopN)
+                    throw new InvalidOperationException(nameof(topN));
+                if (topN.Any(x => x.DateParsed >= date))
+                    throw new InvalidOperationException(nameof(topN));
+                
                 var topNTickers = topN.Select(quote => quote.Ticker).ToHashSet();
-                var tradingDayQuotesForMostRising = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(date.Date)
-                                                                                   && topNTickers.Contains(x.Ticker)
-                                                                                   && x.IsValid());
+                var tradingDayQuotesForMostRising = _stockQuoteRepository.GetAll(x => x.DateParsed.Date.Equals(date.Date)
+                    && topNTickers.Contains(x.Ticker));
 
                 foreach (var stockQuoteForToday in tradingDayQuotesForMostRising)
                 {
@@ -72,37 +64,48 @@ namespace Stocks.Data.TradingSimulator
             return result;
         }
 
-        public List<StockQuote> GetTopN(List<StockQuote> allQuotesPrefilterd, DateTime date)
+        public List<StockQuote> GetSignals(DateTime date)
         {
-            var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
-            var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
-            var nMinusTwoDays = allQuotesBeforeTradeDay.Where(x => x.DateParsed.Date < nMinusOneDay).Select(x => x.DateParsed)
-                .Max();
-            var allQuotesFromMinusTwoDays = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusTwoDays));
-            var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay)).ToList();
+            return GetTopN(date);
+        }
 
-            foreach (var quoteFromMinusTwoDays in allQuotesFromMinusTwoDays)
-            {
-                var quoteFromMinusOneDay =
-                    allQuotesFromMinusOneDay.SingleOrDefault(x => x.Ticker.Equals(quoteFromMinusTwoDays.Ticker));
-
-                if (quoteFromMinusOneDay == null)
-                {
-                    continue;
-                }
-
-                var change = (quoteFromMinusOneDay.AveragePrice - quoteFromMinusTwoDays.AveragePrice) /
-                             quoteFromMinusTwoDays.AveragePrice;
-
-                quoteFromMinusOneDay.AveragePriceChange = change;
-            }
-
-            var topMostRising = allQuotesFromMinusOneDay
+        private List<StockQuote> GetTopN(DateTime date)
+        {
+            var allQuotesFromLastSession = _stockQuoteRepository.GetAllQuotesFromPreviousSession(date);
+            return allQuotesFromLastSession
                 .OrderByDescending(x => x.AveragePriceChange)
                 .Take(TopN)
                 .ToList();
 
-            return topMostRising;
+            //var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
+            //var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
+            //var nMinusTwoDays = allQuotesBeforeTradeDay.Where(x => x.DateParsed.Date < nMinusOneDay).Select(x => x.DateParsed)
+            //    .Max();
+            //var allQuotesFromMinusTwoDays = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusTwoDays));
+            //var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay)).ToList();
+
+            //foreach (var quoteFromMinusTwoDays in allQuotesFromMinusTwoDays)
+            //{
+            //    var quoteFromMinusOneDay =
+            //        allQuotesFromMinusOneDay.SingleOrDefault(x => x.Ticker.Equals(quoteFromMinusTwoDays.Ticker));
+
+            //    if (quoteFromMinusOneDay == null)
+            //    {
+            //        continue;
+            //    }
+
+            //    var change = (quoteFromMinusOneDay.AveragePrice - quoteFromMinusTwoDays.AveragePrice) /
+            //                 quoteFromMinusTwoDays.AveragePrice;
+
+            //    quoteFromMinusOneDay.AveragePriceChange = change;
+            //}
+
+            //var topMostRising = allQuotesFromMinusOneDay
+            //    .OrderByDescending(x => x.AveragePriceChange)
+            //    .Take(TopN)
+            //    .ToList();
+
+            //return topMostRising;
         }
     }
 }

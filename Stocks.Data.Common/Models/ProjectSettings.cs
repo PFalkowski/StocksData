@@ -1,8 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
+using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Common.Models
 {
@@ -22,7 +25,9 @@ namespace Stocks.Data.Common.Models
                 {
                     nameof(ConnectionString),
                     "server=(localdb)\\MSSQLLocalDB;Initial Catalog=StockQuotes;Integrated Security=True;"
-                }
+                },
+                {nameof(BlacklistPatternString), Constants.BlacklistPatternString},
+                {nameof(PennyStockThreshold), Constants.PennyStockThreshold.ToString(CultureInfo.InvariantCulture)},
             };
         }
         public Dictionary<string, string> SettingsDictionary { get; private set; }
@@ -67,7 +72,23 @@ namespace Stocks.Data.Common.Models
             get => SettingsDictionary[nameof(ConnectionString)];
             set => SettingsDictionary[nameof(ConnectionString)] = value;
         }
+        public string BlacklistPatternString
+        {
+            get => SettingsDictionary[nameof(BlacklistPatternString)];
+            set => SettingsDictionary[nameof(BlacklistPatternString)] = value;
+        }
+        public bool ExcludePennyStocks
+        {
+            get => bool.Parse(SettingsDictionary[nameof(ExcludePennyStocks)]);
+            set => SettingsDictionary[nameof(ExcludePennyStocks)] = value.ToString();
+        }
+        public double PennyStockThreshold
+        {
+            get => double.Parse(SettingsDictionary[nameof(PennyStockThreshold)]);
+            set => SettingsDictionary[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
+        }
 
+        public Regex BlackListPattern => new Regex(BlacklistPatternString);
         public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
         public FileInfo ArchiveFile => new FileInfo(Path.Combine(WorkingDirectory.FullName, ArchiveFileName));

@@ -37,7 +37,7 @@ namespace Stocks.Data.Ef
         public virtual IEnumerable<TEntity> GetAll()
             => Entities;
 
-        public virtual  void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
             => Entities.Add(entity);
 
         public virtual void AddRange(IEnumerable<TEntity> entities)

@@ -8,12 +8,13 @@ namespace Stocks.Data.Model
     public class StockQuote : IValidatable, IValueEquatable<StockQuote>
     {
         public Company Company { get; set; }
-        
+
         public virtual StockQuote PreviousStockQuote { get; set; }
 
         public string Ticker { get; set; }
 
         public int Date { get; set; }
+        public DateTime DateParsed { get; set; }
 
         public double Open { get; set; }
         public double High { get; set; }
@@ -25,6 +26,7 @@ namespace Stocks.Data.Model
         public double? BookValue { get; set; }
         public double? DividendYield { get; set; }
         public double? PriceToEarningsRatio { get; set; }
+        public double? AveragePriceChange { get; set; }
 
         [NotMapped]
         public double? PriceToBookValueRatio => MarketCap / BookValue;
@@ -35,27 +37,26 @@ namespace Stocks.Data.Model
         [NotMapped]
         public double? EarningsPerShare => LastYearYield / TotalSharesEmitted;
 
-        [NotMapped]
-        private DateTime? _dateParsed;
-        [NotMapped]
-        public DateTime DateParsed
-        {
-            get
-            {
-                if (!_dateParsed.HasValue)
-                {
-                    _dateParsed =
-                        DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
-                }
+        //[NotMapped]
+        //private DateTime? _dateParsed;
+        //[NotMapped]
+        //public DateTime DateParsed
+        //{
+        //    get
+        //    {
+        //        if (!_dateParsed.HasValue)
+        //        {
+        //            _dateParsed =
+        //                DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
+        //        }
 
-                return _dateParsed.Value;
-            }
-        }
+        //        return _dateParsed.Value;
+        //    }
+        //}
 
         [NotMapped]
         public double AveragePrice => (Low + High) / 2;
-        [NotMapped]
-        public double AveragePriceChange { get; set; }
+
 
         [NotMapped]
         public double DayPriceChange => (Close - Open) / Open;
@@ -68,15 +69,17 @@ namespace Stocks.Data.Model
 
         public bool IsValid()
         {
-            return Open > 0 &&
-                   High > 0 &&
-                   Low > 0 &&
-                   Close > 0 &&
-                   High >= Low &&
-                   Open >= Low &&
-                   Close >= Low &&
-                   Open <= High &&
-                   Close <= High;
+            return Open > 0
+                   && High > 0
+                   && Low > 0
+                   && Close > 0
+                   && High >= Low
+                   && Open >= Low
+                   && Close >= Low
+                   && Open <= High
+                   && Close <= High
+                && (PreviousStockQuote == null
+                    || (PreviousStockQuote.DateParsed < DateParsed && PreviousStockQuote.Ticker.Equals(Ticker)));
         }
 
         public override string ToString()

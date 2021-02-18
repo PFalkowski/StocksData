@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using LoggerLite;
 using Stocks.Data.Model;
 using Stocks.Data.Infrastructure;
@@ -44,6 +45,8 @@ namespace Stocks.Data.Ado
                         new SqlBulkCopyColumnMapping(Constants.BookValueName, Constants.BookValueName),
                         new SqlBulkCopyColumnMapping(Constants.DividendYieldName, Constants.DividendYieldName),
                         new SqlBulkCopyColumnMapping(Constants.PriceToEarningsRatioName, Constants.PriceToEarningsRatioName),
+                        new SqlBulkCopyColumnMapping(Constants.DateParsedName, Constants.DateParsedName),
+                        new SqlBulkCopyColumnMapping(Constants.AveragePriceChangeName, Constants.AveragePriceChangeName),
                     }
                 };
                 inMemoryTable = new DataTable(destinationTableName)
@@ -63,6 +66,8 @@ namespace Stocks.Data.Ado
                         new DataColumn(Constants.BookValueName, typeof(double)) { AllowDBNull = true },
                         new DataColumn(Constants.DividendYieldName, typeof(double)) { AllowDBNull = true },
                         new DataColumn(Constants.PriceToEarningsRatioName, typeof(double)) { AllowDBNull = true },
+                        new DataColumn(Constants.DateParsedName, typeof(DateTime)),
+                        new DataColumn(Constants.AveragePriceChangeName, typeof(double)) { AllowDBNull = true }
                     }
                 };
                 inMemoryTable.PrimaryKey = new[]
@@ -70,17 +75,12 @@ namespace Stocks.Data.Ado
                     inMemoryTable.Columns[Constants.TickerName],
                     inMemoryTable.Columns[Constants.DateName]
                 };
-                
+
                 StockQuote previous = null;
                 foreach (var quote in quotes)
                 {
                     var newQuoteRow = inMemoryTable.NewRow();
-                    
-                    if (previous != null && previous.Ticker.Equals(quote.Ticker))
-                    {
-                        newQuoteRow[Constants.PreviousStockQuoteTickerName] = previous.Ticker;
-                        newQuoteRow[Constants.PreviousStockQuoteDateName] = previous.Date;
-                    }
+
                     newQuoteRow[Constants.TickerName] = quote.Ticker;
                     newQuoteRow[Constants.DateName] = quote.Date;
                     newQuoteRow[Constants.OpenName] = quote.Open;
@@ -93,10 +93,19 @@ namespace Stocks.Data.Ado
                     newQuoteRow[Constants.BookValueName] = DBNull.Value;
                     newQuoteRow[Constants.DividendYieldName] = DBNull.Value;
                     newQuoteRow[Constants.PriceToEarningsRatioName] = DBNull.Value;
-                    
-                    if (previous != null && previous.Ticker.Equals(quote.Ticker) && previous.DateParsed > quote.DateParsed)
+                    newQuoteRow[Constants.DateParsedName] = DateTime.ParseExact(quote.Date.ToString(), "yyyyMMdd",
+                        CultureInfo.InvariantCulture);
+
+                    if (previous != null)
                     {
-                        throw new ArgumentException(nameof(quotes));
+                        newQuoteRow[Constants.PreviousStockQuoteTickerName] = previous.Ticker;
+                        newQuoteRow[Constants.PreviousStockQuoteDateName] = previous.Date;
+                        newQuoteRow[Constants.AveragePriceChangeName] = (quote.AveragePrice - previous.AveragePrice) /
+                                                                        previous.AveragePrice;
+                        if (!quote.IsValid())
+                        {
+                            throw new ArgumentException(nameof(quotes));
+                        }
                     }
                     if (previous == null || previous?.Ticker != null && quote.Ticker.Equals(previous.Ticker))
                     {
