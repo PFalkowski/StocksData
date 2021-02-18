@@ -20,7 +20,7 @@ namespace Stocks.Data.ConsoleApp
         private const string HelpMessage = @"Usage: 
 - download: download stock archive and unzip it to working directory
 - migrate: seed the database with data unzipped in working directory
-- dopDb: Remove the database
+- dropDb: Remove the database
 - print: print selected stock quotes
 - simulate: run trading simulation
 - predict: get prediction for selected day";

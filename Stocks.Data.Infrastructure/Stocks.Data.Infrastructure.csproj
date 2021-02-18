@@ -25,7 +25,7 @@
     <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Extensions.Standard" Version="4.0.0" />
     <PackageReference Include="OnTheFlyStats" Version="3.2.0" />
-    <PackageReference Include="StandardInterfaces" Version="2.0.0" />
+    <PackageReference Include="StandardInterfaces" Version="3.0.0" />
     <PackageReference Include="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' != 'Pack'" />
   </ItemGroup>

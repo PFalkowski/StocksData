@@ -54,11 +54,11 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                     flattenedQuotes
                         .Where(x => x.DateParsed.InOpenRange(last3dates.Min(), last3dates.Max()))
                         .ToList());
-                _stockQuoteRepositoryMock.Setup(x =>
-                        x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(startDate, endDate))))
-                    .Returns((DateTime current) => flattenedQuotes
-                        .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
-                        .ToList());
+                //_stockQuoteRepositoryMock.Setup(x =>
+                //        x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(startDate, endDate))))
+                //    .Returns((DateTime current) => flattenedQuotes
+                //        .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
+                //        .ToList());
 
                 var result = tested.GetSignals(tradingDate);
                 Assert.Equal(10, result.Count);
@@ -106,11 +106,11 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                                                     && z.DateParsed.InOpenRange(simulationConfig.FromDate.AddDays(-30),
                                                         simulationConfig.ToDate)));
             //var currentDate = default(DateTime);
-            _stockQuoteRepositoryMock.Setup(x =>
-                    x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(simulationConfig.FromDate, simulationConfig.ToDate))))
-                .Returns((DateTime current) => flattenedQuotes
-                    .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
-                    .ToList());
+            //_stockQuoteRepositoryMock.Setup(x =>
+            //        x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(simulationConfig.FromDate, simulationConfig.ToDate))))
+            //    .Returns((DateTime current) => flattenedQuotes
+            //        .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
+            //        .ToList());
 
             _stockQuoteRepositoryMock.Setup(x => x.GetTradingDates(simulationConfig.FromDate, simulationConfig.ToDate))
                 .Returns(GetTradingDatesForConfig(simulationConfig, flattenedQuotes));

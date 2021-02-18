@@ -5,7 +5,7 @@ using Stocks.Data.Model;
 
 namespace Stocks.Data.Ef
 {
-    public interface IStockQuoteRepository : IRepository<StockQuote>
+    public interface IStockQuoteRepository : IRepository<StockQuote>, IDisposable
     {
         List<DateTime> GetTradingDates(DateTime fromInclusive, DateTime toInclusive);
         List<DateTime> GetNTradingDatesBefore(DateTime lastDate, int n);
