@@ -25,6 +25,7 @@ namespace Stocks.Data.Common.Models
         FileInfo ArchiveFile { get; }
         DbContextOptions<DbContext> GetDbContextOptions { get; }
         void EnsureAllDirectoriesExist();
+        void CleanOutputDirectory();
         void ParseSettings(string[] args);
     }
 }

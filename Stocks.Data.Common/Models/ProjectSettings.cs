@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Common.Models
@@ -106,6 +107,14 @@ namespace Stocks.Data.Common.Models
             //{
             //    UnzippedFilesDirectory.Create();
             //}
+        }
+
+        public void CleanOutputDirectory()
+        {
+            foreach (var file in UnzippedFilesDirectory.GetFiles())
+            {
+                file.Delete();
+            }
         }
 
         public void ParseSettings(string[] args)

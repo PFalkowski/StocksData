@@ -1,5 +1,4 @@
-﻿using Extensions.Standard;
-using LoggerLite;
+﻿using LoggerLite;
 using SimpleInjector;
 using SimpleInjector.Lifestyles;
 using Stocks.Data.Api.Services;
@@ -18,12 +17,14 @@ namespace Stocks.Data.ConsoleApp
     class Program
     {
         private const string HelpMessage = @"Usage: 
-- download: download stock archive and unzip it to working directory
+- download: download stock archive
 - migrate: seed the database with data unzipped in working directory
 - dropDb: Remove the database
 - print: print selected stock quotes
 - simulate: run trading simulation
-- predict: get prediction for selected day";
+- predict: get prediction for selected day
+- cleanDir: cleans output directory
+- unzip: unzip archive to output dir";
         private static Container Container { get; set; } = new Container();
         static async Task Main(string[] args)
         {
@@ -53,6 +54,7 @@ namespace Stocks.Data.ConsoleApp
                         break;
                     case "migrate":
                         await api.Migrate(projectSettings, TargetLocation.ZipArchive);
+                        logger.LogInfo("Successfully migrated data to database.");
                         break;
                     case "dropDb":
                         await dbManagementSvc.EnsureDbDoesNotExist(projectSettings);
@@ -85,6 +87,13 @@ namespace Stocks.Data.ConsoleApp
                         var date = GetDateFromUser();
                         var prediction = simulator.GetSignals(date);
                         logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
+                        break;
+                    case "cleanDir":
+                        projectSettings.CleanOutputDirectory();
+                        logger.LogInfo($"Cleaned directory {projectSettings.UnzippedFilesDirectory.FullName}");
+                        break;
+                    case "unzip":
+                        await api.Unzip(projectSettings);
                         break;
                     case "h":
                         logger.LogInfo(HelpMessage);

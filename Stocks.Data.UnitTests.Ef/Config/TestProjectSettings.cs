@@ -33,6 +33,11 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
             throw new NotImplementedException();
         }
 
+        public void CleanOutputDirectory()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ParseSettings(string[] args)
         {
             throw new NotImplementedException();

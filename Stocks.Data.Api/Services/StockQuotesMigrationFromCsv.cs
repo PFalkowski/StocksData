@@ -59,6 +59,10 @@ namespace Stocks.Data.Api.Services
             _companyBulkInserter.BulkInsert(project.ConnectionString, nameof(Company), deserialized);
         }
 
+        public async Task Unzip(IProjectSettings project)
+        {
+            await ReadFromZip(project);
+        }
 
         private async Task<Dictionary<string, string>> ReadFromZip(IProjectSettings project)
         {
@@ -85,6 +89,11 @@ namespace Stocks.Data.Api.Services
             var tasksToSave = new List<Task>();
             foreach (var stock in unzippedStocks)
             {
+                if (!string.IsNullOrWhiteSpace(project.BlacklistPatternString) && project.BlackListPattern.IsMatch(stock.Key))
+                {
+                    _logger.LogWarning($"{stock.Key} matched blacklist. Skipping");
+                    continue;
+                }
                 var path = Path.Combine(project.UnzippedFilesDirectory.FullName, stock.Key);
                 if (File.Exists(path))
                 {

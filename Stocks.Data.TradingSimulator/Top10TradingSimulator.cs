@@ -40,7 +40,7 @@ namespace Stocks.Data.TradingSimulator
                 .Where(x => x.DateParsed.InOpenRange(tradingStartingDate, tradingEndDate))
                 .Select(x => x.DateParsed)
                 .Distinct()
-                .OrderBy(x => x.Date)
+                .OrderBy(x => x)
                 .ToList();
 
 
@@ -92,7 +92,7 @@ namespace Stocks.Data.TradingSimulator
         {
             var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
             var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
-            var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay)).ToList();
+            var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay.Date)).ToList();
 
             var topN = allQuotesFromMinusOneDay
                 .OrderByDescending(x => x.AveragePriceChange)
