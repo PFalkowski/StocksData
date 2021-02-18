@@ -10,5 +10,11 @@ namespace Stocks.Data.TradingSimulator.Models
         public DateTime ToDate { get; set; }
         public double StartingCash { get; set; } = 1000;
         public int TopN { get; set; } = 10;
+
+        public override string ToString()
+        {
+            return
+                $"{nameof(FromDate)} = {FromDate}, {nameof(ToDate)} = {ToDate}, {nameof(StartingCash)} = {StartingCash}, {nameof(TopN)} = {TopN}";
+        }
     }
 }
