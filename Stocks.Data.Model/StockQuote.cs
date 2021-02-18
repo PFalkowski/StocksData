@@ -37,22 +37,6 @@ namespace Stocks.Data.Model
         [NotMapped]
         public double? EarningsPerShare => LastYearYield / TotalSharesEmitted;
 
-        //[NotMapped]
-        //private DateTime? _dateParsed;
-        //[NotMapped]
-        //public DateTime DateParsed
-        //{
-        //    get
-        //    {
-        //        if (!_dateParsed.HasValue)
-        //        {
-        //            _dateParsed =
-        //                DateTime.ParseExact(Date.ToString(), "yyyyMMdd", CultureInfo.InvariantCulture);
-        //        }
-
-        //        return _dateParsed.Value;
-        //    }
-        //}
 
         [NotMapped]
         public double AveragePrice => (Low + High) / 2;
