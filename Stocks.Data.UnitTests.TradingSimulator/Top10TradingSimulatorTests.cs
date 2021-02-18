@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.TradingSimulator
@@ -20,6 +21,11 @@ namespace Stocks.Data.UnitTests.TradingSimulator
         private readonly Mock<ILogger> _loggerMock = new Mock<ILogger>();
         private readonly Mock<IStockQuoteRepository> _stockQuoteRepositoryMock = new Mock<IStockQuoteRepository>();
         private readonly Mock<IProjectSettings> _projectSettingsMock = new Mock<IProjectSettings>();
+
+        private ITradingSimulationConfig _tradingSimulationConfig => new TradingSimulationConfig
+        {
+            TopN = 10
+        };
 
         [Theory]
         [ClassData(typeof(CompaniesMock))]
@@ -47,7 +53,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                     .ToList());
 
             // Act
-            var result = tested.GetSignals(tradingDate);
+            var result = tested.GetSignals(_tradingSimulationConfig, tradingDate);
 
             // Assert
             Assert.Equal(10, result.Count);
@@ -90,7 +96,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 StartingCash = 1000
             };
             _stockQuoteRepositoryMock.Setup(x => x.GetAll(It.IsAny<Expression<Func<StockQuote, bool>>>()))
-                .Returns(flattenedQuotes.Where(z => !simulationConfig.BlackListPattern.IsMatch(z.Ticker)
+                .Returns(flattenedQuotes.Where(z => !new Regex(@".*\d{3,}|WIG.*|RC.*|INTL.*|INTS.*|WIG.*|.*PP\d.*|.*BAHOLDING.*|CFI.*").IsMatch(z.Ticker)
                                                     && z.DateParsed.InOpenRange(simulationConfig.FromDate.AddDays(-30),
                                                         simulationConfig.ToDate)));
             _stockQuoteRepositoryMock.Setup(x => x.GetTradingDates(simulationConfig.FromDate, simulationConfig.ToDate))

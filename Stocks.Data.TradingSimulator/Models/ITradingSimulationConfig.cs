@@ -8,6 +8,6 @@ namespace Stocks.Data.TradingSimulator.Models
         DateTime FromDate { get; set; }
         DateTime ToDate { get; set; }
         double StartingCash { get; set; }
-        Regex BlackListPattern { get; set; }
+        int TopN { get; set; }
     }
 }

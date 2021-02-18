@@ -1,7 +1,11 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using LoggerLite;
 using Moq;
 using NUnit.Framework;
+using Stocks.Data.Common.Models;
+using Stocks.Data.Ef;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
@@ -10,7 +14,9 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 {
     public class TradingSimulatorBaseTests
     {
-        private Mock<ILogger> _loggerMock = new Mock<ILogger>();
+        private readonly Mock<ILogger> _loggerMock = new Mock<ILogger>();
+        private readonly Mock<IStockQuoteRepository> _stockQuoteRepositoryMock = new Mock<IStockQuoteRepository>();
+        private readonly Mock<IProjectSettings> _projectSettingsMock = new Mock<IProjectSettings>();
         private const string Ticker = nameof(Ticker);
         private StockQuote quote1 = new StockQuote
         {
@@ -43,6 +49,21 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             PriceToEarningsRatio = 2
         };
 
+        class SetBalanceOnTestedObject : TradingSimulatorBase
+        {
+            public SetBalanceOnTestedObject(double balance, ILogger logger, IStockQuoteRepository stockQuoteRepository, IProjectSettings projectSettings)
+                : base(logger, stockQuoteRepository, projectSettings)
+            {
+                Balance = balance;
+            }
+
+            protected override List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
         [SetUp]
         public void Setup()
         {
@@ -52,10 +73,10 @@ namespace Stocks.Data.UnitTests.TradingSimulator
         public void PlaceBuyOrderDoesNotPlaceOrderWhenBalanceIsTooLow()
         {
             // Arrange
-            
+
             const int volume = 10;
             const int buyPrice = 11;
-            var tested = new TradingSimulatorBase(_loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(0, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
 
             // Act
 
@@ -69,15 +90,6 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
-
-        class SetBalanceOnTestedObject : TradingSimulatorBase
-        {
-            public SetBalanceOnTestedObject(double balance, ILogger logger) : base(logger)
-            {
-                Balance = balance;
-            }
-        }
-
         [Test]
         public void PlaceBuyOrderDoesNotPlaceOrderWhenPriceIsOutOfRange()
         {
@@ -86,7 +98,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int volume = 10;
             const double buyPrice = 14.01;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -108,7 +120,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int volume = 10;
             const int buyPrice = 11;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -129,7 +141,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 Assert.AreEqual(volume, tested.OpenedPositions.Single().Value.Volume);
             });
         }
-        
+
         [Test]
         public void PlaceBuyOrderPlacesCorrectOrderWhenPositionIsOpenedAlready()
         {
@@ -140,7 +152,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int buyPrice2 = 11;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -187,7 +199,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int buyPrice2 = 10;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -211,10 +223,10 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
             const int volume = 10;
             const double sellPrice = 11;
-            var tested = new TradingSimulatorBase(_loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(0, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
 
             // Act
-            
+
             var result = tested.PlaceSellOrder(quote1, sellPrice, volume);
 
             // Assert
@@ -225,20 +237,20 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
-        
+
         [Test]
         public void PlaceSellOrderDoesNotPlaceOrderWhenPriceIsOutOfRange()
         {
             // Arrange
-            
+
             const int buyVolume = 10;
             const int buyPrice = 11;
             const int volume = 10;
             const double sellPrice = 14.01;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
-            
+
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
             var result2 = tested.PlaceSellOrder(quote1, sellPrice, volume);
 
@@ -250,7 +262,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 Assert.AreEqual(1, tested.OpenedPositions.Count);
             });
         }
-        
+
         [Test]
         public void PlaceSellClosesPositionWhenVolumeEqualToOpenedPos()
         {
@@ -261,9 +273,9 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int sellPrice = 11;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
-            
+
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
             var result2 = tested.PlaceSellOrder(quote2, sellPrice, sellVolume);
 
@@ -288,7 +300,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
                 Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
                 Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
-                
+
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
@@ -303,9 +315,9 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int sellPrice = 11;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
-            
+
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
             var result2 = tested.ClosePosition(quote2, sellPrice);
 
@@ -330,11 +342,11 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
                 Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
                 Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
-                
+
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
-        
+
         [Test]
         public void PlaceSellOrderPlacesCorrectOrder()
         {
@@ -345,9 +357,9 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int sellPrice = 10;
             const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object);
+            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
-            
+
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
             var result2 = tested.PlaceSellOrder(quote2, sellPrice, sellVolume);
 
@@ -372,7 +384,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
                 Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
                 Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
-                
+
                 Assert.AreEqual(11, tested.OpenedPositions.Single().Value.Price);
 
                 Assert.AreEqual(buyVolume - sellVolume, tested.OpenedPositions.Single().Value.Volume);

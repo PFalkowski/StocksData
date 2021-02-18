@@ -9,6 +9,6 @@ namespace Stocks.Data.TradingSimulator
     public interface ITradingSimulator
     {
         SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig, IProgressReportable progress = null);
-        List<StockQuote> GetSignals(DateTime date);
+        List<StockQuote> GetSignals(ITradingSimulationConfig tradingSimulationConfig, DateTime date);
     }
 }

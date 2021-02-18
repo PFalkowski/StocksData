@@ -85,7 +85,7 @@ namespace Stocks.Data.ConsoleApp
                     case "predict":
                         logger.LogInfo("Enter date in format YYYY-MM-DD: ");
                         var date = GetDateFromUser();
-                        var prediction = simulator.GetSignals(date);
+                        var prediction = simulator.GetSignals(tradingConfig, date);
                         logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()}");
                         break;
                     case "cleanDir":
