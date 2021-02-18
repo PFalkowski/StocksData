@@ -7,7 +7,6 @@ using Stocks.Data.Ef;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
-using Stocks.Data.UnitTests.TradingSimulator.TestData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,63 +26,52 @@ namespace Stocks.Data.UnitTests.TradingSimulator
         public void GetTopNGetsValidResultsCorrectlyOrdered(List<Company> testCompanies)
         {
             // Arrange
-
             var flattenedQuotes = testCompanies.SelectMany(x => x.Quotes).OrderBy(x => x.DateParsed).ToList();
-            var startDate = new DateTime(2021, 1, 10);
-            var endDate = new DateTime(2021, 2, 12);
-
-            var tradingDates = flattenedQuotes
-                .Select(x => x.DateParsed)
-                .Distinct()
-                .Where(x => x.InOpenRange(startDate, endDate))
-                .OrderBy(x => x);
-
             var tested = new Top10TradingSimulator(_loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
 
-            // Arrange && Act & Assert
+            var tradingDate = new DateTime(2021, 02, 15);
+            var last3dates = flattenedQuotes.Where(x => x.DateParsed < tradingDate)
+                .Select(x => x.DateParsed)
+                .Distinct()
+                .OrderByDescending(x => x.Date)
+                .Take(3)
+                .ToList();
+            _stockQuoteRepositoryMock.Setup(x => x.GetAllQuotesFromPreviousNDays(tradingDate, 3)).Returns(
+                flattenedQuotes
+                    .Where(x => x.DateParsed.InOpenRange(last3dates.Min(), last3dates.Max()))
+                    .ToList());
+            _stockQuoteRepositoryMock.Setup(x =>
+                    x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.Equals(tradingDate))))
+                .Returns((DateTime current) => flattenedQuotes
+                    .Where(f => f.DateParsed == new DateTime(2021, 02, 12))
+                    .ToList());
 
-            foreach (var tradingDate in tradingDates)
+            // Act
+            var result = tested.GetSignals(tradingDate);
+
+            // Assert
+            Assert.Equal(10, result.Count);
+            for (var i = 0; i < result.Count; i++)
             {
-                var last3dates = flattenedQuotes.Where(x => x.DateParsed < tradingDate)
-                    .Select(x => x.DateParsed)
-                    .Distinct()
-                    .OrderByDescending(x => x.Date)
-                    .Take(3)
+                var quoteFromMinusOneDay = result[i];
+                var allQuotesWithHigherAveragePriceChange = flattenedQuotes
+                    .Where(x => x.DateParsed.Equals(quoteFromMinusOneDay.DateParsed)
+                                && x.Ticker != quoteFromMinusOneDay.Ticker
+                                && x.AveragePriceChange >= quoteFromMinusOneDay.AveragePriceChange)
+                    .OrderByDescending(x => x.AveragePriceChange)
                     .ToList();
-                _stockQuoteRepositoryMock.Setup(x => x.GetAllQuotesFromPreviousNDays(tradingDate, 3)).Returns(
-                    flattenedQuotes
-                        .Where(x => x.DateParsed.InOpenRange(last3dates.Min(), last3dates.Max()))
-                        .ToList());
-                //_stockQuoteRepositoryMock.Setup(x =>
-                //        x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(startDate, endDate))))
-                //    .Returns((DateTime current) => flattenedQuotes
-                //        .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
-                //        .ToList());
-
-                var result = tested.GetSignals(tradingDate);
-                Assert.Equal(10, result.Count);
-                for (var i = 0; i < result.Count; i++)
-                {
-                    var quoteFromMinusOneDay = result[i];
-                    var allQuotesWithHigherAveragePriceChange = flattenedQuotes
-                        .Where(x => x.DateParsed.Equals(quoteFromMinusOneDay.DateParsed)
-                                    && x.Ticker != quoteFromMinusOneDay.Ticker
-                                    && x.AveragePriceChange >= quoteFromMinusOneDay.AveragePriceChange)
-                        .OrderByDescending(x => x.AveragePriceChange)
-                        .ToList();
-                    Assert.True(i <= allQuotesWithHigherAveragePriceChange.Count);
-                    Assert.True(quoteFromMinusOneDay.DateParsed < tradingDate);
-                    Assert.True(quoteFromMinusOneDay.PreviousStockQuote.DateParsed < quoteFromMinusOneDay.DateParsed);
-                    Assert.True(quoteFromMinusOneDay.IsValid());
-                    var quoteFromMinusTwoDays = quoteFromMinusOneDay.PreviousStockQuote;
-                    Assert.True(quoteFromMinusTwoDays.IsValid());
-                    Assert.True(quoteFromMinusTwoDays.DateParsed < quoteFromMinusOneDay.DateParsed);
-                    Assert.Equal(quoteFromMinusOneDay.Ticker, quoteFromMinusTwoDays.Ticker);
-                    var expectedAvgPriceChange =
-                        (quoteFromMinusOneDay.AveragePrice - quoteFromMinusTwoDays.AveragePrice) /
-                        quoteFromMinusTwoDays.AveragePrice;
-                    Assert.Equal(expectedAvgPriceChange, quoteFromMinusOneDay.AveragePriceChange);
-                }
+                Assert.True(i <= allQuotesWithHigherAveragePriceChange.Count);
+                Assert.True(quoteFromMinusOneDay.DateParsed < tradingDate);
+                Assert.True(quoteFromMinusOneDay.PreviousStockQuote.DateParsed < quoteFromMinusOneDay.DateParsed);
+                Assert.True(quoteFromMinusOneDay.IsValid());
+                var quoteFromMinusTwoDays = quoteFromMinusOneDay.PreviousStockQuote;
+                Assert.True(quoteFromMinusTwoDays.IsValid());
+                Assert.True(quoteFromMinusTwoDays.DateParsed < quoteFromMinusOneDay.DateParsed);
+                Assert.Equal(quoteFromMinusOneDay.Ticker, quoteFromMinusTwoDays.Ticker);
+                var expectedAvgPriceChange =
+                    (quoteFromMinusOneDay.AveragePrice - quoteFromMinusTwoDays.AveragePrice) /
+                    quoteFromMinusTwoDays.AveragePrice;
+                Assert.Equal(expectedAvgPriceChange, quoteFromMinusOneDay.AveragePriceChange);
             }
         }
 
@@ -105,13 +93,6 @@ namespace Stocks.Data.UnitTests.TradingSimulator
                 .Returns(flattenedQuotes.Where(z => !simulationConfig.BlackListPattern.IsMatch(z.Ticker)
                                                     && z.DateParsed.InOpenRange(simulationConfig.FromDate.AddDays(-30),
                                                         simulationConfig.ToDate)));
-            //var currentDate = default(DateTime);
-            //_stockQuoteRepositoryMock.Setup(x =>
-            //        x.GetAllQuotesFromPreviousSession(It.Is<DateTime>(z => z.InOpenRange(simulationConfig.FromDate, simulationConfig.ToDate))))
-            //    .Returns((DateTime current) => flattenedQuotes
-            //        .Where(f => f.DateParsed == GetPreviousSessionDate(current, flattenedQuotes))
-            //        .ToList());
-
             _stockQuoteRepositoryMock.Setup(x => x.GetTradingDates(simulationConfig.FromDate, simulationConfig.ToDate))
                 .Returns(GetTradingDatesForConfig(simulationConfig, flattenedQuotes));
             // Act
@@ -119,10 +100,10 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             var result = tested.Simulate(simulationConfig);
 
             // Assert
-            Assert.Equal(818.4145707444269, result.FinalBalance);
-            Assert.Equal(-18.15854292555731, result.ReturnOnInvestment);
-            Assert.Equal(0.36385639370713996, result.ROC.Accuracy);
-            Assert.Equal(2479, result.ROC.All);
+            Assert.Equal(102.65, result.FinalBalance, 2);
+            Assert.Equal(-89.73, result.ReturnOnInvestment, 2);
+            Assert.Equal(0.33, result.ROC.Accuracy, 2);
+            Assert.Equal(2394, result.ROC.All);
             Assert.True(result.TransactionsLedger.All(x => x.Date.InOpenRange(simulationConfig.FromDate, simulationConfig.ToDate)));
             Assert.Equal(result.ROC.All * 2, result.TransactionsLedger.Count);
             Assert.Equal(result.ROC.All, result.TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell));

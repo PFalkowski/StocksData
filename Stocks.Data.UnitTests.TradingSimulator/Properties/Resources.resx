@@ -118,8 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ABMSOLID" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ABMSOLID.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ABPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ABPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ACAUTOGAZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ACAUTOGAZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ACTION" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ACTION.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ADIUVO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ADIUVO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AGORA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AGORA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AGROTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AGROTON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AIGAMES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AIGAMES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="AILLERON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\AILLERON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AIRWAY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AIRWAY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ALIOR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\ALIOR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -127,14 +154,425 @@
   <data name="ALLEGRO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\ALLEGRO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ALTA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ALTA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ALTUSTFI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ALTUSTFI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ALUMETAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ALUMETAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="AMBRA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\AMBRA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AMICA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AMICA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="AMREST" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\AMREST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ANSWEAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\ANSWEAR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ANSWEAR_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ANSWEAR-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APATOR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\APATOR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APLISENS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\APLISENS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="APSENERGY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\APSENERGY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ARTERIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ARTERIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ARTIFEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ARTIFEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASBIS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASBIS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASMGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASMGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASSECOBS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASSECOBS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASSECOPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASSECOPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASSECOSEE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASSECOSEE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ASTARTA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ASTARTA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATENDE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATENDE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATLANTAPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATLANTAPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATLANTIS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATLANTIS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATLASEST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATLASEST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATMGRUPA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATMGRUPA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ATREM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ATREM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AUGA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AUGA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AUTOCALLSX7E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AUTOCALLSX7E.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AUTOPARTN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AUTOPARTN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AWBUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\AWBUD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BALTONA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BALTONA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BBIDEV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BBIDEV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BEDZIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BEDZIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BENEFIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BENEFIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BEST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BEST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETACOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETACOM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETAM40TR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETAM40TR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETANDXPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETANDXPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETAW20LV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETAW20LV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETAW20ST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETAW20ST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BETAW20TR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BETAW20TR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BGZBNPP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BGZBNPP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BIK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BIK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BIOMEDLUB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BIOMEDLUB.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BIOTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BIOTON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BNPPPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BNPPPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BOGDANKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BOGDANKA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BOOMBIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BOOMBIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BORYSZEW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BORYSZEW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BOS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BOWIM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BOWIM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BPHFIZMLI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BPHFIZMLI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BRASTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BRASTER.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BSCDRUK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BSCDRUK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BUDIMEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BUDIMEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BUMECH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\BUMECH.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CAPITAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CAPITAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CCC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CDPROJEKT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CDPROJEKT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CDRL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CDRL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CELTIC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CELTIC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CEZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CEZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CFI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CFI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CIECH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CIECH.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CIGAMES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CIGAMES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CITYSERV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CITYSERV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CLNPHARMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CLNPHARMA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CNT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="COALENERG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\COALENERG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="COGNOR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\COGNOR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="COMP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\COMP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="COMPERIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\COMPERIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CORMAY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CORMAY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CPGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CPGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CUBEITG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CUBEITG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CYFRPLSAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CYFRPLSAT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CZTOREBKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\CZTOREBKA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DADELO_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DADELO-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DATAWALK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DATAWALK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DEBICA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DEBICA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DECORA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DECORA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DEKPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DEKPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DELKO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DELKO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DEVELIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DEVELIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DGA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DGA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DIGITREE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DIGITREE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DINOPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DINOPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DOMDEV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DOMDEV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DREWEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DREWEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DROZAPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\DROZAPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ECHO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ECHO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EDINVEST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EDINVEST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EFEKT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EFEKT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EKOEXPORT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EKOEXPORT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELBUDOWA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ELBUDOWA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELEKTROTI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ELEKTROTI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELEMENTAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ELEMENTAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELKOP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ELKOP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ELZAB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ELZAB.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EMCINSMED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EMCINSMED.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENAP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENEA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENEA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENELMED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENELMED.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENERGA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENERGA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENERGOINS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENERGOINS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ENTER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ENTER.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ERBUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ERBUD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ERG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ERG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ERGIS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ERGIS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ESOTIQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ESOTIQ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ESSYSTEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ESSYSTEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ETFDAX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ETFDAX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ETFW20L" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ETFW20L.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EUCO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EUCO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EUROCASH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EUROCASH.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EUROHOLD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EUROHOLD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EUROTEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EUROTEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="EVEREST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\EVEREST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FAMUR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FAMUR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FASING" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FASING.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FASTFIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FASTFIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FEERUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FEERUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FERRO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FERRO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FERRUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FERRUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="FORTE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\FORTE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GAMEOPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GAMEOPS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GAMFACTOR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GAMFACTOR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GAMFACTOR_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GAMFACTOR-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GETIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GETIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GETINOBLE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GETINOBLE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GINOROSSI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GINOROSSI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GLCOSMED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GLCOSMED.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GOBARTO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GOBARTO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GPRE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GPRE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GPW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GPW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GRAVITON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GRAVITON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GROCLIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GROCLIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="GRODNO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\GRODNO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="GRUPAAZOTY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\GRUPAAZOTY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -156,6 +594,9 @@
   </data>
   <data name="HMINWEST" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\HMINWEST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="HOLLYWOOD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\HOLLYWOOD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="HUBSTYLE" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\HUBSTYLE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -187,17 +628,878 @@
   <data name="IMCOMPANY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\IMCOMPANY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="IMMOBILE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IMMOBILE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IMPEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IMPEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IMPERA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IMPERA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IMPEXMET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IMPEXMET.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IMS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IMS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INDYKPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INDYKPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INGBSK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INGBSK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INPRO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INPRO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INSTALKRK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INSTALKRK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INTERAOLT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INTERAOLT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INTERFERI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INTERFERI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INTERSPPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INTERSPPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INTROL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INTROL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVCEEFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVCEEFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVESTORMS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVESTORMS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVGLDFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVGLDFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVISTA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVISTA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="INVPEFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\INVPEFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IPOBENE3E" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IPOBENE3E.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IPOGPARPA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IPOGPARPA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IPOPEMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IPOPEMA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ITMTRADE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ITMTRADE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IZOBLOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IZOBLOK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IZOLACJA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IZOLACJA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="IZOSTAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\IZOSTAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JHMDEV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\JHMDEV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JSW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\JSW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JWCONSTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\JWCONSTR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="JWWINVEST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\JWWINVEST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="K2INTERNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\K2INTERNT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KANIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KANIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KBDOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KBDOM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KCI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KCI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KERNEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KERNEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KETY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KETY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KGHM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KGHM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KGL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KGL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KINOPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KINOPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KOGENERA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KOGENERA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KOMPAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KOMPAP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KOMPUTRON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KOMPUTRON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KONSSTALI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KONSSTALI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KPPD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KPPD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KRAKCHEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KRAKCHEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KREC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KREC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KREDYTIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KREDYTIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KREZUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KREZUS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KRKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KRKA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KRUK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KRUK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KRUSZWICA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KRUSZWICA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KRVITAMIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KRVITAMIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="KSGAGRO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\KSGAGRO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LABOPRINT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LABOPRINT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LARQ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LARQ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LCCORP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LCCORP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LENA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LENA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LENTEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LENTEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LIBET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LIBET.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LIVECHAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LIVECHAT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LMASFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LMASFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LMCSFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LMCSFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LMDSFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LMDSFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LMESFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LMESFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LOKUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LOKUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LOTOS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LOTOS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LPP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LPP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LSISOFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LSISOFT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LUBAWA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\LUBAWA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MABION" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MABION.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MAKARONPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MAKARONPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MANGATA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MANGATA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MARVIPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MARVIPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MASTERPHA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MASTERPHA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MAXCOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MAXCOM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MBANK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MBANK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MBWS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MBWS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MCI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MCI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MDIENERGIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MDIENERGIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MEDIACAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MEDIACAP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MEDICALG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MEDICALG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MEDINICE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MEDINICE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MEDYCZNYFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MEDYCZNYFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MENNICA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MENNICA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MEXPOLSKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MEXPOLSKA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MFO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MFO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MILKILAND" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MILKILAND.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MILLENNIUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MILLENNIUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MIRACULUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MIRACULUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MIRBUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MIRBUD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MLPGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MLPGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MLSYSTEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MLSYSTEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOBRUK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOBRUK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOJ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOJ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MONNARI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MONNARI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MORIZON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MORIZON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOSTALPLC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOSTALPLC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOSTALWAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOSTALWAR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MOSTALZAB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MOSTALZAB.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MUZA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MUZA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MWTRADE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\MWTRADE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NANOGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NANOGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NANOGROUP_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NANOGROUP-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NETIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NETIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NETMEDIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NETMEDIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NEUCA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NEUCA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NEWAG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NEWAG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NEXITY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NEXITY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NORTCOAST" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NORTCOAST.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NOVATURAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NOVATURAS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NOVAVISGR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NOVAVISGR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NOVITA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NOVITA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NOWAGALA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NOWAGALA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NTTSYSTEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\NTTSYSTEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OAT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ODLEWNIE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ODLEWNIE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OPENFIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OPENFIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OPERA3GR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OPERA3GR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OPONEO_PL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OPONEO.PL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OPTEAM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OPTEAM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ORANGEPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ORANGEPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ORBIS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ORBIS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ORION" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ORION.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ORZBIALY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ORZBIALY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OTLOG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OTLOG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OTMUCHOW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OTMUCHOW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="OVOSTAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\OVOSTAR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PAMAPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PAMAPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PANOVA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PANOVA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PATENTUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PATENTUS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PBKM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PBKM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PCCEXOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PCCEXOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PCCROKITA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PCCROKITA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PCFGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PCFGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PCFGROUP_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PCFGROUP-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PCM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PCM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PEKABEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PEKABEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="PEKAO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\PEKAO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PEMANAGER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PEMANAGER.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="PEP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\PEP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="PEPEES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PEPEES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PFLEIDER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PFLEIDER.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PGE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PGE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PGFGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PGFGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PGNIG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PGNIG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PGO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PGSSOFT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PGSSOFT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PHARMENA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PHARMENA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PHN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PHN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="PHOTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\PHOTON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="PKNORLEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKNORLEN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKOASZEWZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKOASZEWZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="PKOBP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\PKOBP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKOGD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKOGD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKOGS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKOGS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKOKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKOKS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKOSO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKOSO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PKPCARGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PKPCARGO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PLASTBOX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PLASTBOX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PLATYNINW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PLATYNINW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PLAY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PLAY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PLAYWAY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PLAYWAY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PLAZACNTR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PLAZACNTR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PMPG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PMPG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POLICE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POLICE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POLIMEXMS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POLIMEXMS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POLNORD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POLNORD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POLWAX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POLWAX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POLWAX_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POLWAX-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="POZBUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\POZBUD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRAGMAFA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PRAGMAFA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRAGMAINK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PRAGMAINK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRAIRIE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PRAIRIE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRIMAMODA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PRIMAMODA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PRIMETECH" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PRIMETECH.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PROCAD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PROCAD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PROCHEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PROCHEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PROJPRZEM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PROJPRZEM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PROTEKTOR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PROTEKTOR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PROVIDENT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PROVIDENT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PULAWY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PULAWY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PUNKPIRAT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PUNKPIRAT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PURE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PURE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PURE_PDA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PURE-PDA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PZU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PZU.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="PZUAKORD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\PZUAKORD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="QMULTIFIZ" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\QMULTIFIZ.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="QUANTUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\QUANTUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="R22" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\R22.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RADPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RADPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RAFAKO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RAFAKO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RAFAMET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RAFAMET.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RAINBOW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RAINBOW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RANKPROGR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RANKPROGR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RAWLPLUG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RAWLPLUG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="REDAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\REDAN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="REDWOOD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\REDWOOD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="REINO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\REINO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RELPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RELPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="REMAK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\REMAK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RESBUD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RESBUD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RESPECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RESPECT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RONSON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RONSON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ROPCZYCE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ROPCZYCE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RUBICON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RUBICON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RYVU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\RYVU.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SANOK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SANOK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SANPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SANPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SANPL2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SANPL2.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SANTANDER" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SANTANDER.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SANWIL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SANWIL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SARE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SARE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SECOGROUP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SECOGROUP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SEKO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SEKO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SELENAFM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SELENAFM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SELVITA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SELVITA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SERINUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SERINUS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SESCOM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SESCOM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SETANTA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SETANTA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SFINKS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SFINKS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SILVANO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SILVANO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SIMPLE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SIMPLE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SKARBIEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SKARBIEC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SKOTAN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SKOTAN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SKYLINE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SKYLINE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SLEEPZAG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SLEEPZAG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SNIEZKA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SNIEZKA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SOHODEV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SOHODEV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SOLAR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SOLAR.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SONEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SONEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SOPHARMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SOPHARMA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STALEXP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STALEXP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STALPROD" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STALPROD.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STALPROFI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STALPROFI.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STAPORKOW" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STAPORKOW.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STARHEDGE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STARHEDGE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="STELMET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\STELMET.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SUNEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SUNEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SUWARY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SUWARY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SWISSMED" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SWISSMED.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SYGNITY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SYGNITY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SYNEKTIK" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\SYNEKTIK.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TALANX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TALANX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TALEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TALEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TATRY" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TATRY.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TAURONPE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TAURONPE.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TBULL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TBULL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TERMOREX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TERMOREX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TESGAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TESGAS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TIM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TIM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TORPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TORPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TOWERINVT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TOWERINVT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TOYA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TOYA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TRAKCJA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TRAKCJA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TRANSPOL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TRANSPOL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TRIGONPP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TRIGONPP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TRITON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TRITON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TSGAMES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TSGAMES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TXM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\TXM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ULMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ULMA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ULTGAMES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ULTGAMES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UNIBEP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\UNIBEP.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UNICREDIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\UNICREDIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UNIMA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\UNIMA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UNIMOT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\UNIMOT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="URSUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\URSUS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VENTUREIN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VENTUREIN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VIGOSYS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VIGOSYS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VINDEXUS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VINDEXUS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VISTAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VISTAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VIVID" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VIVID.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VOTUM" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VOTUM.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VOXEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VOXEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VRG" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\VRG.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WADEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WADEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WARIMPEX" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WARIMPEX.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WASKO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WASKO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WAWEL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WAWEL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WIELTON" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WIELTON.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WIKANA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WIKANA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WIRTUALNA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WIRTUALNA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WITTCHEN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WITTCHEN.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WOJAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WOJAS.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WORKSERV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\WORKSERV.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XTB" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\XTB.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="XTPL" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\XTPL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="YOLO" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\YOLO.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ZAMET" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\ZAMET.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ZASTAL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\ZASTAL.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -216,5 +1518,17 @@
   </data>
   <data name="ZYWIEC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\TestData\ZYWIEC.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_06MAGNA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\06MAGNA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_11BIT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\11BIT.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_3RGAMES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\3RGAMES.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_4FUNMEDIA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\TestData\4FUNMEDIA.mst;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

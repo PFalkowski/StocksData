@@ -3,14 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using Extensions.Serialization.Csv;
 using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.TradingSimulator.TestData
+namespace Stocks.Data.UnitTests.TradingSimulator
 {
     public class CompaniesMock : TheoryData<List<Company>>
     {
