@@ -27,18 +27,15 @@ namespace Stocks.Data.TradingSimulator
             _projectSettings = projectSettings;
         }
 
-        public virtual SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig,
+        public virtual SimulationResult Simulate(List<StockQuote> allQuotesPrefilterd,
+            ITradingSimulationConfig tradingSimulationConfig,
             IProgressReportable progress = null)
         {
+
             Balance = tradingSimulationConfig.StartingCash;
             OpenedPositions.Clear();
             TransactionsLedger.Clear();
-            var result = new SimulationResult();
-
-            var allQuotesPrefilterd = _stockQuoteRepository
-                .GetAll(x => !_projectSettings.BlackListPattern.IsMatch(x.Ticker)
-                             && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
-                .ToList();
+            var result = new SimulationResult { TradingSimulationConfig = tradingSimulationConfig };
 
             var filteredQuotes = allQuotesPrefilterd.Where(x =>
                 x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate, tradingSimulationConfig.ToDate)).ToList();
@@ -82,10 +79,22 @@ namespace Stocks.Data.TradingSimulator
 
             result.TransactionsLedger = TransactionsLedger;
             result.FinalBalance = Balance;
-            result.TradingSimulationConfig = tradingSimulationConfig;
 
             return result;
         }
+
+        public virtual SimulationResult Simulate(ITradingSimulationConfig tradingSimulationConfig,
+            IProgressReportable progress = null)
+        {
+
+            var allQuotesPrefilterd = _stockQuoteRepository
+                .GetAll(x => !_projectSettings.BlackListPattern.IsMatch(x.Ticker)
+                             && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
+                .ToList();
+
+            return Simulate(allQuotesPrefilterd, tradingSimulationConfig, progress);
+        }
+
         public virtual List<StockQuote> GetSignals(ITradingSimulationConfig tradingSimulationConfig, DateTime date)
         {
             var allQuotesFromLastSession = _stockQuoteRepository.GetAllQuotesFromPreviousSession(date);

@@ -19,6 +19,10 @@ namespace Stocks.Data.Ef
                 .WithOne(c => c.Company)
                 .HasForeignKey(q => q.Ticker)
                 .HasPrincipalKey(q => q.Ticker);
+            modelBuilder.Entity<TradingSimulationResult>()
+                .HasKey(q => q.Id);
+            modelBuilder.Entity<TradingSimulationResult>()
+                .HasIndex(q => q.SimulationDate);
         }
         public virtual DbSet<Company> Company { get; set; }
     }

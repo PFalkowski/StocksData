@@ -93,7 +93,8 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
                 FromDate = new DateTime(2020, 01, 01),
                 ToDate = new DateTime(2021, 01, 01),
-                StartingCash = 1000
+                StartingCash = 1000,
+                TopN = 10
             };
             _stockQuoteRepositoryMock.Setup(x => x.GetAll(It.IsAny<Expression<Func<StockQuote, bool>>>()))
                 .Returns(flattenedQuotes.Where(z => !new Regex(@".*\d{3,}|WIG.*|RC.*|INTL.*|INTS.*|WIG.*|.*PP\d.*|.*BAHOLDING.*|CFI.*").IsMatch(z.Ticker)
