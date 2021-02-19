@@ -21,7 +21,7 @@ namespace Stocks.Data.ConsoleApp
 
         public override void ReportProgress(double rawProgressValue)
         {
-            _progressBar.Refresh((int)rawProgressValue, "Working");
+            _progressBar.Refresh((int)rawProgressValue, $"Remaining {RemainingTimeEstimate:hh:mm:ss}");
             base.ReportProgress(rawProgressValue);
         }
     }
