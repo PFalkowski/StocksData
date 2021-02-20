@@ -1,93 +1,80 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace Stocks.Data.Common.Models
 {
     public class ProjectSettings : IProjectSettings
     {
+        private readonly IConfiguration _configuration;
+
         public ProjectSettings(IConfiguration configuration)
         {
-            var settingsKeys = new List<string>();
-            foreach (var propertyInfo in typeof(ProjectSettings).GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (propertyInfo.CanWrite)
-                {
-                    settingsKeys.Add(propertyInfo.Name);
-                }
-            }
-            foreach (var settingKey in settingsKeys)
-            {
-                _settingsDictionary[settingKey] = configuration[settingKey];
-            }
+            _configuration = configuration;
         }
-
-        private readonly Dictionary<string, string> _settingsDictionary = new Dictionary<string, string>();
-
+        
         public string ProjectName
         {
-            get => _settingsDictionary[nameof(ProjectName)];
-            set => _settingsDictionary[nameof(ProjectName)] = value;
+            get => _configuration[nameof(ProjectName)];
+            set => _configuration[nameof(ProjectName)] = value;
         }
         public string OutputDirName
         {
-            get => _settingsDictionary[nameof(OutputDirName)];
-            set => _settingsDictionary[nameof(OutputDirName)] = value;
+            get => _configuration[nameof(OutputDirName)];
+            set => _configuration[nameof(OutputDirName)] = value;
         }
         public string ArchiveFileName
         {
-            get => _settingsDictionary[nameof(ArchiveFileName)];
-            set => _settingsDictionary[nameof(ArchiveFileName)] = value;
+            get => _configuration[nameof(ArchiveFileName)];
+            set => _configuration[nameof(ArchiveFileName)] = value;
         }
         public string UnzippedFilesDirectoryName
         {
-            get => _settingsDictionary[nameof(UnzippedFilesDirectoryName)];
-            set => _settingsDictionary[nameof(UnzippedFilesDirectoryName)] = value;
+            get => _configuration[nameof(UnzippedFilesDirectoryName)];
+            set => _configuration[nameof(UnzippedFilesDirectoryName)] = value;
         }
         public string QuotesFileExtension
         {
-            get => _settingsDictionary[nameof(QuotesFileExtension)];
-            set => _settingsDictionary[nameof(QuotesFileExtension)] = value;
+            get => _configuration[nameof(QuotesFileExtension)];
+            set => _configuration[nameof(QuotesFileExtension)] = value;
         }
         public string LogFileName
         {
-            get => _settingsDictionary[nameof(LogFileName)];
-            set => _settingsDictionary[nameof(LogFileName)] = value;
+            get => _configuration[nameof(LogFileName)];
+            set => _configuration[nameof(LogFileName)] = value;
         }
         public string QuotesDownloadUrl
         {
-            get => _settingsDictionary[nameof(QuotesDownloadUrl)];
-            set => _settingsDictionary[nameof(QuotesDownloadUrl)] = value;
+            get => _configuration[nameof(QuotesDownloadUrl)];
+            set => _configuration[nameof(QuotesDownloadUrl)] = value;
         }
         public string ConnectionString
         {
-            get => _settingsDictionary[nameof(ConnectionString)];
-            set => _settingsDictionary[nameof(ConnectionString)] = value;
+            get => _configuration[nameof(ConnectionString)];
+            set => _configuration[nameof(ConnectionString)] = value;
         }
         public bool ExcludeBlacklisted
         {
-            get => bool.Parse(_settingsDictionary[nameof(ExcludeBlacklisted)]);
-            set => _settingsDictionary[nameof(ExcludeBlacklisted)] = value.ToString();
+            get => bool.Parse(_configuration[nameof(ExcludeBlacklisted)]);
+            set => _configuration[nameof(ExcludeBlacklisted)] = value.ToString();
         }
         public string BlacklistPatternString
         {
-            get => _settingsDictionary[nameof(BlacklistPatternString)];
-            set => _settingsDictionary[nameof(BlacklistPatternString)] = value;
+            get => _configuration[nameof(BlacklistPatternString)];
+            set => _configuration[nameof(BlacklistPatternString)] = value;
         }
         public bool ExcludePennyStocks
         {
-            get => bool.Parse(_settingsDictionary[nameof(ExcludePennyStocks)]);
-            set => _settingsDictionary[nameof(ExcludePennyStocks)] = value.ToString();
+            get => bool.Parse(_configuration[nameof(ExcludePennyStocks)]);
+            set => _configuration[nameof(ExcludePennyStocks)] = value.ToString();
         }
         public double PennyStockThreshold
         {
-            get => double.Parse(_settingsDictionary[nameof(PennyStockThreshold)]);
-            set => _settingsDictionary[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
+            get => double.Parse(_configuration[nameof(PennyStockThreshold)]);
+            set => _configuration[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
         }
 
         public Regex BlackListPattern => new Regex(BlacklistPatternString);//, RegexOptions.Compiled ?
