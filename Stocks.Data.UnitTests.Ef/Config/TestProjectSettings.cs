@@ -10,7 +10,7 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
     public class TestProjectSettings : IProjectSettings
     {
         public Dictionary<string, string> SettingsDictionary { get; }
-        public string Name { get; set; }
+        public string ProjectName { get; set; }
         public string OutputDirName { get; set; }
         public string ArchiveFileName { get; set; }
         public string UnzippedFilesDirectoryName { get; set; }

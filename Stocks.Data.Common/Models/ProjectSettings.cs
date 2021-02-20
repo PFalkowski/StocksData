@@ -1,95 +1,97 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Stocks.Data.Common.Models
 {
     public class ProjectSettings : IProjectSettings
     {
-        public ProjectSettings()
+        public ProjectSettings(IConfiguration configuration)
         {
-            SettingsDictionary = new Dictionary<string, string>
+            var settingsKeys = new List<string>();
+            foreach (var propertyInfo in typeof(ProjectSettings).GetProperties(BindingFlags.Public | BindingFlags.Instance))
             {
-                {nameof(Name), "StockAnalysisProject1"},
-                {nameof(OutputDirName), "Output"},
-                {nameof(ArchiveFileName), "mstcgl.zip"},
-                {nameof(UnzippedFilesDirectoryName), "mstcgl"},
-                {nameof(QuotesFileExtension), "mst"},
-                {nameof(LogFileName), "StockAnalysisProjectLog"},
-                {nameof(QuotesDownloadUrl), "http://bossa.pl/pub/ciagle/mstock/mstcgl.zip"},
+                if (propertyInfo.CanWrite)
                 {
-                    nameof(ConnectionString),
-                    "server=(localdb)\\MSSQLLocalDB;Initial Catalog=StockQuotes;Integrated Security=True;"
-                },
-                {nameof(BlacklistPatternString), Constants.BlacklistPatternString},
-                {nameof(PennyStockThreshold), Constants.PennyStockThreshold.ToString(CultureInfo.InvariantCulture)},
-            };
+                    settingsKeys.Add(propertyInfo.Name);
+                }
+            }
+            foreach (var settingKey in settingsKeys)
+            {
+                _settingsDictionary[settingKey] = configuration[settingKey];
+            }
         }
-        public Dictionary<string, string> SettingsDictionary { get; private set; }
 
-        public string Name
+        private readonly Dictionary<string, string> _settingsDictionary = new Dictionary<string, string>();
+
+        public string ProjectName
         {
-            get => SettingsDictionary[nameof(Name)];
-            set => SettingsDictionary[nameof(Name)] = value;
+            get => _settingsDictionary[nameof(ProjectName)];
+            set => _settingsDictionary[nameof(ProjectName)] = value;
         }
         public string OutputDirName
         {
-            get => SettingsDictionary[nameof(OutputDirName)];
-            set => SettingsDictionary[nameof(OutputDirName)] = value;
+            get => _settingsDictionary[nameof(OutputDirName)];
+            set => _settingsDictionary[nameof(OutputDirName)] = value;
         }
         public string ArchiveFileName
         {
-            get => SettingsDictionary[nameof(ArchiveFileName)];
-            set => SettingsDictionary[nameof(ArchiveFileName)] = value;
+            get => _settingsDictionary[nameof(ArchiveFileName)];
+            set => _settingsDictionary[nameof(ArchiveFileName)] = value;
         }
         public string UnzippedFilesDirectoryName
         {
-            get => SettingsDictionary[nameof(UnzippedFilesDirectoryName)];
-            set => SettingsDictionary[nameof(UnzippedFilesDirectoryName)] = value;
+            get => _settingsDictionary[nameof(UnzippedFilesDirectoryName)];
+            set => _settingsDictionary[nameof(UnzippedFilesDirectoryName)] = value;
         }
         public string QuotesFileExtension
         {
-            get => SettingsDictionary[nameof(QuotesFileExtension)];
-            set => SettingsDictionary[nameof(QuotesFileExtension)] = value;
+            get => _settingsDictionary[nameof(QuotesFileExtension)];
+            set => _settingsDictionary[nameof(QuotesFileExtension)] = value;
         }
         public string LogFileName
         {
-            get => SettingsDictionary[nameof(LogFileName)];
-            set => SettingsDictionary[nameof(LogFileName)] = value;
+            get => _settingsDictionary[nameof(LogFileName)];
+            set => _settingsDictionary[nameof(LogFileName)] = value;
         }
         public string QuotesDownloadUrl
         {
-            get => SettingsDictionary[nameof(QuotesDownloadUrl)];
-            set => SettingsDictionary[nameof(QuotesDownloadUrl)] = value;
+            get => _settingsDictionary[nameof(QuotesDownloadUrl)];
+            set => _settingsDictionary[nameof(QuotesDownloadUrl)] = value;
         }
         public string ConnectionString
         {
-            get => SettingsDictionary[nameof(ConnectionString)];
-            set => SettingsDictionary[nameof(ConnectionString)] = value;
+            get => _settingsDictionary[nameof(ConnectionString)];
+            set => _settingsDictionary[nameof(ConnectionString)] = value;
+        }
+        public bool ExcludeBlacklisted
+        {
+            get => bool.Parse(_settingsDictionary[nameof(ExcludeBlacklisted)]);
+            set => _settingsDictionary[nameof(ExcludeBlacklisted)] = value.ToString();
         }
         public string BlacklistPatternString
         {
-            get => SettingsDictionary[nameof(BlacklistPatternString)];
-            set => SettingsDictionary[nameof(BlacklistPatternString)] = value;
+            get => _settingsDictionary[nameof(BlacklistPatternString)];
+            set => _settingsDictionary[nameof(BlacklistPatternString)] = value;
         }
         public bool ExcludePennyStocks
         {
-            get => bool.Parse(SettingsDictionary[nameof(ExcludePennyStocks)]);
-            set => SettingsDictionary[nameof(ExcludePennyStocks)] = value.ToString();
+            get => bool.Parse(_settingsDictionary[nameof(ExcludePennyStocks)]);
+            set => _settingsDictionary[nameof(ExcludePennyStocks)] = value.ToString();
         }
         public double PennyStockThreshold
         {
-            get => double.Parse(SettingsDictionary[nameof(PennyStockThreshold)]);
-            set => SettingsDictionary[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
+            get => double.Parse(_settingsDictionary[nameof(PennyStockThreshold)]);
+            set => _settingsDictionary[nameof(PennyStockThreshold)] = value.ToString(CultureInfo.InvariantCulture);
         }
 
         public Regex BlackListPattern => new Regex(BlacklistPatternString);//, RegexOptions.Compiled ?
-        public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Name, OutputDirName));
+        public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProjectName, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
         public FileInfo ArchiveFile => new FileInfo(Path.Combine(WorkingDirectory.FullName, ArchiveFileName));
         public DbContextOptions<DbContext> GetDbContextOptions => new DbContextOptionsBuilder<DbContext>()
@@ -102,10 +104,6 @@ namespace Stocks.Data.Common.Models
             {
                 WorkingDirectory.Create();
             }
-            //if (!UnzippedFilesDirectory.Exists)
-            //{
-            //    UnzippedFilesDirectory.Create();
-            //}
         }
 
         public void CleanOutputDirectory()
@@ -113,21 +111,6 @@ namespace Stocks.Data.Common.Models
             foreach (var file in UnzippedFilesDirectory.GetFiles())
             {
                 file.Delete();
-            }
-        }
-
-        public void ParseSettings(string[] args)
-        {
-            foreach (var arg in args)
-            {
-                var split = arg.TrimStart('-').Split("-");
-                var firstPart = split.FirstOrDefault();
-                var secondPart = split.LastOrDefault();
-                if (firstPart != null && secondPart != null &&
-                    SettingsDictionary.ContainsKey(firstPart))
-                {
-                    SettingsDictionary[firstPart] = secondPart;
-                }
             }
         }
     }

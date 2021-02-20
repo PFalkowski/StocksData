@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using AutoMapper;
+﻿using AutoMapper;
 using ConsoleUserInteractionHelper;
 using CsvHelper.Configuration;
 using LoggerLite;
@@ -16,20 +14,22 @@ using Stocks.Data.Common;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
-using Stocks.Data.Services;
 using Stocks.Data.Services.Tier0;
 using Stocks.Data.Services.Tier1;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Mapping;
 using Stocks.Data.TradingSimulator.Models;
+using System;
+using System.Globalization;
 
 namespace Stocks.Data.ConsoleApp.Startup
 {
     public static class SimpleInjectorInitialize
     {
-        public static async void Initialize(this Container container, IConfiguration configuration = null)
+        public static Container Initialize(this Container container, IConfiguration configuration)
         {
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+            container.RegisterInstance(typeof(IConfiguration), configuration);
             container.RegisterInstance(typeof(ILogger), new AggregateLogger(new ConsoleLogger(), new FileLoggerBase($"log {DateTime.Now:yyyy-MM-dd HH-mm-ss}.txt")));
 
             #region Services
@@ -75,15 +75,17 @@ namespace Stocks.Data.ConsoleApp.Startup
             #region Trading Simulators
             container.Register<ITradingSimulator, Top10TradingSimulator>();
             #endregion
-            
+
             #region Api
             container.Register<IStocksDataApi, StocksDataApi>();
             #endregion
 
             container.Verify();
+
+            return container;
         }
 
-        public static Scope BeginScopedLifestyleAsync(this Container container)
+        public static Scope BeginScopedLifestyle(this Container container)
         {
             return AsyncScopedLifestyle.BeginScope(container);
         }

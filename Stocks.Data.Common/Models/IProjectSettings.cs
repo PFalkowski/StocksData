@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
 
 namespace Stocks.Data.Common.Models
 {
     public interface IProjectSettings
     {
-        Dictionary<string, string> SettingsDictionary { get; }
-        string Name { get; set; }
+        string ProjectName { get; set; }
         string OutputDirName { get; set; }
         string ArchiveFileName { get; set; }
         string UnzippedFilesDirectoryName { get; set; }
@@ -26,6 +24,5 @@ namespace Stocks.Data.Common.Models
         DbContextOptions<DbContext> GetDbContextOptions { get; }
         void EnsureAllDirectoriesExist();
         void CleanOutputDirectory();
-        void ParseSettings(string[] args);
     }
 }
