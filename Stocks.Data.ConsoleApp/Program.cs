@@ -14,7 +14,6 @@ namespace Stocks.Data.ConsoleApp
     {
         static async Task Main(string[] args)
         {
-
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
@@ -23,12 +22,16 @@ namespace Stocks.Data.ConsoleApp
             
             await using var container = new Container();
             await using var scope = container.Initialize(configuration).BeginScopedLifestyle();
-            
 
             var logger = container.GetInstance<ILogger>();
             var projectSettings = container.GetInstance<IProjectSettings>();
             var api = container.GetInstance<IStocksDataApi>();
 
+            await RunUserLoop(logger, projectSettings, api);
+        }
+
+        private static async Task RunUserLoop(ILogger logger, IProjectSettings projectSettings, IStocksDataApi api)
+        {
             logger.LogInfo($"Hello in {projectSettings.ProjectName}. Type \"h\" for help \"q\" to exit.");
             string userInput;
 
@@ -36,7 +39,8 @@ namespace Stocks.Data.ConsoleApp
             {
                 try
                 {
-                    await api.Execute(userInput.Split(' '));
+                    var splitted = userInput.Split(' ');
+                    await api.Execute(splitted);
                 }
                 catch (Exception e)
                 {

@@ -28,7 +28,7 @@ namespace Stocks.Data.TradingSimulator
         }
 
         public virtual SimulationResult Simulate(List<StockQuote> allQuotesPrefilterd,
-            ITradingSimulationConfig tradingSimulationConfig,
+            TradingSimulationConfig tradingSimulationConfig,
             IProgressReportable progress = null)
         {
             var ledger = new TransactionsLedger(tradingSimulationConfig.StartingCash);
@@ -102,12 +102,12 @@ namespace Stocks.Data.TradingSimulator
             return result;
         }
 
-        public virtual List<StockQuote> GetSignals(ITradingSimulationConfig tradingSimulationConfig, DateTime date)
+        public virtual List<StockQuote> GetSignals(TradingSimulationConfig tradingSimulationConfig, DateTime date)
         {
             var allQuotesFromLastSession = StockQuoteRepository.GetAllQuotesFromPreviousSession(date);
             return GetTopN(tradingSimulationConfig, allQuotesFromLastSession, date);
         }
 
-        protected abstract List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date);
+        protected abstract List<StockQuote> GetTopN(TradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date);
     }
 }

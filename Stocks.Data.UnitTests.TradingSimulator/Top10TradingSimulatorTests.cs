@@ -21,7 +21,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
         private readonly Mock<IStockQuoteRepository> _stockQuoteRepositoryMock = new Mock<IStockQuoteRepository>();
         private readonly Mock<IProjectSettings> _projectSettingsMock = new Mock<IProjectSettings>();
 
-        private ITradingSimulationConfig TradingConfig => new TradingSimulationConfig
+        private TradingSimulationConfig TradingConfig => new TradingSimulationConfig
         {
             TopN = 10
         };

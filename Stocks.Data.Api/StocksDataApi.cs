@@ -5,44 +5,48 @@ using ProgressReporting;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
+using Stocks.Data.Services.Tier1;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Stocks.Data.Services.Tier1;
 
 namespace Stocks.Data.Api
 {
     public class StocksDataApi : IStocksDataApi
     {
+        private readonly ILogger _logger;
         private readonly IProjectSettings _projectSettings;
         private readonly IStockQuotesMigrationFromCsv _stockQuotesMigrationFromCsv;
         private readonly IStockQuotesDownloadService _stockQuotesDownloadService;
         private readonly IDatabaseManagementService _databaseManagementService;
-        private readonly ILogger _logger;
-        private readonly ITradingSimulationConfig _tradingSimulationConfig;
         private readonly ICompanyRepository _companyRepository;
         private readonly IStockQuoteRepository _stockQuoteRepository;
         private readonly ITradingSimulator _tradingSimulator;
+        private readonly ITradingSimulationResultRepository _tradingSimulationResultRepository;
+        private readonly IMapper _mapper;
         private readonly IProgressReportable _progressReporter;
+        private readonly Microsoft.Extensions.Configuration.IConfiguration _configuration;
 
-        public StocksDataApi(
+        public StocksDataApi(IMapper mapper,
+            ITradingSimulationResultRepository tradingSimulationResultRepository,
             IStockQuoteRepository stockQuoteRepository,
             ICompanyRepository companyRepository,
-            ITradingSimulationConfig tradingSimulationConfig,
             ILogger logger,
             IDatabaseManagementService databaseManagementService,
             IStockQuotesDownloadService stockQuotesDownloadService,
             IStockQuotesMigrationFromCsv stockQuotesMigrationFromCsv,
             IProjectSettings projectSettings,
             ITradingSimulator tradingSimulator,
-            IProgressReportable progressReporter)
+            IProgressReportable progressReporter,
+            Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
+            _mapper = mapper;
+            _tradingSimulationResultRepository = tradingSimulationResultRepository;
             _stockQuoteRepository = stockQuoteRepository;
             _companyRepository = companyRepository;
-            _tradingSimulationConfig = tradingSimulationConfig;
             _logger = logger;
             _databaseManagementService = databaseManagementService;
             _stockQuotesDownloadService = stockQuotesDownloadService;
@@ -50,6 +54,7 @@ namespace Stocks.Data.Api
             _projectSettings = projectSettings;
             _tradingSimulator = tradingSimulator;
             _progressReporter = progressReporter;
+            _configuration = configuration;
         }
 
         public async Task Execute(params string[] args)
@@ -57,6 +62,7 @@ namespace Stocks.Data.Api
             var command = args[0];
             var fromDate = default(DateTime?);
             var toDate = default(DateTime?);
+            var tradingSimulationConfig = default(TradingSimulationConfig);
             switch (command)
             {
                 case "h":
@@ -99,34 +105,46 @@ namespace Stocks.Data.Api
                     break;
 
                 case "simulate":
-                    fromDate = TryParseDateTime(args[1]);
-                    toDate = TryParseDateTime(args[2]);
+                    tradingSimulationConfig = TradingSimulationConfig.CreateFromConfig(_configuration);
 
-
-                    if (fromDate.HasValue && toDate.HasValue)
+                    if (args.Length >= 3)
                     {
-                        _tradingSimulationConfig.FromDate = fromDate.Value;
-                        _tradingSimulationConfig.ToDate = toDate.Value;
+                        fromDate = TryParseDateTime(args[1]);
+                        toDate = TryParseDateTime(args[2]);
+                        if (fromDate.HasValue && toDate.HasValue)
+                        {
+                            tradingSimulationConfig.FromDate = fromDate.Value;
+                            tradingSimulationConfig.ToDate = toDate.Value;
+                        }
                     }
 
                     var allQuotesPrefilterd = _stockQuoteRepository
                         .GetAll(x => !_projectSettings.BlackListPattern.IsMatch(x.Ticker)
-                                     && x.DateParsed.InOpenRange(_tradingSimulationConfig.FromDate.AddDays(-30), _tradingSimulationConfig.ToDate))
+                                     && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
                         .ToList();
-                    var simulationResult = _tradingSimulator.Simulate(allQuotesPrefilterd, _tradingSimulationConfig, _progressReporter);
+
+                    var simulationResult = _tradingSimulator.Simulate(allQuotesPrefilterd, tradingSimulationConfig, _progressReporter);
+
                     _logger.LogInfo(simulationResult.ToString());
                     break;
 
                 case "predict":
-                    var date = TryParseDateTime(args[1]);
-                    if (date.HasValue)
+                    if (args.Length >= 2)
                     {
-                        var prediction = _tradingSimulator.GetSignals(_tradingSimulationConfig, date.Value);
-                        _logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()} and config = {_tradingSimulationConfig}");
+                        var date = TryParseDateTime(args[1]);
+                        if (date.HasValue)
+                        {
+                            var prediction = _tradingSimulator.GetSignals(tradingSimulationConfig, date.Value);
+                            _logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()} and config = {tradingSimulationConfig}");
+                        }
+                        else
+                        {
+                            _logger.LogError($"{args[1]} is not a valid date. Enter date in format YYYY-MM-DD");
+                        }
                     }
                     else
                     {
-                        _logger.LogError($"{args[1]} is not a valid date. Enter date in format YYYY-MM-DD");
+                        _logger.LogError($"Enter date in format YYYY-MM-DD as second argument after empty space. Example: predict 2020-01-01");
                     }
                     break;
 
@@ -136,7 +154,7 @@ namespace Stocks.Data.Api
             }
         }
 
-        private DateTime? TryParseDateTime(string input)
+        private static DateTime? TryParseDateTime(string input)
         {
             var result = DateTime.TryParse(input, out var date);
 

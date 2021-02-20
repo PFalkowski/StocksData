@@ -57,7 +57,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
             }
 
-            protected override List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
+            protected override List<StockQuote> GetTopN(TradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
             {
                 throw new NotImplementedException();
             }

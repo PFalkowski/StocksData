@@ -6,6 +6,7 @@ using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProgressReporting;
 
 namespace Stocks.Data.TradingSimulator
 {
@@ -16,7 +17,7 @@ namespace Stocks.Data.TradingSimulator
             IProjectSettings projectSettings)
             : base(logger, stockQuoteRepository, projectSettings) { }
 
-        protected override List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
+        protected override List<StockQuote> GetTopN(TradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
         {
             var allQuotesBeforeTradeDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date < date.Date).ToList();
             var nMinusOneDay = allQuotesBeforeTradeDay.Select(x => x.DateParsed).Max();
@@ -28,6 +29,15 @@ namespace Stocks.Data.TradingSimulator
                 .ToList();
 
             return topN;
+        }
+
+        public override SimulationResult Simulate(List<StockQuote> allQuotesPrefilterd, TradingSimulationConfig tradingSimulationConfig,
+            IProgressReportable progress = null)
+        {
+            var result = base.Simulate(allQuotesPrefilterd, tradingSimulationConfig, progress);
+            result.SimulatorName = nameof(Top10TradingSimulator);
+
+            return result;
         }
     }
 }
