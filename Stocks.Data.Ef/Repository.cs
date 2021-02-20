@@ -38,5 +38,10 @@ namespace Stocks.Data.Ef
 
         public virtual void AddOrUpdate(TEntity entity)
             => Entities.Update(entity);
+
+        public virtual int SaveChanges()
+        {
+            return Context.SaveChanges();
+        }
     }
 }

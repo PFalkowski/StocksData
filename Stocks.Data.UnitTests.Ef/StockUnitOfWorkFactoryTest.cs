@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef;
 using Stocks.Data.UnitTests.Ef.Test.Config;
 using Xunit;

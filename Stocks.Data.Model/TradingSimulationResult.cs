@@ -18,7 +18,5 @@ namespace Stocks.Data.Model
         public DateTime FromDateInclusive { get; set; }
         public DateTime ToDateInclusive { get; set; }
         public int TopN { get; set; }
-        public double LowerPriceChangeFilter { get; set; }
-        public double UpperPriceChangeFilter { get; set; }
     }
 }

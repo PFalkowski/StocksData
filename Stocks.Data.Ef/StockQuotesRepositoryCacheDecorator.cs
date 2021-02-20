@@ -23,8 +23,8 @@ namespace Stocks.Data.Ef
 
         private void EnsureCacheExists()
         {
-            
-            if (_cache == null) 
+
+            if (_cache == null)
                 RebuildCache();
         }
 
@@ -97,43 +97,43 @@ namespace Stocks.Data.Ef
         public void Add(StockQuote entity)
         {
             _stockQuoteRepository.Add(entity);
-            RebuildCache();
         }
 
         public void AddOrUpdate(StockQuote entity)
         {
             _stockQuoteRepository.AddOrUpdate(entity);
-            RebuildCache();
         }
 
         public void AddRange(IEnumerable<StockQuote> entities)
         {
             _stockQuoteRepository.AddRange(entities);
-            RebuildCache();
         }
 
         public void Remove(StockQuote entity)
         {
             _stockQuoteRepository.Remove(entity);
-            RebuildCache();
         }
 
         public void RemoveAll(Expression<Func<StockQuote, bool>> predicate)
         {
             _stockQuoteRepository.RemoveAll(predicate);
-            RebuildCache();
         }
 
         public void RemoveAll()
         {
             _stockQuoteRepository.RemoveAll();
+        }
+
+        public int SaveChanges()
+        {
             RebuildCache();
+
+            return _cache.Count;
         }
 
         public void RemoveRange(IEnumerable<StockQuote> entities)
         {
             _stockQuoteRepository.RemoveRange(entities);
-            RebuildCache();
         }
 
         public void Dispose()
