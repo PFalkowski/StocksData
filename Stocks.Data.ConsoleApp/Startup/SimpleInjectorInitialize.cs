@@ -50,7 +50,6 @@ namespace Stocks.Data.ConsoleApp.Startup
             container.RegisterInstance(typeof(CultureInfo), CultureInfo.InvariantCulture);
             container.Register<ClassMap<StockQuote>, StockQuoteCsvClassMap>();
             container.Register<IProjectSettings, ProjectSettings>();
-            container.Register<ITradingSimulationConfig, TradingSimulationConfig>();
             var mapperConfig = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<TradingSimulatorAutoMapperProfile>();

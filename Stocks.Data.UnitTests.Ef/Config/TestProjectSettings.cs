@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Common.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -9,13 +8,13 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
 {
     public class TestProjectSettings : IProjectSettings
     {
-        public Dictionary<string, string> SettingsDictionary { get; }
         public string ProjectName { get; set; }
         public string OutputDirName { get; set; }
         public string ArchiveFileName { get; set; }
         public string UnzippedFilesDirectoryName { get; set; }
         public string QuotesFileExtension { get; set; }
         public string LogFileName { get; set; }
+        public bool ExcludeBlacklisted { get; }
         public string QuotesDownloadUrl { get; set; }
         public string ConnectionString { get; set; }
         public string BlacklistPatternString { get; set; }
@@ -34,11 +33,6 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         }
 
         public void CleanOutputDirectory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ParseSettings(string[] args)
         {
             throw new NotImplementedException();
         }
