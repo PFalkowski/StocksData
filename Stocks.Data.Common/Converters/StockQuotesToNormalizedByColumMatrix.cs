@@ -1,8 +1,8 @@
-﻿using StandardInterfaces;
+﻿using System.Collections.Generic;
+using StandardInterfaces;
 using Stocks.Data.Model;
-using System.Collections.Generic;
 
-namespace Stocks.Data.Infrastructure.Converters
+namespace Stocks.Data.Common.Converters
 {
     public class StockQuotesToNormalizedByColumMatrix : IConverter<List<StockQuote>, double[][]>
     {

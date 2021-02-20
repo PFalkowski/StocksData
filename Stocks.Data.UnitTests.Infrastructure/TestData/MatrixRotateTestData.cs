@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure.TestData
+namespace Stocks.Data.UnitTests.Common.TestData
 {
     public class MatrixRotateTestData : TheoryData<(double[][] input, double[][] expectedOutput)>
     {

@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>Stocks.Data.Infrastructure.Test</AssemblyName>
+    <AssemblyName>Stocks.Data.Common.Test</AssemblyName>
 
     <Configurations>Debug;Release;Pack</Configurations>
   </PropertyGroup>
@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
+    <ProjectReference Include="..\Stocks.Data.Common\Stocks.Data.Common.csproj" />
     <ProjectReference Include="..\Stocks.Data.Model\Stocks.Data.Model.csproj" />
   </ItemGroup>
 

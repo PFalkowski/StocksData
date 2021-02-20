@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using NSubstitute;
 using Stocks.Data.Model;
 using Stocks.Data.Services;
+using Stocks.Data.Services.Tier0;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Services

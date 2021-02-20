@@ -1,8 +1,8 @@
-﻿using Stocks.Data.Infrastructure.Converters;
-using Stocks.Data.UnitTests.Infrastructure.TestData;
+﻿using Stocks.Data.Common.Converters;
+using Stocks.Data.UnitTests.Common.TestData;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure
+namespace Stocks.Data.UnitTests.Common
 {
     public class RotateMatrixTest
     {

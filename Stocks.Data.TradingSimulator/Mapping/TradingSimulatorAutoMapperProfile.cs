@@ -2,6 +2,7 @@
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
 using System;
+using System.Xml;
 using System.Linq;
 
 namespace Stocks.Data.TradingSimulator.Mapping

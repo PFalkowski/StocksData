@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using LoggerLite;
+using Moq;
 using NUnit.Framework;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator;
+using Stocks.Data.TradingSimulator.Mapping;
 using Stocks.Data.TradingSimulator.Models;
 
 namespace Stocks.Data.UnitTests.TradingSimulator

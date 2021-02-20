@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Stocks.Data.Common.Models;
 
-namespace Stocks.Data.Api.Services
+namespace Stocks.Data.Services.Tier1
 {
     public interface IStockQuotesMigrationFromCsv
     {

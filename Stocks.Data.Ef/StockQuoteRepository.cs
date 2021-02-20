@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Extensions.Standard;
 using Microsoft.EntityFrameworkCore;
+using StandardInterfaces;
 using Stocks.Data.Model;
 
 namespace Stocks.Data.Ef

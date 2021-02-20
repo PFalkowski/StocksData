@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
 using StandardInterfaces;
 
 namespace Stocks.Data.Model

@@ -1,13 +1,13 @@
-﻿using LoggerLite;
-using Services.IO;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using LoggerLite;
+using Services.IO;
 using Stocks.Data.Common.Models;
 
-namespace Stocks.Data.Api.Services
+namespace Stocks.Data.Services.Tier1
 {
     public class StockQuotesDownloadService : IStockQuotesDownloadService
     {

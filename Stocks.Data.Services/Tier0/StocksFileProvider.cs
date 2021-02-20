@@ -4,7 +4,7 @@ using System.IO;
 using Services.IO;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Services
+namespace Stocks.Data.Services.Tier0
 {
     public class StocksFileProvider : IStocksFileProvider
     {

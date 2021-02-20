@@ -1,5 +1,4 @@
 ﻿using LoggerLite;
-using Stocks.Data.Api.Services;
 using Stocks.Data.Model;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +6,7 @@ using System.Threading.Tasks;
 using SimpleInjector;
 using Stocks.Data.Api.TestHarness.Startup;
 using Stocks.Data.Common.Models;
+using Stocks.Data.Services.Tier1;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.Api.TestHarness

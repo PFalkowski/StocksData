@@ -5,10 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Services.IO;
 using SimpleInjector;
 using Stocks.Data.Ado;
-using Stocks.Data.Api.Services;
-using Stocks.Data.Infrastructure;
+using Stocks.Data.Common;
 using Stocks.Data.Model;
 using Stocks.Data.Services;
+using Stocks.Data.Services.Tier0;
+using Stocks.Data.Services.Tier1;
 
 namespace Stocks.Data.Api.TestHarness.Startup
 {

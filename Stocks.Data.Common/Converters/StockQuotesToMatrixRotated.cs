@@ -2,7 +2,7 @@
 using StandardInterfaces;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Infrastructure.Converters
+namespace Stocks.Data.Common.Converters
 {
     public class StockQuotesToMatrixRotated : IConverter<List<StockQuote>, double[][]>
     {

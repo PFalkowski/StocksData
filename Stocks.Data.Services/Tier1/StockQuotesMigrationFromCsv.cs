@@ -9,9 +9,9 @@ using Services.IO;
 using Stocks.Data.Ado;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Model;
-using Stocks.Data.Services;
+using Stocks.Data.Services.Tier0;
 
-namespace Stocks.Data.Api.Services
+namespace Stocks.Data.Services.Tier1
 {
     public class StockQuotesMigrationFromCsv : IStockQuotesMigrationFromCsv
     {

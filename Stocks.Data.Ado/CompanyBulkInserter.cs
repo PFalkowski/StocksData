@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
 using LoggerLite;
-using Stocks.Data.Infrastructure;
+using Stocks.Data.Common;
 
 namespace Stocks.Data.Ado
 {

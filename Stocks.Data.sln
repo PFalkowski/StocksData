@@ -7,13 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Model", "Stocks
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Ef", "Stocks.Data.Ef\Stocks.Data.Ef.csproj", "{9C18CB04-D9E2-4F37-BB1D-0B632B6AA32D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Infrastructure", "Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj", "{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{DCE59B71-F1E3-4428-8ADE-2F61D3511609}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.UnitTests.Ef", "Stocks.Data.UnitTests.Ef\Stocks.Data.UnitTests.Ef.csproj", "{9B11A70A-B6F0-4202-901F-AF1E52AF7058}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.UnitTests.Infrastructure", "Stocks.Data.UnitTests.Infrastructure\Stocks.Data.UnitTests.Infrastructure.csproj", "{80EA4F23-4D94-48AB-8B92-73A795C27678}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.UnitTests.Common", "Stocks.Data.UnitTests.Infrastructure\Stocks.Data.UnitTests.Common.csproj", "{80EA4F23-4D94-48AB-8B92-73A795C27678}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.UnitTests.Model", "Stocks.Data.UnitTests.Model\Stocks.Data.UnitTests.Model.csproj", "{5A866C2E-451B-427E-BF84-FEEAE2E25110}"
 EndProject
@@ -39,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.TradingSimulato
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.Common", "Stocks.Data.Common\Stocks.Data.Common.csproj", "{44A63088-A184-4B6C-8CF5-765FDA39BEC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Data.UnitTests.TradingSimulator", "Stocks.Data.UnitTests.TradingSimulator\Stocks.Data.UnitTests.TradingSimulator.csproj", "{4440140F-5747-429E-874F-450C90F77E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Data.UnitTests.TradingSimulator", "Stocks.Data.UnitTests.TradingSimulator\Stocks.Data.UnitTests.TradingSimulator.csproj", "{4440140F-5747-429E-874F-450C90F77E03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,12 +58,6 @@ Global
 		{9C18CB04-D9E2-4F37-BB1D-0B632B6AA32D}.Pack|Any CPU.Build.0 = Pack|Any CPU
 		{9C18CB04-D9E2-4F37-BB1D-0B632B6AA32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C18CB04-D9E2-4F37-BB1D-0B632B6AA32D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Pack|Any CPU.ActiveCfg = Pack|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Pack|Any CPU.Build.0 = Pack|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C835BC1-945B-4E48-B7D5-9F37F43AF1FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B11A70A-B6F0-4202-901F-AF1E52AF7058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B11A70A-B6F0-4202-901F-AF1E52AF7058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B11A70A-B6F0-4202-901F-AF1E52AF7058}.Pack|Any CPU.ActiveCfg = Pack|Any CPU

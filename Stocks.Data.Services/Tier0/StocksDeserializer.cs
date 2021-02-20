@@ -5,7 +5,7 @@ using CsvHelper.Configuration;
 using Extensions.Serialization.Csv;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Services
+namespace Stocks.Data.Services.Tier0
 {
     public class StocksDeserializer : IStocksDeserializer
     {

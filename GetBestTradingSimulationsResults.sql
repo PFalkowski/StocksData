@@ -1,0 +1,1 @@
+﻿select * from TradingSimulationResult order by ReturnOnInvestment desc

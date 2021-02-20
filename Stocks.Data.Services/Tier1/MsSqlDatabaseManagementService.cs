@@ -1,11 +1,11 @@
-﻿using LoggerLite;
-using Microsoft.EntityFrameworkCore;
-using Stocks.Data.Ef;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using LoggerLite;
+using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Common.Models;
+using Stocks.Data.Ef;
 
-namespace Stocks.Data.Api.Services
+namespace Stocks.Data.Services.Tier1
 {
     public class MsSqlDatabaseManagementService : IDatabaseManagementService
     {

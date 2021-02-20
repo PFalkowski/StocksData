@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Services
+namespace Stocks.Data.Services.Tier0
 {
     public interface IStocksDeserializer
     {

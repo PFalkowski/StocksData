@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace Stocks.Data.TradingSimulator.Models
 {

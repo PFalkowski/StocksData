@@ -1,8 +1,8 @@
-﻿using Extensions.Standard;
+﻿using System.Linq;
+using Extensions.Standard;
 using StandardInterfaces;
-using System.Linq;
 
-namespace Stocks.Data.Infrastructure.Converters
+namespace Stocks.Data.Common.Converters
 {
     public class NormalizeByColumn : IConverter<double[][], double[][]>
     {

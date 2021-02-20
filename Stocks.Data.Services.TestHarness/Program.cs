@@ -1,15 +1,16 @@
 ﻿using Extensions.Standard;
 using LoggerLite;
 using Services.IO;
-using Stocks.Data.Api.Services;
-using Stocks.Data.Infrastructure;
 using Stocks.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Stocks.Data.Common;
 using Stocks.Data.Common.Models;
+using Stocks.Data.Services.Tier0;
+using Stocks.Data.Services.Tier1;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.Services.TestHarness

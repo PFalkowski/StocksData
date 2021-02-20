@@ -1,4 +1,4 @@
-﻿namespace Stocks.Data.Infrastructure
+﻿namespace Stocks.Data.Common
 {
     public static class Constants
     {

@@ -1,7 +1,7 @@
-﻿using StandardInterfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using StandardInterfaces;
 
-namespace Stocks.Data.Infrastructure.Converters
+namespace Stocks.Data.Common.Converters
 {
     public class RotateMatrix : IConverter<double[][], double[][]>
     {

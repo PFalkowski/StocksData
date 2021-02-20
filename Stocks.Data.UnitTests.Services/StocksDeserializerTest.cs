@@ -3,6 +3,7 @@ using Stocks.Data.UnitTests.Services.Mocks;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Stocks.Data.Services.Tier0;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Services

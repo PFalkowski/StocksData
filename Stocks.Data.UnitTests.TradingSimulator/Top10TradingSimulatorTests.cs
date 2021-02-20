@@ -1,6 +1,7 @@
 ﻿using Extensions.Standard;
 using LoggerLite;
 using Moq;
+using MoreLinq;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;

@@ -1,10 +1,10 @@
-﻿using Stocks.Data.Infrastructure.Converters;
+﻿using System.Collections.Generic;
+using Stocks.Data.Common.Converters;
 using Stocks.Data.Model;
-using Stocks.Data.UnitTests.Infrastructure.TestData;
-using System.Collections.Generic;
+using Stocks.Data.UnitTests.Common.TestData;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure
+namespace Stocks.Data.UnitTests.Common
 {
     public class StockQuotesToNormalizedByColumnMatrixTest
     {

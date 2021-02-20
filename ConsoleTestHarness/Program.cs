@@ -4,10 +4,10 @@ using System.IO;
 using System.Threading.Tasks;
 using LoggerLite;
 using Microsoft.EntityFrameworkCore;
-using Stocks.Data.Api.Services;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
+using Stocks.Data.Services.Tier1;
 
 namespace Stocks.Data.ConsoleTestHarness
 {

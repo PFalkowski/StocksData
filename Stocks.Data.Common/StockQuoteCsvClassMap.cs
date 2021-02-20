@@ -1,7 +1,7 @@
 ﻿using CsvHelper.Configuration;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Infrastructure
+namespace Stocks.Data.Common
 {
     public sealed class StockQuoteCsvClassMap : ClassMap<StockQuote>
     {

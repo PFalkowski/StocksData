@@ -2,7 +2,7 @@
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure.TestData
+namespace Stocks.Data.UnitTests.Common.TestData
 {
     public class NormalizedRotatedTestData : TheoryData<(List<StockQuote> input, double[][] expectedOutput)>
     {

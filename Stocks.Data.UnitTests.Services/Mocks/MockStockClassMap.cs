@@ -1,5 +1,5 @@
 ﻿using CsvHelper.Configuration;
-using Stocks.Data.Infrastructure;
+using Stocks.Data.Common;
 using Stocks.Data.Model;
 
 namespace Stocks.Data.UnitTests.Services.Mocks

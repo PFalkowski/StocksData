@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Stocks.Data.Api\Stocks.Data.Api.csproj" />
     <ProjectReference Include="..\Stocks.Data.Ef\Stocks.Data.Ef.csproj" />
-    <ProjectReference Include="..\Stocks.Data.Infrastructure\Stocks.Data.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

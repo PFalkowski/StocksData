@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Stocks.Data.Model;
 using Xunit;
 
-namespace Stocks.Data.UnitTests.Infrastructure.TestData
+namespace Stocks.Data.UnitTests.Common.TestData
 {
     public class RotatedTestData : TheoryData<Tuple<List<StockQuote>, double[][]>>
     {

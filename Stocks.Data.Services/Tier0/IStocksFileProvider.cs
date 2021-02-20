@@ -2,7 +2,7 @@
 using System.IO;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Services
+namespace Stocks.Data.Services.Tier0
 {
     public interface IStocksFileProvider
     {

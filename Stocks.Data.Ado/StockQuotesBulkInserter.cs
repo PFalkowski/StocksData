@@ -4,8 +4,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 using LoggerLite;
+using Stocks.Data.Common;
 using Stocks.Data.Model;
-using Stocks.Data.Infrastructure;
 
 namespace Stocks.Data.Ado
 {
