@@ -10,6 +10,8 @@ using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Extensions.Standard;
 using static ConsoleUserInteractionHelper.ConsoleHelper;
 
 namespace Stocks.Data.ConsoleApp
@@ -35,16 +37,19 @@ namespace Stocks.Data.ConsoleApp
             var quotesDownloader = Container.GetInstance<IStockQuotesDownloadService>();
             var dbManagementSvc = Container.GetInstance<IDatabaseManagementService>();
             var logger = Container.GetInstance<ILogger>();
-            var tradingConfig = Container.GetInstance<ITradingSimulationConfig>();
+            var tradingSimulationConfig = Container.GetInstance<ITradingSimulationConfig>();
 
             await using var scope = AsyncScopedLifestyle.BeginScope(Container);
             using var companyRepository = Container.GetInstance<ICompanyRepository>();
             using var stockQuoteRepository = Container.GetInstance<IStockQuoteRepository>();
+            using var tradingSimulationResultRepository = Container.GetInstance<ITradingSimulationResultRepository>();
             var simulator = Container.GetInstance<ITradingSimulator>();
+            var mapper = Container.GetInstance<IMapper>();
 
             logger.LogInfo($"Hello in {projectSettings.Name}. Type \"h\" for help");
             string userInput;
 
+            var progressReporter = new ConsoleProgressReporter();
             while (!(userInput = GetNonEmptyStringFromUser()).Equals("q", StringComparison.OrdinalIgnoreCase))
             {
                 switch (userInput)
@@ -53,7 +58,7 @@ namespace Stocks.Data.ConsoleApp
                         await quotesDownloader.Download(projectSettings);
                         break;
                     case "migrate":
-                        await api.Migrate(projectSettings, TargetLocation.ZipArchive);
+                        await api.Migrate(projectSettings, TargetLocation.Directory);
                         logger.LogInfo("Successfully migrated data to database.");
                         break;
                     case "dropDb":
@@ -73,20 +78,25 @@ namespace Stocks.Data.ConsoleApp
                         }
                         break;
                     case "simulate":
-                        var progressReporter = new ConsoleProgressReporter();
                         logger.LogInfo("Enter starting date in format YYYY-MM-DD: ");
-                        tradingConfig.FromDate = GetDateFromUser();
+                        tradingSimulationConfig.FromDate = GetDateFromUser();
                         logger.LogInfo("Enter end date in format YYYY-MM-DD: ");
-                        tradingConfig.ToDate = GetDateFromUser();
-                        tradingConfig.StartingCash = 1000;
-                        var simulationResult = simulator.Simulate(tradingConfig, progressReporter);
+                        tradingSimulationConfig.ToDate = GetDateFromUser();
+                        tradingSimulationConfig.StartingCash = 1000;
+                        
+
+                        var allQuotesPrefilterd = stockQuoteRepository
+                            .GetAll(x => !projectSettings.BlackListPattern.IsMatch(x.Ticker)
+                                         && x.DateParsed.InOpenRange(tradingSimulationConfig.FromDate.AddDays(-30), tradingSimulationConfig.ToDate))
+                            .ToList();
+                        var simulationResult = simulator.Simulate(allQuotesPrefilterd, tradingSimulationConfig, progressReporter);
                         logger.LogInfo(simulationResult.ToString());
                         break;
                     case "predict":
                         logger.LogInfo("Enter date in format YYYY-MM-DD: ");
                         var date = GetDateFromUser();
-                        var prediction = simulator.GetSignals(tradingConfig, date);
-                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()} and config = {tradingConfig}");
+                        var prediction = simulator.GetSignals(tradingSimulationConfig, date);
+                        logger.LogInfo($"Stonks to buy: {string.Join(", ", prediction.Select(x => x.Ticker).OrderBy(x => x))}. Used prediction made with data from session {prediction.Select(x => x.DateParsed).First()} and config = {tradingSimulationConfig}");
                         break;
                     case "cleanDir":
                         projectSettings.CleanOutputDirectory();

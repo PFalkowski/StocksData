@@ -1,19 +1,19 @@
-﻿using Extensions.Standard;
-using LoggerLite;
-using ProgressReporting;
+﻿using LoggerLite;
+using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Stocks.Data.Common.Models;
 
 namespace Stocks.Data.TradingSimulator
 {
     public class Top10TradingSimulator : TradingSimulatorBase
     {
-        public Top10TradingSimulator(ILogger logger, IStockQuoteRepository stockQuoteRepository, IProjectSettings projectSettings)
+        public Top10TradingSimulator(ILogger logger,
+            IStockQuoteRepository stockQuoteRepository, 
+            IProjectSettings projectSettings)
             : base(logger, stockQuoteRepository, projectSettings) { }
 
         protected override List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)

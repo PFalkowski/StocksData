@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using LoggerLite;
-using Moq;
 using NUnit.Framework;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
@@ -12,11 +11,8 @@ using Stocks.Data.TradingSimulator.Models;
 
 namespace Stocks.Data.UnitTests.TradingSimulator
 {
-    public class TradingSimulatorBaseTests
+    public class TransactionsLedgerTests
     {
-        private readonly Mock<ILogger> _loggerMock = new Mock<ILogger>();
-        private readonly Mock<IStockQuoteRepository> _stockQuoteRepositoryMock = new Mock<IStockQuoteRepository>();
-        private readonly Mock<IProjectSettings> _projectSettingsMock = new Mock<IProjectSettings>();
         private const string Ticker = nameof(Ticker);
         private StockQuote quote1 = new StockQuote
         {
@@ -49,12 +45,13 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             PriceToEarningsRatio = 2
         };
 
-        class SetBalanceOnTestedObject : TradingSimulatorBase
+        private class SetBalanceOnTestedObject : TradingSimulatorBase
         {
-            public SetBalanceOnTestedObject(double balance, ILogger logger, IStockQuoteRepository stockQuoteRepository, IProjectSettings projectSettings)
+            public SetBalanceOnTestedObject(ILogger logger,
+                IStockQuoteRepository stockQuoteRepository,
+                IProjectSettings projectSettings)
                 : base(logger, stockQuoteRepository, projectSettings)
             {
-                Balance = balance;
             }
 
             protected override List<StockQuote> GetTopN(ITradingSimulationConfig tradingSimulationConfig, List<StockQuote> allQuotesPrefilterd, DateTime date)
@@ -63,6 +60,9 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             }
         }
 
+        private const double InitialBalance = 1000;
+
+        private TransactionsLedger _tested => new TransactionsLedger(InitialBalance);
 
         [SetUp]
         public void Setup()
@@ -76,7 +76,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
             const int volume = 10;
             const int buyPrice = 11;
-            var tested = new SetBalanceOnTestedObject(0, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = new TransactionsLedger(0);
 
             // Act
 
@@ -86,7 +86,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(OrderStatusType.DeniedInsufficientFunds, result);
-                Assert.False(tested.TransactionsLedger.Any());
+                Assert.False(tested.TheLedger.Any());
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
@@ -97,17 +97,15 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
             const int volume = 10;
             const double buyPrice = 14.01;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
             // Act
-
+            var tested = _tested;
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
 
             // Assert
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(OrderStatusType.DeniedOutOfRange, result);
-                Assert.False(tested.TransactionsLedger.Any());
+                Assert.False(tested.TheLedger.Any());
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
@@ -119,8 +117,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
             const int volume = 10;
             const int buyPrice = 11;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -129,13 +126,13 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(OrderStatusType.Accepted, result);
-                Assert.AreEqual(balance - buyPrice * volume, tested.Balance);
+                Assert.AreEqual(_tested.Balance - buyPrice * volume, tested.Balance);
 
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.Single().Ticker);
-                Assert.AreEqual(quote1.DateParsed, tested.TransactionsLedger.Single().Date);
-                Assert.AreEqual(buyPrice, tested.TransactionsLedger.Single().Price);
-                Assert.AreEqual(volume, tested.TransactionsLedger.Single().Volume);
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.Single().TransactionType);
+                Assert.AreEqual(Ticker, tested.TheLedger.Single().Ticker);
+                Assert.AreEqual(quote1.DateParsed, tested.TheLedger.Single().Date);
+                Assert.AreEqual(buyPrice, tested.TheLedger.Single().Price);
+                Assert.AreEqual(volume, tested.TheLedger.Single().Volume);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.Single().TransactionType);
                 Assert.AreEqual(Ticker, tested.OpenedPositions.Single().Key);
                 Assert.AreEqual(buyPrice, tested.OpenedPositions.Single().Value.Price);
                 Assert.AreEqual(volume, tested.OpenedPositions.Single().Value.Volume);
@@ -151,8 +148,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int volume2 = 10;
             const int buyPrice = 11;
             const int buyPrice2 = 11;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -163,22 +159,22 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
                 Assert.AreEqual(OrderStatusType.Accepted, result);
                 Assert.AreEqual(OrderStatusType.Accepted, result2);
-                Assert.AreEqual(balance - buyPrice * volume * 2, tested.Balance);
+                Assert.AreEqual(_tested.Balance - buyPrice * volume * 2, tested.Balance);
 
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.First().Ticker);
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.Last().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.First().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.Last().Ticker);
 
-                Assert.AreEqual(quote1.DateParsed, tested.TransactionsLedger.First().Date);
-                Assert.AreEqual(quote2.DateParsed, tested.TransactionsLedger.Last().Date);
+                Assert.AreEqual(quote1.DateParsed, tested.TheLedger.First().Date);
+                Assert.AreEqual(quote2.DateParsed, tested.TheLedger.Last().Date);
 
-                Assert.AreEqual(buyPrice, tested.TransactionsLedger.First().Price);
-                Assert.AreEqual(buyPrice2, tested.TransactionsLedger.Last().Price);
+                Assert.AreEqual(buyPrice, tested.TheLedger.First().Price);
+                Assert.AreEqual(buyPrice2, tested.TheLedger.Last().Price);
 
-                Assert.AreEqual(volume, tested.TransactionsLedger.First().Volume);
-                Assert.AreEqual(volume2, tested.TransactionsLedger.Last().Volume);
+                Assert.AreEqual(volume, tested.TheLedger.First().Volume);
+                Assert.AreEqual(volume2, tested.TheLedger.Last().Volume);
 
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.Last().TransactionType);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.First().TransactionType);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.Last().TransactionType);
 
                 Assert.AreEqual(Ticker, tested.OpenedPositions.First().Key);
                 Assert.AreEqual(Ticker, tested.OpenedPositions.Last().Key);
@@ -198,8 +194,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int volume2 = 10;
             const int buyPrice = 11;
             const int buyPrice2 = 10;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, volume);
@@ -223,7 +218,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
             const int volume = 10;
             const double sellPrice = 11;
-            var tested = new SetBalanceOnTestedObject(0, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
 
             // Act
 
@@ -233,7 +228,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(OrderStatusType.DeniedNoOpenPosition, result);
-                Assert.False(tested.TransactionsLedger.Any());
+                Assert.False(tested.TheLedger.Any());
                 Assert.False(tested.OpenedPositions.Any());
             });
         }
@@ -247,8 +242,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int buyPrice = 11;
             const int volume = 10;
             const double sellPrice = 14.01;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
@@ -258,7 +252,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             Assert.Multiple(() =>
             {
                 Assert.AreEqual(OrderStatusType.DeniedOutOfRange, result2);
-                Assert.AreEqual(1, tested.TransactionsLedger.Count);
+                Assert.AreEqual(1, tested.TheLedger.Count);
                 Assert.AreEqual(1, tested.OpenedPositions.Count);
             });
         }
@@ -272,8 +266,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int sellVolume = 10;
             const int buyPrice = 11;
             const int sellPrice = 11;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
@@ -284,22 +277,22 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
                 Assert.AreEqual(OrderStatusType.Accepted, result);
                 Assert.AreEqual(OrderStatusType.Accepted, result2);
-                Assert.AreEqual(balance, tested.Balance);
+                Assert.AreEqual(_tested.Balance, tested.Balance);
 
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.First().Ticker);
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.Last().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.First().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.Last().Ticker);
 
-                Assert.AreEqual(quote1.DateParsed, tested.TransactionsLedger.First().Date);
-                Assert.AreEqual(quote2.DateParsed, tested.TransactionsLedger.Last().Date);
+                Assert.AreEqual(quote1.DateParsed, tested.TheLedger.First().Date);
+                Assert.AreEqual(quote2.DateParsed, tested.TheLedger.Last().Date);
 
-                Assert.AreEqual(buyPrice, tested.TransactionsLedger.First().Price);
-                Assert.AreEqual(sellPrice, tested.TransactionsLedger.Last().Price);
+                Assert.AreEqual(buyPrice, tested.TheLedger.First().Price);
+                Assert.AreEqual(sellPrice, tested.TheLedger.Last().Price);
 
-                Assert.AreEqual(buyVolume, tested.TransactionsLedger.First().Volume);
-                Assert.AreEqual(sellVolume, tested.TransactionsLedger.Last().Volume);
+                Assert.AreEqual(buyVolume, tested.TheLedger.First().Volume);
+                Assert.AreEqual(sellVolume, tested.TheLedger.Last().Volume);
 
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
-                Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.First().TransactionType);
+                Assert.AreEqual(StockTransactionType.Sell, tested.TheLedger.Last().TransactionType);
 
                 Assert.False(tested.OpenedPositions.Any());
             });
@@ -314,8 +307,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int sellVolume = 10;
             const int buyPrice = 11;
             const int sellPrice = 11;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
@@ -326,22 +318,22 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
                 Assert.AreEqual(OrderStatusType.Accepted, result);
                 Assert.AreEqual(OrderStatusType.Accepted, result2);
-                Assert.AreEqual(balance, tested.Balance);
+                Assert.AreEqual(_tested.Balance, tested.Balance);
 
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.First().Ticker);
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.Last().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.First().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.Last().Ticker);
 
-                Assert.AreEqual(quote1.DateParsed, tested.TransactionsLedger.First().Date);
-                Assert.AreEqual(quote2.DateParsed, tested.TransactionsLedger.Last().Date);
+                Assert.AreEqual(quote1.DateParsed, tested.TheLedger.First().Date);
+                Assert.AreEqual(quote2.DateParsed, tested.TheLedger.Last().Date);
 
-                Assert.AreEqual(buyPrice, tested.TransactionsLedger.First().Price);
-                Assert.AreEqual(sellPrice, tested.TransactionsLedger.Last().Price);
+                Assert.AreEqual(buyPrice, tested.TheLedger.First().Price);
+                Assert.AreEqual(sellPrice, tested.TheLedger.Last().Price);
 
-                Assert.AreEqual(buyVolume, tested.TransactionsLedger.First().Volume);
-                Assert.AreEqual(sellVolume, tested.TransactionsLedger.Last().Volume);
+                Assert.AreEqual(buyVolume, tested.TheLedger.First().Volume);
+                Assert.AreEqual(sellVolume, tested.TheLedger.Last().Volume);
 
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
-                Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.First().TransactionType);
+                Assert.AreEqual(StockTransactionType.Sell, tested.TheLedger.Last().TransactionType);
 
                 Assert.False(tested.OpenedPositions.Any());
             });
@@ -356,8 +348,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             const int sellVolume = 7;
             const int buyPrice = 11;
             const int sellPrice = 10;
-            const double balance = 1000;
-            var tested = new SetBalanceOnTestedObject(balance, _loggerMock.Object, _stockQuoteRepositoryMock.Object, _projectSettingsMock.Object);
+            var tested = _tested;
             // Act
 
             var result = tested.PlaceBuyOrder(quote1, buyPrice, buyVolume);
@@ -368,22 +359,22 @@ namespace Stocks.Data.UnitTests.TradingSimulator
             {
                 Assert.AreEqual(OrderStatusType.Accepted, result);
                 Assert.AreEqual(OrderStatusType.Accepted, result2);
-                Assert.AreEqual(balance - (3 * 11 + 7), tested.Balance);
+                Assert.AreEqual(_tested.Balance - (3 * 11 + 7), tested.Balance);
 
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.First().Ticker);
-                Assert.AreEqual(Ticker, tested.TransactionsLedger.Last().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.First().Ticker);
+                Assert.AreEqual(Ticker, tested.TheLedger.Last().Ticker);
 
-                Assert.AreEqual(quote1.DateParsed, tested.TransactionsLedger.First().Date);
-                Assert.AreEqual(quote2.DateParsed, tested.TransactionsLedger.Last().Date);
+                Assert.AreEqual(quote1.DateParsed, tested.TheLedger.First().Date);
+                Assert.AreEqual(quote2.DateParsed, tested.TheLedger.Last().Date);
 
-                Assert.AreEqual(buyPrice, tested.TransactionsLedger.First().Price);
-                Assert.AreEqual(sellPrice, tested.TransactionsLedger.Last().Price);
+                Assert.AreEqual(buyPrice, tested.TheLedger.First().Price);
+                Assert.AreEqual(sellPrice, tested.TheLedger.Last().Price);
 
-                Assert.AreEqual(buyVolume, tested.TransactionsLedger.First().Volume);
-                Assert.AreEqual(sellVolume, tested.TransactionsLedger.Last().Volume);
+                Assert.AreEqual(buyVolume, tested.TheLedger.First().Volume);
+                Assert.AreEqual(sellVolume, tested.TheLedger.Last().Volume);
 
-                Assert.AreEqual(StockTransactionType.Buy, tested.TransactionsLedger.First().TransactionType);
-                Assert.AreEqual(StockTransactionType.Sell, tested.TransactionsLedger.Last().TransactionType);
+                Assert.AreEqual(StockTransactionType.Buy, tested.TheLedger.First().TransactionType);
+                Assert.AreEqual(StockTransactionType.Sell, tested.TheLedger.Last().TransactionType);
 
                 Assert.AreEqual(11, tested.OpenedPositions.Single().Value.Price);
 

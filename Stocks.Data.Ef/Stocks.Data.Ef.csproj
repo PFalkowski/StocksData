@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
-    <PackageReference Include="StandardInterfaces" Version="3.0.0" />
+    <PackageReference Include="StandardInterfaces" Version="3.1.0" />
     <PackageReference Include="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Model" Version="2.0.0" Condition="'$(Configuration)' != 'Pack'" />
   </ItemGroup>

@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="LoggerLite" Version="3.1.0" />
     <PackageReference Include="OnTheFlyStats" Version="3.2.0" />
     <PackageReference Include="ProgressReporting" Version="1.0.0" />
+    <PackageReference Include="Sequence" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

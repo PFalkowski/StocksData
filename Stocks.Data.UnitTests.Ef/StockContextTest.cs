@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollector.InProcDataCollector;
 using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Stocks.Data.Model;
 using Xunit;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 using StandardInterfaces;
 
@@ -10,7 +9,7 @@ namespace Stocks.Data.Ef
 {
     public class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
     {
-        private DbContext Context { get; }
+        protected DbContext Context { get; }
 
         protected DbSet<TEntity> Entities { get; }
 
