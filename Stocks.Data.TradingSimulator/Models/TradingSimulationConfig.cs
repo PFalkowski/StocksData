@@ -13,15 +13,20 @@ namespace Stocks.Data.TradingSimulator.Models
         public double StartingCash { get; set; }
         public int TopN { get; set; }
 
-        public static TradingSimulationConfig CreateFromConfig(IConfiguration configuration)
+        public void ReadFrom(IConfiguration configuration)
         {
-            return new TradingSimulationConfig
-            {
-                FromDate = DateTime.Parse(configuration[nameof(FromDate)], CultureInfo.InvariantCulture),
-                ToDate = DateTime.Parse(configuration[nameof(ToDate)], CultureInfo.InvariantCulture),
-                StartingCash = double.Parse(configuration[nameof(StartingCash)], CultureInfo.InvariantCulture),
-                TopN = int.Parse(configuration[nameof(TopN)])
-            };
+            FromDate = DateTime.Parse(configuration[nameof(FromDate)], CultureInfo.InvariantCulture);
+            ToDate = DateTime.Parse(configuration[nameof(ToDate)], CultureInfo.InvariantCulture);
+            StartingCash = double.Parse(configuration[nameof(StartingCash)], CultureInfo.InvariantCulture);
+            TopN = int.Parse(configuration[nameof(TopN)]);
+        }
+
+        public static TradingSimulationConfig CreateFrom(IConfiguration configuration)
+        {
+            var newConfig = new TradingSimulationConfig();
+            newConfig.ReadFrom(configuration);
+
+            return newConfig;
         }
 
         public override string ToString()

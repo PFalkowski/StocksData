@@ -4,12 +4,10 @@ using LoggerLite;
 using ProgressReporting;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
-using Stocks.Data.Model;
 using Stocks.Data.Services.Tier1;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -62,7 +60,7 @@ namespace Stocks.Data.Api
             var command = args[0];
             var fromDate = default(DateTime?);
             var toDate = default(DateTime?);
-            var tradingSimulationConfig = default(TradingSimulationConfig);
+            var tradingSimulationConfig = TradingSimulationConfig.CreateFrom(_configuration);
             switch (command)
             {
                 case "h":
@@ -93,20 +91,25 @@ namespace Stocks.Data.Api
                     break;
 
                 case "print":
-                    var found = _companyRepository.GetById(args[1]);
-                    if (found == null)
+                    if (args.Length >= 2)
                     {
-                        _logger.LogWarning($"{args[1]} not found.");
+                        var found = _companyRepository.GetById(args[1]);
+                        if (found == null)
+                        {
+                            _logger.LogWarning($"{args[1]} not found.");
+                        }
+                        else
+                        {
+                            _logger.LogInfo(string.Join(Environment.NewLine, found.Quotes.Select(x => x.Summary())));
+                        }
                     }
                     else
                     {
-                        _logger.LogInfo(string.Join(Environment.NewLine, found.Quotes.Select(x => x.Summary())));
+                        _logger.LogError($"No ticker provided. Usage: \"print TICKER\".");
                     }
                     break;
 
                 case "simulate":
-                    tradingSimulationConfig = TradingSimulationConfig.CreateFromConfig(_configuration);
-
                     if (args.Length >= 3)
                     {
                         fromDate = TryParseDateTime(args[1]);
