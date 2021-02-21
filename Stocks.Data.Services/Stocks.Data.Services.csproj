@@ -24,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Extensions.Serialization.Csv" Version="2.1.0" />
+    <PackageReference Include="Flurl" Version="3.0.1" />
     <PackageReference Include="LoggerLite" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
     <PackageReference Include="Services.IO" Version="1.0.0" />

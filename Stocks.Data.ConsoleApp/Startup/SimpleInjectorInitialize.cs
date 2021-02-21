@@ -44,6 +44,7 @@ namespace Stocks.Data.ConsoleApp.Startup
             container.Register<IDatabaseManagementService, MsSqlDatabaseManagementService>();
             container.Register<IStockQuotesDownloadService, StockQuotesDownloadService>();
             container.Register<IStockQuotesMigrationFromCsv, StockQuotesMigrationFromCsv>();
+            container.Register<IStockUpdateService, StockUpdateService>();
             #endregion
 
             #region Configuration

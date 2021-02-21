@@ -6,6 +6,7 @@ using Stocks.Data.UnitTests.Ef.Test.TestData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Ef.Test
@@ -79,7 +80,7 @@ namespace Stocks.Data.UnitTests.Ef.Test
                 testContext?.Dispose();
             }
         }
-        
+
         [Theory]
         [ClassData(typeof(CompaniesMock))]
         public void GetNTradingDatesBeforeGetsOnlyTradingDatesInOpenRangeOrderedDescending(List<Company> input)
@@ -187,6 +188,45 @@ namespace Stocks.Data.UnitTests.Ef.Test
                 testContext?.Database.EnsureDeleted();
                 tested?.Dispose();
                 testContext?.Dispose();
+            }
+        }
+
+        [Theory]
+        [ClassData(typeof(CompaniesMock))]
+        public async Task GetLatestSessionInDbDateReturnsLastSessionDateInDb(List<Company> input)
+        {
+            // Arrange
+            var testSettings = new TestProjectSettings();
+
+            DbContext testContext = null;
+            StockQuoteRepository tested = null;
+            try
+            {
+                testContext = new StockTestContext(testSettings);
+                tested = new StockQuoteRepository(testContext);
+                await testContext.Database.EnsureCreatedAsync();
+                await testContext.AddRangeAsync(input.SelectMany(x => x.Quotes));
+                await testContext.SaveChangesAsync();
+                var date = new DateTime(2018, 02, 09);
+
+                // Act
+                var result = await tested.GetLatestSessionInDbDateAsync();
+
+                // Assert
+
+                Assert.Equal(date.Date, result.Date);
+            }
+            finally
+            {
+                if (testContext != null)
+                {
+                    await testContext.Database.EnsureDeletedAsync();
+                    if (tested != null)
+                    {
+                        await tested.DisposeAsync();
+                    }
+                    await testContext.DisposeAsync();
+                }
             }
         }
     }

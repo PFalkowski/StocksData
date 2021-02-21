@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Stocks.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Extensions.Standard;
-using Microsoft.EntityFrameworkCore;
-using StandardInterfaces;
-using Stocks.Data.Model;
+using System.Threading.Tasks;
 
 namespace Stocks.Data.Ef
 {
@@ -46,6 +44,11 @@ namespace Stocks.Data.Ef
             var lastSessionDates = GetNTradingDatesBefore(currentDate, 1);
             return Entities.Where(x => x.DateParsed.Equals(lastSessionDates.Single()))
                 .ToList();
+        }
+
+        public async Task<DateTime> GetLatestSessionInDbDateAsync()
+        {
+            return await Entities.MaxAsync(x => x.DateParsed);
         }
     }
 }

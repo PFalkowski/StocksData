@@ -27,6 +27,7 @@ namespace Stocks.Data.Api
         private readonly IMapper _mapper;
         private readonly IProgressReportable _progressReporter;
         private readonly Microsoft.Extensions.Configuration.IConfiguration _configuration;
+        private readonly IStockUpdateService _stockUpdateService;
 
         public StocksDataApi(IMapper mapper,
             ITradingSimulationResultRepository tradingSimulationResultRepository,
@@ -39,7 +40,8 @@ namespace Stocks.Data.Api
             IProjectSettings projectSettings,
             ITradingSimulator tradingSimulator,
             IProgressReportable progressReporter,
-            Microsoft.Extensions.Configuration.IConfiguration configuration)
+            Microsoft.Extensions.Configuration.IConfiguration configuration,
+            IStockUpdateService stockUpdateService)
         {
             _mapper = mapper;
             _tradingSimulationResultRepository = tradingSimulationResultRepository;
@@ -53,6 +55,7 @@ namespace Stocks.Data.Api
             _tradingSimulator = tradingSimulator;
             _progressReporter = progressReporter;
             _configuration = configuration;
+            _stockUpdateService = stockUpdateService;
         }
 
         public async Task Execute(params string[] args)
@@ -88,6 +91,10 @@ namespace Stocks.Data.Api
                 case "migrate":
                     await _stockQuotesMigrationFromCsv.Migrate(_projectSettings, TargetLocation.Directory);
                     _logger.LogInfo("Successfully migrated data to database.");
+                    break;
+
+                case "update":
+                    await _stockUpdateService.PerformUpdateTillToday();
                     break;
 
                 case "print":

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Flurl;
 using LoggerLite;
 using Services.IO;
 using Stocks.Data.Common.Models;
@@ -26,9 +28,21 @@ namespace Stocks.Data.Services.Tier1
             CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
             if (!workingDirectory.Exists) { workingDirectory.Create(); }
 
-            var rawBytes = await DownloadStocksArchive(project.QuotesDownloadUrl, _logger);
+            var rawBytes = await Download(project.QuotesDownloadUrl, _logger);
 
             await SaveArchive(rawBytes, new FileInfo(Path.Combine(workingDirectory.FullName, project.ArchiveFileName)), _logger);
+        }
+
+        public async Task<string> DownloadUpdate(IProjectSettings project, DateTime date)
+        {
+            var workingDirectory = project.WorkingDirectory;
+            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+            if (!workingDirectory.Exists) { workingDirectory.Create(); }
+
+            var url = Url.Combine(project.QuotesUpdateUrlBase, $"{date:yyyyMMdd}.prn"); 
+            var rawBytes = await Download(url, _logger);
+
+            return Encoding.UTF8.GetString(rawBytes);
         }
 
         private async Task SaveArchive(byte[] rawBytes, FileInfo outputFile, ILogger logger = null, bool overwrite = true)
@@ -50,7 +64,7 @@ namespace Stocks.Data.Services.Tier1
             }
         }
 
-        private async Task<byte[]> DownloadStocksArchive(string url, ILogger logger)
+        private async Task<byte[]> Download(string url, ILogger logger)
         {
             if (url == null) throw new ArgumentNullException(nameof(url));
             if (logger == null) throw new ArgumentNullException(nameof(logger));

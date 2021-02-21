@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Stocks.Data.Ef
 {
@@ -94,6 +95,12 @@ namespace Stocks.Data.Ef
                 .ToList();
         }
 
+        public Task<DateTime> GetLatestSessionInDbDateAsync()
+        {
+            EnsureCacheExists();
+            return Task.FromResult(_cache.Max(x => x.DateParsed));
+        }
+
         public void Add(StockQuote entity)
         {
             _stockQuoteRepository.Add(entity);
@@ -126,6 +133,7 @@ namespace Stocks.Data.Ef
 
         public int SaveChanges()
         {
+            _stockQuoteRepository.SaveChanges();
             RebuildCache();
 
             return _cache.Count;

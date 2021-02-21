@@ -1,10 +1,9 @@
 using NSubstitute;
 using Services.IO;
 using Stocks.Data.Model;
+using Stocks.Data.Services.Tier0;
 using System;
 using System.Collections.Generic;
-using Stocks.Data.Services;
-using Stocks.Data.Services.Tier0;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.Services
@@ -24,7 +23,7 @@ namespace Stocks.Data.UnitTests.Services
 
             var expectedCompanyList = new List<Company>();
             var stocksDeserializationMock = Substitute.For<IStocksBulkDeserializer>();
-            stocksDeserializationMock.Deserialize(Arg.Is(stocksDict)).Returns(expectedCompanyList);
+            stocksDeserializationMock.DeserializeParallel(Arg.Is(stocksDict)).Returns(expectedCompanyList);
 
             var tested = new StocksFileProvider(stocksDirectoryProviderMock, stocksDeserializationMock);
 
@@ -34,12 +33,14 @@ namespace Stocks.Data.UnitTests.Services
             // Assert
             Assert.Equal(expectedCompanyList, received);
         }
+
         [Fact]
         public void StocksFileProviderValidatesConstruction()
         {
             var stocksDeserializationMock = Substitute.For<IStocksBulkDeserializer>();
             Assert.Throws<InvalidOperationException>(() => new StocksFileProvider(null, stocksDeserializationMock));
         }
+
         [Fact]
         public void StocksFileProviderValidatesConstruction2()
         {

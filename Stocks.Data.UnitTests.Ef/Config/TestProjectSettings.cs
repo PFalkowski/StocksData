@@ -16,6 +16,7 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         public string LogFileName { get; set; }
         public bool ExcludeBlacklisted { get; }
         public string QuotesDownloadUrl { get; set; }
+        public string QuotesUpdateUrlBase { get; }
         public string ConnectionString { get; set; }
         public string BlacklistPatternString { get; set; }
         public Regex BlackListPattern { get; }

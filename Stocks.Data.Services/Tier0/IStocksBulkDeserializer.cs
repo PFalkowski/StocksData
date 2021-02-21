@@ -6,7 +6,8 @@ namespace Stocks.Data.Services.Tier0
 {
     public interface IStocksBulkDeserializer
     {
-        List<Company> Deserialize(IDictionary<string, string> files);
+        List<Company> DeserializeParallel(IDictionary<string, string> files);
         Task<List<Company>> DeserializeAsync(IDictionary<string, string> files);
+        List<StockQuote> Deserialize(string quotes);
     }
 }

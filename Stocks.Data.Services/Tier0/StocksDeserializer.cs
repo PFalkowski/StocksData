@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using CsvHelper.Configuration;
@@ -29,6 +31,7 @@ namespace Stocks.Data.Services.Tier0
                 Quotes = deserializedQuotes
             };
         }
+
         public async Task<Company> DeserializeAsync(string fileContents)
         {
             var deserializedQuotes = await Task.Run(() => fileContents.DeserializeFromCsv(Map, Culture).ToList());
@@ -39,6 +42,18 @@ namespace Stocks.Data.Services.Tier0
                 Ticker = companyName,
                 Quotes = deserializedQuotes
             };
+        }
+
+        public List<StockQuote> DeserializeQuotes(string fileContents)
+        {
+            const string header = "<TICKER>,<DTYYYYMMDD>,<OPEN>,<HIGH>,<LOW>,<CLOSE>,<VOL>";
+            if (!fileContents.StartsWith(header))
+            {
+                fileContents = $"{header}{Environment.NewLine}{fileContents}";
+            }
+            var deserialized = fileContents.DeserializeFromCsv(Map, Culture);
+
+            return deserialized.ToList();
         }
     }
 }

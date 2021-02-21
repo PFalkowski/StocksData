@@ -16,7 +16,7 @@ namespace Stocks.Data.Services.Tier0
             Deserializer = deserializer ?? throw new ArgumentNullException(nameof(deserializer));
         }
 
-        public List<Company> Deserialize(IDictionary<string, string> files)
+        public List<Company> DeserializeParallel(IDictionary<string, string> files)
         {
             var allStocks = new ConcurrentBag<Company>();
 
@@ -39,6 +39,13 @@ namespace Stocks.Data.Services.Tier0
 
             var companies = await Task.WhenAll(tasks);
             return companies.ToList();
+        }
+
+        public List<StockQuote> Deserialize(string quotes)
+        {
+            var allQuotes = Deserializer.DeserializeQuotes(quotes);
+
+            return allQuotes.ToList();
         }
     }
 }

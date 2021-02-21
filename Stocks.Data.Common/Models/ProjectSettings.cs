@@ -28,8 +28,10 @@ namespace Stocks.Data.Common.Models
         public string QuotesFileExtension => _configuration[nameof(QuotesFileExtension)];
 
         public string LogFileName => _configuration[nameof(LogFileName)];
-
+        
         public string QuotesDownloadUrl => _configuration[nameof(QuotesDownloadUrl)];
+
+        public string QuotesUpdateUrlBase => _configuration[nameof(QuotesUpdateUrlBase)];
 
         public string ConnectionString => _configuration[nameof(ConnectionString)];
 

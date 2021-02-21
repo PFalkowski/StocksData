@@ -8,18 +8,19 @@ namespace Stocks.Data.Common.Models
     public interface IProjectSettings
     {
         string ProjectName { get; }
-        string OutputDirName { get;  }
+        string OutputDirName { get; }
         string ArchiveFileName { get; }
         string UnzippedFilesDirectoryName { get; }
-        string QuotesFileExtension { get;  }
+        string QuotesFileExtension { get; }
         string QuotesDownloadUrl { get; }
-        string ConnectionString { get;  }
+        string QuotesUpdateUrlBase { get; }
+        string ConnectionString { get; }
         string BlacklistPatternString { get; }
-        string LogFileName { get;  }
-        bool ExcludeBlacklisted { get;  }
+        string LogFileName { get; }
+        bool ExcludeBlacklisted { get; }
         Regex BlackListPattern { get; }
-        bool ExcludePennyStocks { get;  }
-        double PennyStockThreshold { get;  }
+        bool ExcludePennyStocks { get; }
+        double PennyStockThreshold { get; }
         DirectoryInfo WorkingDirectory { get; }
         DirectoryInfo UnzippedFilesDirectory { get; }
         FileInfo ArchiveFile { get; }

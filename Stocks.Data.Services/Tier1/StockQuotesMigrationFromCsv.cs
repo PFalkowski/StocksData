@@ -81,11 +81,12 @@ namespace Stocks.Data.Services.Tier1
 
             return unzippedStocks;
         }
-
+        
         private async Task SaveUnzippedFiles(IProjectSettings project, Dictionary<string, string> unzippedStocks)
         {
             if (!project.UnzippedFilesDirectory.Exists) { project.UnzippedFilesDirectory.Create(); }
             var tasksToSave = new List<Task>();
+            var savedFiles = 0;
             foreach (var stock in unzippedStocks)
             {
                 if (!string.IsNullOrWhiteSpace(project.BlacklistPatternString) && project.BlackListPattern.IsMatch(stock.Key))
@@ -99,8 +100,9 @@ namespace Stocks.Data.Services.Tier1
                     _logger.LogWarning($"File {path} already exists and will be overwritten.");
                 }
                 tasksToSave.Add(File.WriteAllTextAsync(path, stock.Value));
+                ++savedFiles;
             }
-            _logger.LogInfo($"Saved {unzippedStocks.Count} files to {project.UnzippedFilesDirectory.FullName}.");
+            _logger.LogInfo($"Saved {savedFiles} files to {project.UnzippedFilesDirectory.FullName}. Filtered {unzippedStocks.Count - savedFiles}");
 
             await Task.WhenAll(tasksToSave);
         }

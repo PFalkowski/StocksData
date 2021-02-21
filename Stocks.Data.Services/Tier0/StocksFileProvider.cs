@@ -27,7 +27,7 @@ namespace Stocks.Data.Services.Tier0
             ValidateState();
             var stocksRaw = DirectorySvc.ReadTopDirectory(directory, pattern);
 
-            var deserialized = DeserializationService.Deserialize(stocksRaw);
+            var deserialized = DeserializationService.DeserializeParallel(stocksRaw);
             return deserialized;
         }
 

@@ -1,14 +1,13 @@
-﻿using System;
-using Extensions.Standard;
-using Stocks.Data.Model;
-using Stocks.Data.TradingSimulator.Models;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using Extensions.Standard;
 using LoggerLite;
 using ProgressReporting;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
+using Stocks.Data.Model;
+using Stocks.Data.TradingSimulator.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Stocks.Data.TradingSimulator
 {
