@@ -18,9 +18,9 @@ using Stocks.Data.Services.Tier0;
 using Stocks.Data.Services.Tier1;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Mapping;
-using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Globalization;
+using System.IO;
 
 namespace Stocks.Data.ConsoleApp.Startup
 {
@@ -29,8 +29,32 @@ namespace Stocks.Data.ConsoleApp.Startup
         public static Container Initialize(this Container container, IConfiguration configuration)
         {
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+
+            #region Logging
+            var projectSettings = new ProjectSettings(configuration);
+            var fileLoggerName = Path.Combine(projectSettings.LogDirectory.FullName,
+                $"{projectSettings.LogFileNameBase} {DateTime.Now:yyyy-MM-dd HH-mm-ss}.txt");
+            container.RegisterInstance(typeof(ILogger),
+                new AggregateLogger(
+                    new ConsoleLogger(),
+                    new FileLoggerBase(fileLoggerName)));
+            #endregion
+
+            #region Configuration
             container.RegisterInstance(typeof(IConfiguration), configuration);
-            container.RegisterInstance(typeof(ILogger), new AggregateLogger(new ConsoleLogger(), new FileLoggerBase($"log {DateTime.Now:yyyy-MM-dd HH-mm-ss}.txt")));
+            container.RegisterInstance(typeof(IProjectSettings), projectSettings);
+            container.RegisterInstance(typeof(CultureInfo), CultureInfo.InvariantCulture);
+            container.Register<ClassMap<StockQuote>, StockQuoteCsvClassMap>();
+            var mapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<TradingSimulatorAutoMapperProfile>();
+            });
+            mapperConfig.AssertConfigurationIsValid();
+            container.RegisterSingleton<IMapper>(() => new Mapper(mapperConfig));
+
+            container.RegisterSingleton<IProgressReportable, ConsoleProgressReporter>();
+            #endregion
+
 
             #region Services
             container.Register<IDirectoryService, DirectoryService>();
@@ -45,20 +69,6 @@ namespace Stocks.Data.ConsoleApp.Startup
             container.Register<IStockQuotesDownloadService, StockQuotesDownloadService>();
             container.Register<IStockQuotesMigrationFromCsv, StockQuotesMigrationFromCsv>();
             container.Register<IStockUpdateService, StockUpdateService>();
-            #endregion
-
-            #region Configuration
-            container.RegisterInstance(typeof(CultureInfo), CultureInfo.InvariantCulture);
-            container.Register<ClassMap<StockQuote>, StockQuoteCsvClassMap>();
-            container.Register<IProjectSettings, ProjectSettings>();
-            var mapperConfig = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile<TradingSimulatorAutoMapperProfile>();
-            });
-            mapperConfig.AssertConfigurationIsValid();
-            container.RegisterSingleton<IMapper>(() => new Mapper(mapperConfig));
-
-            container.RegisterSingleton<IProgressReportable, ConsoleProgressReporter>();
             #endregion
 
             #region Decorators

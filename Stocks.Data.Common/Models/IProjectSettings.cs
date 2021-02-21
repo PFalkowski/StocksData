@@ -16,16 +16,17 @@ namespace Stocks.Data.Common.Models
         string QuotesUpdateUrlBase { get; }
         string ConnectionString { get; }
         string BlacklistPatternString { get; }
-        string LogFileName { get; }
+        string LogDirectoryName { get; }
+        string LogFileNameBase { get; }
         bool ExcludeBlacklisted { get; }
         Regex BlackListPattern { get; }
-        bool ExcludePennyStocks { get; }
-        double PennyStockThreshold { get; }
         DirectoryInfo WorkingDirectory { get; }
         DirectoryInfo UnzippedFilesDirectory { get; }
+        DirectoryInfo LogDirectory { get; }
         FileInfo ArchiveFile { get; }
         DbContextOptions<DbContext> GetDbContextOptions { get; }
         void EnsureAllDirectoriesExist();
         void CleanOutputDirectory();
+        void CleanLogs();
     }
 }

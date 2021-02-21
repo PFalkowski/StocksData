@@ -70,10 +70,15 @@ namespace Stocks.Data.Api
                 case "help":
                     _logger.LogInfo(HelpMessage);
                     break;
-
+                    
                 case "cleanDir":
                     _projectSettings.CleanOutputDirectory();
                     _logger.LogInfo($"Cleaned directory {_projectSettings.UnzippedFilesDirectory.FullName}");
+                    break;
+
+                case "cleanLogs":
+                    _projectSettings.CleanLogs();
+                    _logger.LogInfo($"Cleaned logs in {_projectSettings.LogDirectory.FullName}");
                     break;
 
                 case "dropDb":

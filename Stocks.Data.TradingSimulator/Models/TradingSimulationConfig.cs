@@ -12,6 +12,8 @@ namespace Stocks.Data.TradingSimulator.Models
         public DateTime ToDate { get; set; }
         public double StartingCash { get; set; }
         public int TopN { get; set; }
+        public bool ExcludePennyStocks { get; set; }
+        public double ExcludePennyStocksThreshold { get; set; }
 
         public void ReadFrom(IConfiguration configuration)
         {
@@ -19,6 +21,8 @@ namespace Stocks.Data.TradingSimulator.Models
             ToDate = DateTime.Parse(configuration[nameof(ToDate)], CultureInfo.InvariantCulture);
             StartingCash = double.Parse(configuration[nameof(StartingCash)], CultureInfo.InvariantCulture);
             TopN = int.Parse(configuration[nameof(TopN)]);
+            ExcludePennyStocks = bool.Parse(configuration[nameof(ExcludePennyStocks)]);
+            ExcludePennyStocksThreshold = double.Parse(configuration[nameof(ExcludePennyStocksThreshold)], CultureInfo.InvariantCulture);
         }
 
         public static TradingSimulationConfig CreateFrom(IConfiguration configuration)

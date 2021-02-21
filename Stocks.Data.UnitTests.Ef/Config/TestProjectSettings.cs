@@ -13,7 +13,8 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         public string ArchiveFileName { get; set; }
         public string UnzippedFilesDirectoryName { get; set; }
         public string QuotesFileExtension { get; set; }
-        public string LogFileName { get; set; }
+        public string LogDirectoryName { get; }
+        public string LogFileNameBase { get; set; }
         public bool ExcludeBlacklisted { get; }
         public string QuotesDownloadUrl { get; set; }
         public string QuotesUpdateUrlBase { get; }
@@ -24,6 +25,7 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         public double PennyStockThreshold { get; set; }
         public DirectoryInfo WorkingDirectory { get; }
         public DirectoryInfo UnzippedFilesDirectory { get; }
+        public DirectoryInfo LogDirectory { get; }
         public FileInfo ArchiveFile { get; }
         public DbContextOptions<DbContext> GetDbContextOptions => new DbContextOptionsBuilder<DbContext>()
             .UseInMemoryDatabase(Path.GetFileNameWithoutExtension(Path.GetRandomFileName()))
@@ -34,6 +36,11 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         }
 
         public void CleanOutputDirectory()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CleanLogs()
         {
             throw new NotImplementedException();
         }

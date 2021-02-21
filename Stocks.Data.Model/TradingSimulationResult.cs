@@ -18,5 +18,7 @@ namespace Stocks.Data.Model
         public DateTime FromDateInclusive { get; set; }
         public DateTime ToDateInclusive { get; set; }
         public int TopN { get; set; }
+        public bool ExcludePennyStocks { get; set; }
+        public double ExcludePennyStocksThreshold { get; set; }
     }
 }

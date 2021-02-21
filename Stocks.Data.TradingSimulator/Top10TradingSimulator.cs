@@ -24,7 +24,7 @@ namespace Stocks.Data.TradingSimulator
             var allQuotesFromMinusOneDay = allQuotesPrefilterd.Where(x => x.DateParsed.Date.Equals(nMinusOneDay.Date)).ToList();
 
             var topN = allQuotesFromMinusOneDay
-                .Where(x => !ProjectSettings.ExcludePennyStocks || x.AveragePrice > ProjectSettings.PennyStockThreshold)
+                .Where(x => !tradingSimulationConfig.ExcludePennyStocks || x.AveragePrice > tradingSimulationConfig.ExcludePennyStocksThreshold)
                 .OrderByDescending(x => x.AveragePriceChange)
                 .Take(tradingSimulationConfig.TopN)
                 .ToList();

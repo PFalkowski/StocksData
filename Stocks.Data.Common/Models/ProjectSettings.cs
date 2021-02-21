@@ -26,8 +26,10 @@ namespace Stocks.Data.Common.Models
         public string UnzippedFilesDirectoryName => _configuration[nameof(UnzippedFilesDirectoryName)];
 
         public string QuotesFileExtension => _configuration[nameof(QuotesFileExtension)];
+        
+        public string LogDirectoryName => _configuration[nameof(LogDirectoryName)];
 
-        public string LogFileName => _configuration[nameof(LogFileName)];
+        public string LogFileNameBase => _configuration[nameof(LogFileNameBase)];
         
         public string QuotesDownloadUrl => _configuration[nameof(QuotesDownloadUrl)];
 
@@ -39,10 +41,6 @@ namespace Stocks.Data.Common.Models
 
         public string BlacklistPatternString => _configuration[nameof(BlacklistPatternString)];
 
-        public bool ExcludePennyStocks => bool.Parse(_configuration[nameof(ExcludePennyStocks)]);
-
-        public double PennyStockThreshold => double.Parse(_configuration[nameof(PennyStockThreshold)]);
-
         public Regex BlackListPattern => new Regex(BlacklistPatternString);//, RegexOptions.Compiled ?
         public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProjectName, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));
@@ -50,6 +48,8 @@ namespace Stocks.Data.Common.Models
         public DbContextOptions<DbContext> GetDbContextOptions => new DbContextOptionsBuilder<DbContext>()
             .UseSqlServer(ConnectionString)
             .Options;
+        public DirectoryInfo LogDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProjectName, LogDirectoryName));
+
 
         public void EnsureAllDirectoriesExist()
         {
@@ -57,11 +57,23 @@ namespace Stocks.Data.Common.Models
             {
                 WorkingDirectory.Create();
             }
+            if (!LogDirectory.Exists)
+            {
+                LogDirectory.Create();
+            }
         }
-
+        
         public void CleanOutputDirectory()
         {
             foreach (var file in UnzippedFilesDirectory.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+        public void CleanLogs()
+        {
+            foreach (var file in LogDirectory.GetFiles())
             {
                 file.Delete();
             }

@@ -2,7 +2,6 @@
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator.Models;
 using System;
-using System.Xml;
 using System.Linq;
 
 namespace Stocks.Data.TradingSimulator.Mapping
@@ -22,11 +21,19 @@ namespace Stocks.Data.TradingSimulator.Mapping
                 .ForMember(dest => dest.FalseNegatives, opt => opt.MapFrom(src => src.ROC.FalseNegatives))
                 .ForMember(dest => dest.TrueNegatives, opt => opt.MapFrom(src => src.ROC.TrueNegatives))
                 .ForMember(dest => dest.FalsePositives, opt => opt.MapFrom(src => src.ROC.FalsePositives))
-                .ForMember(dest => dest.TotalBuyOrders, opt => opt.MapFrom(src => src.TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Buy)))
-                .ForMember(dest => dest.TotalSellOrders, opt => opt.MapFrom(src => src.TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell)))
+                .ForMember(dest => dest.TotalBuyOrders,
+                    opt => opt.MapFrom(src =>
+                        src.TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Buy)))
+                .ForMember(dest => dest.TotalSellOrders,
+                    opt => opt.MapFrom(src =>
+                        src.TransactionsLedger.Count(x => x.TransactionType == StockTransactionType.Sell)))
                 .ForMember(dest => dest.FromDateInclusive,
                     opt => opt.MapFrom(src => src.TradingSimulationConfig.FromDate))
-                .ForMember(dest => dest.ToDateInclusive, opt => opt.MapFrom(src => src.TradingSimulationConfig.ToDate));
+                .ForMember(dest => dest.ToDateInclusive, opt => opt.MapFrom(src => src.TradingSimulationConfig.ToDate))
+                .ForMember(dest => dest.ExcludePennyStocks,
+                    opt => opt.MapFrom(src => src.TradingSimulationConfig.ExcludePennyStocks))
+                .ForMember(dest => dest.ExcludePennyStocksThreshold,
+                    opt => opt.MapFrom(src => src.TradingSimulationConfig.ExcludePennyStocksThreshold));
         }
     }
 }
