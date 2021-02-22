@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LoggerLite;
+using Stocks.Data.Common;
 using Stocks.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text.RegularExpressions;
-using LoggerLite;
-using Stocks.Data.Common;
 
 namespace Stocks.Data.Ado
 {
@@ -23,12 +21,10 @@ namespace Stocks.Data.Ado
 
         public override void BulkInsert(string connectionString, string destinationTableName, IEnumerable<Company> companies)
         {
-
             using (var connection = new SqlConnection(connectionString))
             {
-                var blacklistPattern = new Regex(Constants.BlacklistPatternString, RegexOptions.Compiled);
                 connection.Open();
-                foreach (var company in companies.Where(x => !blacklistPattern.IsMatch(x.Ticker)))
+                foreach (var company in companies)
                 {
                     using (var command = new SqlCommand($"if not exists" +
                                                         $" (select * from [{Constants.CompanyName}] where {Constants.TickerName} = @value)" +

@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="LoggerLite" Version="3.1.0" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
     <PackageReference Include="OnTheFlyStats" Version="3.2.0" />
     <PackageReference Include="ProgressReporting" Version="2.0.0" />
     <PackageReference Include="Sequence" Version="3.0.0" />

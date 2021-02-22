@@ -89,7 +89,7 @@ namespace Stocks.Data.Services.Tier1
             var savedFiles = 0;
             foreach (var stock in unzippedStocks)
             {
-                if (!string.IsNullOrWhiteSpace(project.BlacklistPatternString) && project.BlackListPattern.IsMatch(stock.Key))
+                if (project.ExcludeBlacklisted && project.BlackListPattern.IsMatch(stock.Key))
                 {
                     _logger.LogWarning($"{stock.Key} matched blacklist. Skipping");
                     continue;

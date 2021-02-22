@@ -15,6 +15,8 @@ namespace Stocks.Data.TradingSimulator.Models
 
         public double ReturnOnInvestment => (FinalBalance - TradingSimulationConfig.StartingCash) /
             TradingSimulationConfig.StartingCash * 100;
+        public int CompaniesUsedInSimulation { get; set; }
+
 
         public override string ToString()
         {

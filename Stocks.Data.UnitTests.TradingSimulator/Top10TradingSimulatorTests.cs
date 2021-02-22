@@ -30,7 +30,7 @@ namespace Stocks.Data.UnitTests.TradingSimulator
 
         [Theory]
         [ClassData(typeof(CompaniesMock))]
-        public void GetTopNGetsValidResultsCorrectlyOrdered(List<Company> testCompanies)
+        public void GetSignalsGetsValidResultsCorrectlyOrdered(List<Company> testCompanies)
         {
             // Arrange
             var tested = Tested;

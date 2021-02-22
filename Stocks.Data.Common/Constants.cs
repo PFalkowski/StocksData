@@ -31,9 +31,5 @@
         public const string BookValueName = "BookValue";
         public const string DividendYieldName = "DividendYield";
         public const string PriceToEarningsRatioName = "PriceToEarningsRatio";
-
-        public const string BlacklistPatternString = @".*\d{3,}|WIG.*|RC.*|INTL.*|INTS.*|WIG.*|.*PP\d.*|.*BAHOLDING.*|CFI.*";
-        public const bool ExcludePennyStocks = true;
-        public const double PennyStockThreshold = 1;
     }
 }

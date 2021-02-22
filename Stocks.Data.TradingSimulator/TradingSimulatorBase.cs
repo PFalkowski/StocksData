@@ -8,6 +8,7 @@ using Stocks.Data.TradingSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoreLinq;
 
 namespace Stocks.Data.TradingSimulator
 {
@@ -50,8 +51,8 @@ namespace Stocks.Data.TradingSimulator
             foreach (var date in datesToTrade)
             {
                 var topN = GetTopN(tradingSimulationConfig, allQuotesPrefilterd, date);
-
-                var topNTickers = topN.Select(quote => quote.Ticker).ToHashSet();
+                
+                var topNTickers = Enumerable.ToHashSet(topN.Select(quote => quote.Ticker));
                 var tradingDayQuotesForMostRising = allQuotesPrefilterd
                     .Where(x => x.DateParsed.Date.Equals(date.Date) && topNTickers.Contains(x.Ticker) && x.IsValid());
 
@@ -97,6 +98,7 @@ namespace Stocks.Data.TradingSimulator
 
             result.TransactionsLedger = ledger.TheLedger;
             result.FinalBalance = ledger.Balance;
+            result.CompaniesUsedInSimulation = filteredQuotes.DistinctBy(x => x.Ticker).Count();
 
             return result;
         }

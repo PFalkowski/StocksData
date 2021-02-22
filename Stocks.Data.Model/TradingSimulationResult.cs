@@ -20,5 +20,6 @@ namespace Stocks.Data.Model
         public int TopN { get; set; }
         public bool ExcludePennyStocks { get; set; }
         public double ExcludePennyStocksThreshold { get; set; }
+        public int CompaniesUsedInSimulation { get; set; }
     }
 }
