@@ -28,5 +28,6 @@ namespace Stocks.Data.Common.Models
         void EnsureAllDirectoriesExist();
         void CleanOutputDirectory();
         void CleanLogs();
+        IEnumerable<string> GetFilesListInDirectory(DirectoryInfo directory);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Common.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -41,6 +42,11 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         }
 
         public void CleanLogs()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<string> GetFilesListInDirectory(DirectoryInfo directory)
         {
             throw new NotImplementedException();
         }

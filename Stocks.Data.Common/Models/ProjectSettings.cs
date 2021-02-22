@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -78,6 +79,11 @@ namespace Stocks.Data.Common.Models
                 file.Delete();
             }
         }
+        public IEnumerable<string> GetFilesListInDirectory(DirectoryInfo directory)
+        {
+            return directory.GetFiles().Select(x => x.Name);
+        }
+
 
         public override string ToString()
         {

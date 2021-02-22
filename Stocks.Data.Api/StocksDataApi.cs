@@ -8,6 +8,7 @@ using Stocks.Data.Services.Tier1;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Models;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -60,6 +61,7 @@ namespace Stocks.Data.Api
 
         public async Task Execute(params string[] args)
         {
+            _projectSettings.EnsureAllDirectoriesExist();
             var command = args[0];
             var fromDate = default(DateTime?);
             var toDate = default(DateTime?);
@@ -70,6 +72,21 @@ namespace Stocks.Data.Api
                 case "help":
                     _logger.LogInfo(HelpMessage);
                     break;
+
+                case "getDir":
+                    _logger.LogInfo($"Working directory: {_projectSettings.WorkingDirectory.FullName}");
+                    break;
+
+                case "openDir":
+                    ProcessStartInfo startInfo = new ProcessStartInfo ("explorer.exe", _projectSettings.WorkingDirectory.FullName);
+                    startInfo.Verb = "runas";
+                    Process.Start(startInfo);
+                    break;
+
+                case "printUnzipped":
+                    _logger.LogInfo(string.Join(Environment.NewLine, _projectSettings.GetFilesListInDirectory(_projectSettings.UnzippedFilesDirectory)));
+                    break;
+
                     
                 case "cleanDir":
                     _projectSettings.CleanOutputDirectory();
@@ -117,7 +134,9 @@ namespace Stocks.Data.Api
                     }
                     else
                     {
-                        _logger.LogError($"No ticker provided. Usage: \"print TICKER\".");
+                        var allTickers = _companyRepository.GetAll().Select(x => x.Ticker).ToList();
+                        _logger.LogInfo($"Found {allTickers.Count} companies.");
+                        _logger.LogInfo(string.Join(Environment.NewLine, allTickers));
                     }
                     break;
 
@@ -185,10 +204,14 @@ namespace Stocks.Data.Api
 - download: download stock archive
 - migrate: seed the database with data unzipped in working directory
 - dropDb: Remove the database
-- print: print selected stock quotes
+- print: print selected stock quotes or all Tickers if no Ticker provided
 - simulate: run trading simulation
 - predict: get prediction for selected day
 - cleanDir: cleans output directory
-- unzip: unzip archive to output dir";
+- unzip: unzip archive to output dir
+- cleanLogs: remove all log files
+- getDir: print working directory path
+- openDir: start explorer with working directory path
+- printUnzipped: print list of files in unzipped directory";
     }
 }
