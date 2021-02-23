@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using StandardInterfaces;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public interface IStockQuoteRepository : IRepository<StockQuote>, IDisposable
     {

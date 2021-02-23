@@ -1,11 +1,11 @@
-﻿using Stocks.Data.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Stocks.Data.Model;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public class StockQuotesRepositoryCacheDecorator : IStockQuoteRepository
     {

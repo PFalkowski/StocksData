@@ -10,6 +10,7 @@ using LoggerLite;
 using Services.IO;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
+using Stocks.Data.Ef.Repositories;
 using Stocks.Data.Model;
 using Stocks.Data.Services.Tier0;
 

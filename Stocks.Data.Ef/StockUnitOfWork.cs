@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StandardInterfaces;
+using Stocks.Data.Ef.Repositories;
 using Stocks.Data.Model;
 
 namespace Stocks.Data.Ef

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Stocks.Data.Ef.Repositories;
 using Xunit;
 
 namespace Stocks.Data.UnitTests.TradingSimulator

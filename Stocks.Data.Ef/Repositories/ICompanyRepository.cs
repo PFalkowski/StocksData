@@ -4,7 +4,7 @@ using StandardInterfaces;
 using Stocks.Data.Ef.DataTransferObjects;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public interface ICompanyRepository : IRepository<Company>, IDisposable
     {

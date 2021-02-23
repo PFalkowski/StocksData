@@ -4,10 +4,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using StandardInterfaces;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public class Repository<TEntity> : ReadOnlyRepository<TEntity>, IRepository<TEntity>, IAsyncRepository<TEntity> where TEntity : class
     {

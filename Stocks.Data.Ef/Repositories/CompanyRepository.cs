@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Ef.DataTransferObjects;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public class CompanyRepository : Repository<Company>, ICompanyRepository
     {

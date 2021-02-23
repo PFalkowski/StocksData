@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MoreLinq;
+using Stocks.Data.Ef.Repositories;
 
 namespace Stocks.Data.TradingSimulator
 {

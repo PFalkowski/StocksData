@@ -5,6 +5,7 @@ using Stocks.Data.UnitTests.Ef.Test.TestData;
 using Stocks.Data.Model;
 using Xunit;
 using Stocks.Data.Ef;
+using Stocks.Data.Ef.Repositories;
 using Stocks.Data.UnitTests.Ef.Test.Config;
 
 namespace Stocks.Data.UnitTests.Ef.Test

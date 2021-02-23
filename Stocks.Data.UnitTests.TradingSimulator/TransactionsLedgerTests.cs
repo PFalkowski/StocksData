@@ -7,6 +7,7 @@ using Moq;
 using NUnit.Framework;
 using Stocks.Data.Common.Models;
 using Stocks.Data.Ef;
+using Stocks.Data.Ef.Repositories;
 using Stocks.Data.Model;
 using Stocks.Data.TradingSimulator;
 using Stocks.Data.TradingSimulator.Mapping;

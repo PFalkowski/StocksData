@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stocks.Data.Model;
 
-namespace Stocks.Data.Ef
+namespace Stocks.Data.Ef.Repositories
 {
     public class TradingSimulationResultRepository :  Repository<TradingSimulationResult>, ITradingSimulationResultRepository
     {

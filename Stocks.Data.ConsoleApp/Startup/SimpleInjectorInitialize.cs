@@ -21,6 +21,7 @@ using Stocks.Data.TradingSimulator.Mapping;
 using System;
 using System.Globalization;
 using System.IO;
+using Stocks.Data.Ef.Repositories;
 
 namespace Stocks.Data.ConsoleApp.Startup
 {
