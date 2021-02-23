@@ -22,6 +22,9 @@ namespace Stocks.Data.UnitTests.Ef.Test.Config
         public string ConnectionString { get; set; }
         public string BlacklistPatternString { get; set; }
         public Regex BlackListPattern { get; }
+        public bool UserInteractive { get; }
+        public string Run { get; }
+        public bool ShouldRunTasks { get; }
         public bool ExcludePennyStocks { get; set; }
         public double PennyStockThreshold { get; set; }
         public DirectoryInfo WorkingDirectory { get; }

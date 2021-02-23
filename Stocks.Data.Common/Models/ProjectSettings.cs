@@ -42,6 +42,13 @@ namespace Stocks.Data.Common.Models
 
         public string BlacklistPatternString => _configuration[nameof(BlacklistPatternString)];
 
+        public bool UserInteractive => bool.Parse(_configuration[nameof(UserInteractive)]);
+
+        public string Run => _configuration[nameof(Run)];
+
+        public bool ShouldRunTasks => !string.IsNullOrEmpty(Run);
+
+
         public Regex BlackListPattern => new Regex(BlacklistPatternString);//, RegexOptions.Compiled ?
         public DirectoryInfo WorkingDirectory => new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), ProjectName, OutputDirName));
         public DirectoryInfo UnzippedFilesDirectory => new DirectoryInfo(Path.Combine(WorkingDirectory.FullName, UnzippedFilesDirectoryName));

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Stocks.Data.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--Run=\"print MBANK, predict 2021-02-22\""
+    }
+  }
+}

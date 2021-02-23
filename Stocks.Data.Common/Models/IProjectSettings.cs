@@ -19,6 +19,9 @@ namespace Stocks.Data.Common.Models
         string LogDirectoryName { get; }
         string LogFileNameBase { get; }
         bool ExcludeBlacklisted { get; }
+        bool UserInteractive { get; }
+        string Run { get; }
+        bool ShouldRunTasks { get; }
         Regex BlackListPattern { get; }
         DirectoryInfo WorkingDirectory { get; }
         DirectoryInfo UnzippedFilesDirectory { get; }
