@@ -57,18 +57,15 @@ namespace Stocks.Data.Services.Tier1
                 }
                 currentDate = currentDate.AddDays(1);
             }
-
-            using var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
-            //using var scope = new TransactionScope(TransactionScopeOption.Required,
-            //    new TransactionOptions { IsolationLevel = IsolationLevel.ReadCommitted });
-
+            
             foreach (var date in datesToCheck)
             {
                 await PerformDayUpdate(date);
+                using var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled);
+                _stockQuoteRepository.SaveChanges();
+                scope.Complete();
+                _logger.LogInfo($"Database updated to {date}");
             }
-
-            _stockQuoteRepository.SaveChanges();
-            scope.Complete();
         }
 
         private async Task PerformDayUpdate(DateTime date)
