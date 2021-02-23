@@ -78,7 +78,7 @@ namespace Stocks.Data.Api
                     break;
 
                 case "openDir":
-                    ProcessStartInfo startInfo = new ProcessStartInfo ("explorer.exe", _projectSettings.WorkingDirectory.FullName);
+                    ProcessStartInfo startInfo = new ProcessStartInfo("explorer.exe", _projectSettings.WorkingDirectory.FullName);
                     startInfo.Verb = "runas";
                     Process.Start(startInfo);
                     break;
@@ -87,7 +87,7 @@ namespace Stocks.Data.Api
                     _logger.LogInfo(string.Join(Environment.NewLine, _projectSettings.GetFilesListInDirectory(_projectSettings.UnzippedFilesDirectory)));
                     break;
 
-                    
+
                 case "cleanDir":
                     _projectSettings.CleanOutputDirectory();
                     _logger.LogInfo($"Cleaned directory {_projectSettings.UnzippedFilesDirectory.FullName}");
@@ -134,9 +134,8 @@ namespace Stocks.Data.Api
                     }
                     else
                     {
-                        var allTickers = _companyRepository.GetAll().Select(x => x.Ticker).ToList();
-                        _logger.LogInfo($"Found {allTickers.Count} companies.");
-                        _logger.LogInfo(string.Join(Environment.NewLine, allTickers));
+                        var summary = _companyRepository.Summary();
+                        _logger.LogInfo($"{Environment.NewLine}{summary.Count} companies.{string.Join(Environment.NewLine, summary)}");
                     }
                     break;
 

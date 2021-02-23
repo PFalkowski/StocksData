@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Stocks.Data.Ef.DataTransferObjects;
 using Stocks.Data.Model;
 
 namespace Stocks.Data.Ef
@@ -32,6 +33,20 @@ namespace Stocks.Data.Ef
             return Entities
                 .Include(x => x.Quotes)
                 .Where(predicate.Compile());
+        }
+
+        public List<CompanySummaryDto> Summary()
+        {
+            return Entities
+                .Include(x => x.Quotes)
+                .Select(x => new CompanySummaryDto
+                {
+                    Ticker = x.Ticker,
+                    QuotesCount = x.Quotes.Count,
+                    FirstQuote = x.Quotes.OrderByDescending(q => q.Date).Last(),
+                    LastQuote = x.Quotes.OrderByDescending(q => q.Date).First()
+                })
+                .ToList();
         }
     }
 }
