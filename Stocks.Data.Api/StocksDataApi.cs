@@ -116,6 +116,11 @@ namespace Stocks.Data.Api
                     _logger.LogInfo("Successfully migrated data to database.");
                     break;
 
+                case "dbVersion":
+                    var latestDateInDb = await _stockQuoteRepository.GetLatestSessionInDbDateAsync();
+                    _logger.LogInfo(latestDateInDb.ToShortDateString());
+                    break;
+
                 case "update":
                     await _stockUpdateService.PerformUpdateTillToday();
                     break;
@@ -212,6 +217,8 @@ namespace Stocks.Data.Api
 - cleanLogs: remove all log files
 - getDir: print working directory path
 - openDir: start explorer with working directory path
-- printUnzipped: print list of files in unzipped directory";
+- printUnzipped: print list of files in unzipped directory
+- update: update database to latest session
+- dbVersion: get latest session date stored in db i.e. database version, i.e. last update date";
     }
 }
