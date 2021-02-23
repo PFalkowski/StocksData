@@ -38,7 +38,6 @@ namespace Stocks.Data.TradingSimulator
             IProgressReportable progress = null)
         {
             var result = base.Simulate(allQuotesPrefilterd, tradingSimulationConfig, progress);
-            result.SimulatorName = nameof(Top10TradingSimulator);
 
             return result;
         }

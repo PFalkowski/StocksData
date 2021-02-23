@@ -100,6 +100,7 @@ namespace Stocks.Data.TradingSimulator
             result.TransactionsLedger = ledger.TheLedger;
             result.FinalBalance = ledger.Balance;
             result.CompaniesUsedInSimulation = filteredQuotes.DistinctBy(x => x.Ticker).Count();
+            result.SimulatorName = this.GetType().Name;
 
             return result;
         }
