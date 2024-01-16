@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
     <PackageReference Include="Stocks.Data.Infrastructure" Version="3.0.0" Condition="'$(Configuration)' == 'Pack'" />
     <PackageReference Remove="Stocks.Data.Infrastructure" Version="3.0.0" Condition="'$(Configuration)' != 'Pack'" />
     <PackageReference Include="Stocks.Data.Model" Version="3.0.0" Condition="'$(Configuration)' == 'Pack'" />
