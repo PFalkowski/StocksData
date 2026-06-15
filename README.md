@@ -1,4 +1,4 @@
-# StocksData
+﻿# StocksData
 
 [![CI](https://github.com/PFalkowski/StocksData/actions/workflows/ci.yml/badge.svg)](https://github.com/PFalkowski/StocksData/actions/workflows/ci.yml)
 [![NuGet (Model)](https://img.shields.io/nuget/v/Stocks.Data.Model.svg?label=Model)](https://www.nuget.org/packages/Stocks.Data.Model/)
@@ -10,6 +10,15 @@
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-yellow.svg)](https://www.buymeacoffee.com/piotrfalkowski)
 
 A collection of .NET 8 libraries for working with stock market data (OHLCV format).
+
+## Install
+
+```bash
+dotnet add package Stocks.Data.Model
+dotnet add package Stocks.Data.Infrastructure
+dotnet add package Stocks.Data.Ef
+dotnet add package Stocks.Data.Ado
+```
 
 ## Packages
 
