@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore
+        run: |
+          dotnet restore Stocks.Data.Model/Stocks.Data.Model.csproj
+          dotnet restore Stocks.Data.Common/Stocks.Data.Common.csproj
+          dotnet restore Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj
+          dotnet restore Stocks.Data.Ef/Stocks.Data.Ef.csproj
+          dotnet restore Stocks.Data.Ado/Stocks.Data.Ado.csproj
+          dotnet restore Stocks.Data.UnitTests.Model/Stocks.Data.UnitTests.Model.csproj
+          dotnet restore Stocks.Data.UnitTests.Infrastructure/Stocks.Data.UnitTests.Common.csproj
+          dotnet restore Stocks.Data.UnitTests.Ef/Stocks.Data.UnitTests.Ef.csproj
+      - name: Build
+        run: |
+          dotnet build Stocks.Data.Model/Stocks.Data.Model.csproj --no-restore
+          dotnet build Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj --no-restore
+          dotnet build Stocks.Data.Ef/Stocks.Data.Ef.csproj --no-restore
+          dotnet build Stocks.Data.Ado/Stocks.Data.Ado.csproj --no-restore
+      - name: Test
+        run: |
+          dotnet test Stocks.Data.UnitTests.Model/Stocks.Data.UnitTests.Model.csproj --no-build --verbosity normal
+          dotnet test Stocks.Data.UnitTests.Infrastructure/Stocks.Data.UnitTests.Common.csproj --no-build --verbosity normal
+          dotnet test Stocks.Data.UnitTests.Ef/Stocks.Data.UnitTests.Ef.csproj --no-build --verbosity normal
