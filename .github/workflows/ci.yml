@@ -27,10 +27,9 @@ jobs:
           dotnet restore Stocks.Data.UnitTests.Ef/Stocks.Data.UnitTests.Ef.csproj
       - name: Build
         run: |
-          dotnet build Stocks.Data.Model/Stocks.Data.Model.csproj --no-restore
-          dotnet build Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj --no-restore
-          dotnet build Stocks.Data.Ef/Stocks.Data.Ef.csproj --no-restore
-          dotnet build Stocks.Data.Ado/Stocks.Data.Ado.csproj --no-restore
+          dotnet build Stocks.Data.UnitTests.Model/Stocks.Data.UnitTests.Model.csproj --no-restore
+          dotnet build Stocks.Data.UnitTests.Infrastructure/Stocks.Data.UnitTests.Common.csproj --no-restore
+          dotnet build Stocks.Data.UnitTests.Ef/Stocks.Data.UnitTests.Ef.csproj --no-restore
       - name: Test
         run: |
           dotnet test Stocks.Data.UnitTests.Model/Stocks.Data.UnitTests.Model.csproj --no-build --verbosity normal
