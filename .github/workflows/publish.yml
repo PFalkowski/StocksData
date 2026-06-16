@@ -1,0 +1,42 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10  # v6
+      - name: Setup .NET
+        uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2  # v5
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore and Build
+        run: |
+          dotnet restore Stocks.Data.Model/Stocks.Data.Model.csproj
+          dotnet restore Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj
+          dotnet restore Stocks.Data.Ef/Stocks.Data.Ef.csproj
+          dotnet restore Stocks.Data.Ado/Stocks.Data.Ado.csproj
+          dotnet build Stocks.Data.Model/Stocks.Data.Model.csproj --no-restore -c Release
+          dotnet build Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj --no-restore -c Release
+          dotnet build Stocks.Data.Ef/Stocks.Data.Ef.csproj --no-restore -c Release
+          dotnet build Stocks.Data.Ado/Stocks.Data.Ado.csproj --no-restore -c Release
+      - name: Pack
+        run: |
+          dotnet pack Stocks.Data.Model/Stocks.Data.Model.csproj --no-build -c Release -o nupkgs
+          dotnet pack Stocks.Data.Infrastructure/Stocks.Data.Infrastructure.csproj --no-build -c Release -o nupkgs
+          dotnet pack Stocks.Data.Ef/Stocks.Data.Ef.csproj --no-build -c Release -o nupkgs
+          dotnet pack Stocks.Data.Ado/Stocks.Data.Ado.csproj --no-build -c Release -o nupkgs
+      - name: Login to NuGet
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841  # v1
+        with:
+          usernameVar: NUGET_USER
+          tokenVar: NUGET_TOKEN
+      - name: Push to NuGet
+        run: dotnet nuget push nupkgs/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
